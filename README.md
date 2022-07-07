@@ -1,5 +1,4 @@
-# ra_guide
-Guidelines for research assistants
+# Guidelines for Research Assistants
 
 Contents:
 1. [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
@@ -8,8 +7,6 @@ Contents:
     2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
     3. [Updating the GitHub repo](#updating-the-github-repo)
 3. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
-
-
 
 # Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
