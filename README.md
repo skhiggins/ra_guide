@@ -3,6 +3,13 @@ Guidelines for research assistants
 
 Contents:
 1. [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
+2. [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
+    1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
+    2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
+    3. [Updating the GitHub repo](#updating-the-github-repo)
+    4. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines)
+
+
 
 # Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
@@ -99,11 +106,11 @@ One important aspect of RA work is keeping track of deadlines related to present
 - Preparing slides for presentations
 - Submitting grand deliverables
 
-Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
+Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
 1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
 2.	Conference deadlines. Reminders to submit papers or abstracts to conferences.
 3.	Upcoming presentations. Reminders for upcoming presentations, including slide submission deadlines.
 4.	Grant deadlines. This can be useful both when applying for grants and when submitting grant deliverables.
 
-[remindR](https://github.com/clandinq/remindr) is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
+Follow the [instructions](https://github.com/clandinq/remindr) to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
 
