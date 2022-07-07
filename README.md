@@ -1,6 +1,18 @@
 # ra_guide
 Guidelines for research assistants
 
+# Managing meetings
+1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
+    1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
+    2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
+    3. When tasks are complete, mark as complete and move to a section titled “Archive”.
+2.	Send a meeting recap after each meeting with detailed notes about what was discussed in each meeting.
+    1. Each item should have a discussion and tasks section.
+        1. In the discussion section, write comments when possible as problem + potential solution.
+        2. Immediately add items from tasks section to Asana.
+    2. Upload summaries to a Google Docs document, and include this link in all recap emails.
+
+
 # Working with GitHub
 GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ## Setting up a new repo on GitHub and cloning locally
