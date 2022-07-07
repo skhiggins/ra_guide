@@ -5,10 +5,9 @@ Guidelines for research assistants
 GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ## Setting up a new repo on GitHub and cloning locally
 1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
-2. Type the following commands in terminal
-```
-# Change to directory where repo will be cloned
-cd work	
+2. Type the following commands in terminal:
+    1. `cd work` Change to directory where repo will be cloned
+	
 # Clone repo
 git clone https://github.com/user123/myproject
 # Change directory to repo
@@ -49,5 +48,27 @@ git clone https://github.com/user123/myproject
 cd myproject
 ``` 
 
-  
+## Updating the GitHub repo
+1. Modify files locally.
+2. Change directory to project folder
+```
+cd work/myrepo
+``` 
+3. Add new and modified files
+```
+git add .
+``` 
+4. Review added files
+```
+git status
+``` 
+5. Commit files and add a message
+```
+git commit -m “Message goes here"
+``` 
+6. Get most up to date code from remote repo (here substitute main for master if master is name of branch generated on Github).
+git pull
+7. Push changes to remote repo
+git push
+
 
