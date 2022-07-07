@@ -1,6 +1,8 @@
 # ra_guide
 Guidelines for research assistants
 
+1. [Managing meetings] (#managing-meetings)
+
 # Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
     1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
