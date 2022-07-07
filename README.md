@@ -91,10 +91,10 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
 
 # Keeping track of conference and presentation deadlines
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
-•	Applications to dozens of conferences over the course of a single year to present their current work
-•	Sending paper drafts to discussants on time
-•	Preparing slides for presentations
-•	Submitting grand deliverables
+- Applications to dozens of conferences over the course of a single year to present their current work
+- Sending paper drafts to discussants on time
+- Preparing slides for presentations
+- Submitting grand deliverables
 
 Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
 1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
