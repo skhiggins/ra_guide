@@ -7,12 +7,9 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
 1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
 2. Type the following commands in terminal:
     1. `cd work` Change to directory where repo will be cloned
-	
-# Clone repo
-git clone https://github.com/user123/myproject
-# Change directory to repo
-cd myproject
-``` 
+    2. `git clone https://github.com/user123/myproject` Clone repo
+    3. `cd myproject` Change directory to repo
+
 
 ## Setting up an existing repo on the server or a new computer
 ### If there is already a folder set up on the server or computer and that be linked to the GitHub project repo:
