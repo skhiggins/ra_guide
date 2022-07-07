@@ -6,9 +6,9 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
 ## Setting up a new repo on GitHub and cloning locally
 1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
 2. Type the following commands in terminal:
-    1. `cd work` Change to directory where repo will be cloned
-    2. `git clone https://github.com/user123/myproject` Clone repo
-    3. `cd myproject` Change directory to repo
+    1. Change to directory where repo will be cloned `cd work` 
+    2. Clone repo `git clone https://github.com/user123/myproject` 
+    3. Change directory to repo `cd myproject`
 
 
 ## Setting up an existing repo on the server or a new computer
