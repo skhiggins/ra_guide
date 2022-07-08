@@ -6,7 +6,10 @@ Contents:
     1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
     2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
     3. [Updating the GitHub repo](#updating-the-github-repo)
-3. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
+3. [Working with KLC](#working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
+    1. [Accessing KLC](#accessing-klc)
+    2. [Uploading files with FileZilla](#uploading-and-downloading-files-via-filezilla)
+4. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
 
 # Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
@@ -113,7 +116,7 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 4.	Enter the password you created for your netID.
 5.	Now you should be connected to KLC. 
 
-## Uploading and downloading files via FileZilla
+## Uploading files via FileZilla
 You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
 - **Host**: klc.ci.northwestern.edu
 - **Username**: Your NetID
