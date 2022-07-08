@@ -9,6 +9,7 @@ Contents:
 3. [Working with KLC](#working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
     1. [Accessing KLC](#accessing-klc)
     2. [Uploading files with FileZilla](#uploading-and-downloading-files-via-filezilla)
+    3. [Running scripts](#running-scripts)
 4. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
 
 # Managing meetings
@@ -106,6 +107,14 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 2. Upload raw files with FileZilla to KLC, update server with scripts using GitHub.
 3. Update results produced in server with GitHub.
 
+## Uploading files via FileZilla
+You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
+- **Host**: klc.ci.northwestern.edu
+- **Username**: Your NetID
+- **Password**: Password for your NetID
+- **Port**: 22
+To upload files, drag to the selected folder on the right pane. To download files, right click download.
+
 ## Accessing KLC
 1.	If you’re not connected to a network at Northwestern, use [GlobalProtect](https://kb.northwestern.edu/page.php?id=94726) to connect via VPN.
 2.	If you have a Mac, open the terminal. If you have Windows, first install Cygwin so that you can use Linux commands from the command line, then you can open the command line with Windows+R, type cmd, Enter.
@@ -116,12 +125,24 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 4.	Enter the password you created for your netID.
 5.	Now you should be connected to KLC. 
 
-## Uploading files via FileZilla
-You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
-- **Host**: klc.ci.northwestern.edu
-- **Username**: Your NetID
-- **Password**: Password for your NetID
-- **Port**: 22
+## Running scripts
+Once you have (1) set up GitHub to work with the KLC folder, (2) uploaded necessary data files, and (3) updated scripts using GitHub, there are two ways to run scripts on the server:
+### Running files with a 00_run script and no visible output
+This first version will generate logs and return the command line for other work.
+```
+cd path_of_project_folder
+module load stata/14 # or module load R/4.0.3 [or latest; check what’s available with module avail R]
+nohup R CMD BATCH --vanilla -q scripts/00_run.do logs/00_run.log & # Nohup is so that if you get logged out the script keeps running.
+```
+### Running do files (Stata) with visible output
+The second option will display the output on the terminal.
+```
+cd path_of_project_folder
+module load stata/14
+stata-mp
+# Set base directory and relative file paths
+do scripts/myscript.do
+```
 
 # Keeping track of conference and presentation deadlines
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
