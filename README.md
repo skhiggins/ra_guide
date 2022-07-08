@@ -35,6 +35,8 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
         ```
 
 ## Setting up an existing repo on the server or a new computer
+KLC folders should be set up using Github (as if they were additional computers), so it’s easy to keep track of changes and sync files between the server and your local computer.
+
 ### If there is already a folder set up on the server or computer and that be linked to the GitHub project repo:
 1. Change directory to the existing folder
     ```
@@ -95,6 +97,28 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
     git push
     ```
 
+# Working with the Kellogg Linux Cluster (KLC) server
+Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
+1. Write scripts locally and push to GitHub.
+2. Upload raw files with FileZilla to KLC, update server with scripts using GitHub.
+3. Update results produced in server with GitHub.
+
+## Accessing KLC
+1.	If you’re not connected to a network at Northwestern, use [GlobalProtect](https://kb.northwestern.edu/page.php?id=94726) to connect via VPN.
+2.	If you have a Mac, open the terminal. If you have Windows, first install Cygwin so that you can use Linux commands from the command line, then you can open the command line with Windows+R, type cmd, Enter.
+3.	In the terminal or command line, type:
+    ```
+    ssh <netID>@klc.ci.northwestern.edu
+    ```
+4.	Enter the password you created for your netID.
+5.	Now you should be connected to KLC. 
+
+## Uploading and downloading files via FileZilla
+You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
+- **Host**: klc.ci.northwestern.edu
+- **Username**: Your NetID
+- **Password**: Password for your NetID
+- **Port**: 22
 
 # Keeping track of conference and presentation deadlines
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
