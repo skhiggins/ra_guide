@@ -63,6 +63,24 @@ KLC folders should be set up using Github (as if they were additional computers)
     git checkout origin/main -ft
     ``` 
 
+    ```
+    # 1. Change directory to the existing folder
+    cd existing_folder
+
+    # 2. Initialize repo
+    git init
+
+    # 3. Link to existing repo
+    git remote add origin https://github.com/user123/myproject
+
+    # 4. Git fetch using personal access token instead of password (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+    git fetch
+    
+    # 5. Checkout (here substitute main for master if master is name of branch generated on Github).
+    git checkout origin/main -ft
+    ``` 
+
+
 ### If there is no folder set up on the server/computer:
 1. Type the following commands in terminal
     1. Change to directory where repo will be cloned 
