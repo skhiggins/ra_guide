@@ -41,7 +41,8 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
 ## Setting up an existing repo on the server or a new computer
 KLC folders should be set up using Github (as if they were additional computers), so it’s easy to keep track of changes and sync files between the server and your local computer.
 
-### If there is already a folder set up on the server or computer and that be linked to the GitHub project repo:
+### If there is already a folder set up on the server or computer and that be linked to the GitHub project repo
+Type the following commands in the terminal:
 1. Change directory to the existing folder
     ```
     cd existing_folder
@@ -63,65 +64,49 @@ KLC folders should be set up using Github (as if they were additional computers)
     git checkout origin/main -ft
     ``` 
 
-    ```
-    # 1. Change directory to the existing folder
-    cd existing_folder
-
-    # 2. Initialize repo
-    git init
-
-    # 3. Link to existing repo
-    git remote add origin https://github.com/user123/myproject
-
-    # 4. Git fetch using personal access token instead of password (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-    git fetch
-    
-    # 5. Checkout (here substitute main for master if master is name of branch generated on Github).
-    git checkout origin/main -ft
-    ``` 
-
-
 ### If there is no folder set up on the server/computer:
-1. Type the following commands in terminal
-    1. Change to directory where repo will be cloned 
-        ```
-        cd work
-        ``` 
-    2. Clone repo
-        ```
-        git clone https://github.com/user123/myproject
-        ```
+Type the following commands in the terminal:
+1. Change to directory where repo will be cloned 
+    ```
+    cd work
+    ``` 
+2. Clone repo
+    ```
+    git clone https://github.com/user123/myproject
+    ```
 
 ## Updating the GitHub repo
-1. Modify files locally.
-2. Change directory to project folder
+First, modify files locally. Then, type the following commands in the terminal:
+1. Change directory to project folder
     ```
     cd work/myrepo
     ``` 
-3. Add new and modified files
+2. Add new and modified files
     ```
     git add .
     ``` 
-4. Review added files
+3. Review added files
     ```
     git status
     ``` 
-5. Commit files and add a message
+4. Commit files and add a message
     ```
     git commit -m “This message describes what was changed in the current commit"
     ``` 
-6. Get most up to date code from remote repo.
+5. Get most up to date code from remote repo.
     ```
     git pull
     ```
-7. Push changes to remote repo
+6. Push changes to remote repo
     ```
     git push
     ```
 # Keeping GitHub and Dropbox updated
 
-# Working with eps 
-For higher (in fact, infinite) resolution, save graphs as .eps files. (This is better than .pdf given that .eps are editable images, which is sometimes required by journals.)
+# Working with eps figures
+Working with .eps files is useful because of their high resolution and ability to modify them. However, Latex can only compile PDF files, so we must use the package `epstopdf` to convert files automatically to .eps when compiling. Sometimes, the `epstopdf` package will not generate a PDF file. The following steps have been useful to solve this issue:
+1.  Use script [gen_figures.R](https://github.com/clandinq/ra_guide/blob/main/scripts/gen_figures.R) to make a list with all .eps files included in the folder /results/figures, and generate a .tex document with all of them.
+2.  Force full typeset this document to convert all eps figures to PDF.
 
 # Working with the Kellogg Linux Cluster (KLC) server
 Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
