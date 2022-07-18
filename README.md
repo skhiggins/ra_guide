@@ -100,6 +100,10 @@ KLC folders should be set up using Github (as if they were additional computers)
     ```
     git push
     ```
+# Keeping GitHub and Dropbox updated
+
+# Working with eps 
+For higher (in fact, infinite) resolution, save graphs as .eps files. (This is better than .pdf given that .eps are editable images, which is sometimes required by journals.)
 
 # Working with the Kellogg Linux Cluster (KLC) server
 Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
