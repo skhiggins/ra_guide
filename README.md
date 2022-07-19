@@ -1,25 +1,24 @@
 # *Guidelines for Research Assistants*
 
 Contents:
-
 1. Administrative tasks
-    1.1.    [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    1.2.    [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
+    1. [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
+    2. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
 
 2. Keeping files organized
-    2.1.    [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
-        2.1.1   [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
-        2.1.2   [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
-        2.1.3   [Updating the GitHub repo](#updating-the-github-repo)
-    2.2 [Working with KLC](#working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
-        2.2.1   [Accessing KLC](#accessing-klc)
-        2.2.2   [Uploading files with FileZilla](#uploading-and-downloading-files-via-filezilla)
-        2.2.3   [Running scripts](#running-scripts)
+    1. [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
+        1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
+        2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
+        3. [Updating the GitHub repo](#updating-the-github-repo)
+    2. [Working with KLC](#working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
+        1. [Accessing KLC](#accessing-klc)
+        2. [Uploading files with FileZilla](#uploading-and-downloading-files-via-filezilla)
+        3. [Running scripts](#running-scripts)
 
 3. Coding best practices
 
 # 1. Administrative tasks
-## 1.1 Managing meetings
+## 1.1. Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
     1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
     2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
