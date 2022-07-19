@@ -1,18 +1,24 @@
-# Guidelines for Research Assistants
+# *Guidelines for Research Assistants*
 
 Contents:
-1. [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-2. [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
-    1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
-    2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
-    3. [Updating the GitHub repo](#updating-the-github-repo)
-3. [Working with KLC](#working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
-    1. [Accessing KLC](#accessing-klc)
-    2. [Uploading files with FileZilla](#uploading-and-downloading-files-via-filezilla)
-    3. [Running scripts](#running-scripts)
-4. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
 
-# Managing meetings
+A. Administrative tasks
+    A.1.    [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
+    A.2.    [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
+
+B. Keeping files organized
+    B.1.    [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
+        i)  [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
+        ii) [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
+        iii)    [Updating the GitHub repo](#updating-the-github-repo)
+    B.2.    [Working with KLC](#working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
+        i)  [Accessing KLC](#accessing-klc)
+        ii) [Uploading files with FileZilla](#uploading-and-downloading-files-via-filezilla)
+        iii)    [Running scripts](#running-scripts)
+C. Coding best practices
+
+# A.  Administrative tasks
+## A.1   Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
     1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
     2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
@@ -22,6 +28,27 @@ Contents:
         1. In the discussion section, write comments when possible as problem + potential solution.
         2. Immediately add items from tasks section to Asana.
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
+
+## Logging working hours, preparing timesheets and defining vacation time
+### This is a third level
+#### Can there be a fourth level?
+
+## Keeping track of conference and presentation deadlines
+One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
+- Applications to dozens of conferences over the course of a single year to present their current work
+- Sending paper drafts to discussants on time
+- Preparing slides for presentations
+- Submitting grand deliverables
+
+Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
+1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
+2.	Conference deadlines. Reminders to submit papers or abstracts to conferences.
+3.	Upcoming presentations. Reminders for upcoming presentations, including slide submission deadlines.
+4.	Grant deadlines. This can be useful both when applying for grants and when submitting grant deliverables.
+
+Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
+
+
 
 
 # Working with GitHub
@@ -108,6 +135,8 @@ Working with .eps files is useful because of their high resolution and ability t
 1.  Use script [gen_figures.R](https://github.com/clandinq/ra_guide/blob/main/scripts/gen_figures.R) to make a list with all .eps files included in the folder /results/figures, and generate a .tex document with all of them.
 2.  Force full typeset this document to convert all eps figures to PDF.
 
+
+
 # Working with the Kellogg Linux Cluster (KLC) server
 Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
 1. Write scripts locally and push to GitHub.
@@ -150,19 +179,3 @@ stata-mp
 # Set base directory and relative file paths
 do scripts/myscript.do
 ```
-
-# Keeping track of conference and presentation deadlines
-One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
-- Applications to dozens of conferences over the course of a single year to present their current work
-- Sending paper drafts to discussants on time
-- Preparing slides for presentations
-- Submitting grand deliverables
-
-Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
-1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
-2.	Conference deadlines. Reminders to submit papers or abstracts to conferences.
-3.	Upcoming presentations. Reminders for upcoming presentations, including slide submission deadlines.
-4.	Grant deadlines. This can be useful both when applying for grants and when submitting grant deliverables.
-
-Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
-
