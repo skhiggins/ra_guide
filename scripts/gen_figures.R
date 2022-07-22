@@ -3,11 +3,11 @@
 # Creation date:      2022-05-03
 # Author:          		César Landín
 # Files used:
-# 	- .eps figures in here("results", "figures")
+#   - .eps figures in here("results", "figures")
 # Files created:
 #   - here("results", "notes", "all_eps_figures.tex")
 # Purpose:
-# 	- Generate all eps figures without adding figures to all_figures pdf 
+#   - Generate all eps figures without adding figures to all_figures pdf 
 #     (for example, presentation version of figures).
 #********************************************************************************************
 
