@@ -4,6 +4,7 @@ Contents:
 1. Administrative tasks
     1. [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
     2. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
+    3. Managing project tasks with Asana.
 
 2. Keeping files organized
     1. [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
@@ -49,7 +50,7 @@ Managing this manually is both time consuming and often leads to unwanted errors
 Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
 
 
-
+    3. Managing project tasks with Asana.
 
 # Working with GitHub
 GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
