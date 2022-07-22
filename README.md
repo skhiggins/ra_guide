@@ -3,8 +3,8 @@
 Contents:
 1. Administrative tasks
     1. [Managing meetings](#managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    2. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
-    3. Managing project tasks with Asana.
+    2. Managing project tasks with Asana.
+    3. [Keeping track of conference and presentation deadlines](#keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important deadlines.
 
 2. Keeping files organized
     1. [Working with GitHub](#working-with-github). Setting up and using GitHub locally and in the server.
@@ -19,7 +19,7 @@ Contents:
 3. Coding best practices
 
 # 1. Administrative tasks
-## 1.1. Managing meetings
+## i. Managing meetings
 1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
     1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
     2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
@@ -30,9 +30,8 @@ Contents:
         2. Immediately add items from tasks section to Asana.
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
 
-## Logging working hours, preparing timesheets and defining vacation time
-### This is a third level
-#### Can there be a fourth level?
+## ii. Managing project tasks with Asana.
+We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. You need to set up an Asana workspace for each project.
 
 ## Keeping track of conference and presentation deadlines
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
@@ -50,7 +49,10 @@ Managing this manually is both time consuming and often leads to unwanted errors
 Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
 
 
-    3. Managing project tasks with Asana.
+
+## iv. Logging working hours, preparing timesheets and defining vacation time
+### This is a third level
+#### Can there be a fourth level?
 
 # Working with GitHub
 GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
