@@ -31,7 +31,11 @@ Contents:
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
 
 ## ii. Managing project tasks with Asana.
-We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. You need to set up an Asana workspace for each project.
+We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. For Asana to function correctly, you must register with your @kellog.northwestern.edu email, which will grant you access to the Kellogg organization on Asana. There, you can set up a team for each project/paper you are working on.
+
+### Setting up teams in Asana
+1. Create a new team by clicking on **Add Team** in the left panel. We will have one team per project, and if you're working on more than one project, you will be able to see all the teams in the same window.
+    ![](https://github.com/clandinq/ra_guide/blob/main/pictures/asana/1_1.png)
 
 ## Keeping track of conference and presentation deadlines
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
