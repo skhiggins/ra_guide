@@ -48,7 +48,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
 ### Using sections to keep track of different types of tasks
 Keep different types of tasks in separate sections. Most projects will have the following sections:
-- **Admin**: This section should contain administrative tasks. For example, writing up presentation comments, organizing tasks in Asana.
+- **Admin**: This section should contain administrative tasks. For example, writing up presentation comments and organizing tasks in Asana.
 - **Agenda**: Keep items to be discussed in meetings in this section. Also, there should be a category (column) titled "Priorities" with the priorities of all the team members. This is explained more in detail in the following sections.
 - **Analysis**: All analysis-related tasks will be in this section. This should be the center of any project.
 - **Presentations**: Tasks for presentations and conferences.
@@ -59,8 +59,12 @@ Other sections projects can have include:
 - Budget
 - Grant deliverables
 - Surveys
-Feel free to set up new sections if necessary for the project.
+
+Feel free to set up new sections if necessary.
 
 ### Tracking priorities in the admin section
 The first column in the **Admin** section should be called "Priorities", and will include a task for each team member with their priorities:
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="40%" width="40%">        
+
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/priorities_1.png" align="center" height="25%" width="25%">     
+
+Include as subtasks current tasks by order of priority, with the most important tasks first. Delete subtasks when completed. This is so that it's easier to keep track of current tasks (since most of the time there will be several tasks assigned to you), and that PIs can know what your curent priorities are. **Always keep this section up to date**.
