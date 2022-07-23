@@ -16,7 +16,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
 3. The next step is to create Asana projects, which will be sections of our Project. For example, we will always have an Admin and Analysis section in our Projects, and these sections are what Asana defines as projects. 
     1. Click on **Create a Project** below the selected team.
 
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_3.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_3.png" align="center" height="30%" width="30%">
         
     2. Select **Blank project** for project setup.
     
@@ -24,15 +24,15 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
     
     3. Define the section's name (e.g. "Admin"), choosee **Board** as the default view, and leave privacy settings as **Public to team**. Click continue to finalize creating this project.
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_6.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_6.png" align="center" height="30%" width="30%">
         
     4. Click on **Start adding tasks** and **Go to project**.
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="30%" width="30%">
         
     5. By default, the project will have three categories: To do, In progress, and Complete. Add a third category called "Archive".
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
         
     6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project. More details are explained in the following part of the guide.
 
@@ -44,7 +44,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
     8. Here is an example of how the sections of a Project look like:
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="40%" width="40%">        
+        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="25%" width="25%">        
         
 ### Using sections to keep track of different types of tasks
 Keep different types of tasks in separate sections. Most projects will have the following sections:
@@ -68,3 +68,27 @@ The first column in the **Admin** section should be called "Priorities", and wil
 <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/priorities_1.png" align="center" height="25%" width="25%">     
 
 Include as subtasks current tasks by order of priority, with the most important tasks first. Delete subtasks when completed. This is so that it's easier to keep track of current tasks (since most of the time there will be several tasks assigned to you), and that PIs can know what your curent priorities are. **Always keep this section up to date**.
+
+### Keeping track of agenda contents
+The agenda section is used to keep track of current priorities and items to be discussed in each meeting. Start by creating a column for each regular meeting:
+
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_0.png" align="center" height="50%" width="50%">     
+
+Follow these steps to add tasks to the agenda:
+1. Click on a task that you want to add to a meeting agenda.
+
+    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_1.png" align="center" height="25%" width="25%"> 
+    
+2. Click on **Add to projects** and select **Agenda**.
+
+    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_2.png" align="center" height="30%" width="30%"> 
+  
+3. Select the meeting to add the task to.
+
+    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_3.png" align="center" height="30%" width="30%"> 
+
+4. The other section's color will display in the selected task. For example, this task is in the section **Analysis** and the Admin's section pink color is drawn over the task.
+
+    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_4.png" align="center" height="25%" width="25%"> 
+
+
