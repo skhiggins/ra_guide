@@ -34,7 +34,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
         
-    6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project. More details are explained in the following part of the guide.
+    6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project. More details are explained in the [following part of the guide](https://github.com/clandinq/ra_guide/#using-sections-to-keep-track-of-different-types-of-tasks).
 
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_9.png" align="center" height="40%" width="40%">
         
@@ -49,7 +49,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
 ### Using sections to keep track of different types of tasks
 Keep different types of tasks in separate sections. Most projects will have the following sections:
 - **Admin**: This section should contain administrative tasks. For example, writing up presentation comments and organizing tasks in Asana.
-- **Agenda**: Keep items to be discussed in meetings in this section. Also, there should be a category (column) titled "Priorities" with the priorities of all the team members. This is explained more in detail in the following sections.
+- **Agenda**: Keep items to be discussed in meetings in this section. Also, there should be a category (column) titled "Priorities" with the priorities of all the team members. This is explained more in detail in the [following sections](https://github.com/clandinq/ra_guide/#keeping-track-of-agenda-contents).
 - **Analysis**: All analysis-related tasks will be in this section. This should be the center of any project.
 - **Presentations**: Tasks for presentations and conferences.
 - **References**: Relevant references to keep in mind when writing the paper.
