@@ -75,13 +75,22 @@ Most sections should have the following columns:
 - **Complete**: Recently completed tasks.
 - **Archive**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
 
+When completing a task, move it to the **Complete** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs. Once it has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Archive**.
+
 #### Tasks and subtasks
-All the work you do can be broken down as tasks and subtasks. The following is an example of a task in Asana:
+All the work you do can be added as tasks and subtasks. The following is an example of a couple of tasks in Asana:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/task.png" align="center" height="25%" width="25%">     
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/task.png" align="center" height="40%" width="40%">
 
-Try to break main taks down into subtasks.
-Subtasks can have subtasks, DONT do this
+Lengthier tasks should be broken down into subtasks:
+
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/subtask.png" align="center" height="40%" width="40%">
+
+
+Here are some guidelines for tasks
+Tasks should have clear, short names that makes it easy to identify them. You can write down a full breakdown of the required task in the description section of the task. When creating tasks, assign them to the main person responsible for completing the task, and assign a deadline. They are generally not hard deadlines, but can help to prioritize and identify tasks that have dragged on for longer than necessary. For tasks assigned to you, if the person creating the task did not put a deadline, set your own deadline to give the researchers a sense of when you think the task will be completed by.
+ubtasks can also have deadlines assigned to them. 
+
 Can add results to each task as screenshots (JPG or PNG work well, PDF and EPS do not show previews)
 
 
