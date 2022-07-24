@@ -1,7 +1,8 @@
 # *Guidelines for Research Assistants*
 
 ## ii. Managing project tasks with Asana.
-We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. In the rest of this section, I will refer to our projects/papers (for example, an analysis of a financial inclusion experiment) as *Projects*, and the subcomponents/sections of Asana teams and workspaces as *projects*.
+We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. 
+In the rest of this section, I will refer to academic projects (for example, an analysis of a financial inclusion experiment) as *Projects*, and the subcomponents/sections of Asana teams and workspaces as *projects*.
 
 ### Setting up new Projects
 1. First, download and install [Asana](https://asana.com/). For Asana to function correctly, you must register with your @kellog.northwestern.edu email, which will grant you access to the Kellogg organization on Asana. 
@@ -22,7 +23,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
     
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_4.png" align="center" height="40%" width="40%">
     
-    3. Define the section's name (e.g. "Admin"), choosee **Board** as the default view, and leave privacy settings as **Public to team**. Click continue to finalize creating this project.
+    3. Define the section's name (e.g. "Admin"), choosee **Board** as the default view, and leave privacy settings as **Public to team**. Click continue to finalize creating this project. If you forget to set this up when creating the project, you can configure Board as the default view in the project settings.
         
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_6.png" align="center" height="30%" width="30%">
         
@@ -30,7 +31,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="30%" width="30%">
         
-    5. By default, the project will have three categories: To do, In progress, and Complete. Add a third category called "Archive".
+    5. By default, the project will have three columns: To do, In progress, and Complete. Add a fourth column called "Archive".
         
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
         
@@ -42,11 +43,16 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
     
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_11.png" align="center" height="40%" width="40%">
         
-    8. Here is an example of how the sections of a Project look like:
+    8. Here is an example of how the sections of a Project looks like:
         
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="25%" width="25%">        
         
-### Using sections to keep track of different types of tasks
+    9. Once all projects have been set up, invite all researchers and RAs as collaborators to the team. You can invite new members to a maximum of three projects. Once they have accepted your invitation, you can invite them to join the rest of the projects. You can see who is a member of each project on the left of the search bar: 
+    
+        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/colab_1.png" align="center" height="40%" width="40%">        
+        
+### Using sections, columns, tasks and subtasks to keep track of work
+#### Sections
 Keep different types of tasks in separate sections. Most projects will have the following sections:
 - **Admin**: This section should contain administrative tasks. For example, writing up presentation comments and organizing tasks in Asana.
 - **Agenda**: Keep items to be discussed in meetings in this section. Also, there should be a category (column) titled "Priorities" with the priorities of all the team members. This is explained more in detail in the [following sections](https://github.com/clandinq/ra_guide/#keeping-track-of-agenda-contents).
@@ -61,6 +67,23 @@ Other sections projects can have include:
 - Surveys
 
 Feel free to set up new sections if necessary.
+
+#### Columns
+Most sections should have the following columns:
+- **To do**: Tasks that have not been started yet.
+- **In progress**: Tasks you are currently working on.
+- **Complete**: Recently completed tasks.
+- **Archive**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
+
+#### Tasks and subtasks
+All the work you do can be broken down as tasks and subtasks. The following is an example of a task in Asana:
+
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/task.png" align="center" height="25%" width="25%">     
+
+Try to break main taks down into subtasks.
+Subtasks can have subtasks, DONT do this
+Can add results to each task as screenshots (JPG or PNG work well, PDF and EPS do not show previews)
+
 
 ### Tracking priorities in the admin section
 The first column in the **Admin** section should be called "Priorities", and will include a task for each team member with their priorities:
