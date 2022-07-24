@@ -80,7 +80,7 @@ When completing a task, move it to the **Complete** column and add the task to t
 #### Tasks and subtasks
 All the work you do can be added as tasks and subtasks. The following is an example of a couple of tasks in Asana:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/task.png" align="center" height="40%" width="40%">
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/task.png" align="center" height="25%" width="25%">
 
 Lengthier tasks should be broken down into subtasks:
 
