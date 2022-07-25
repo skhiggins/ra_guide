@@ -1,11 +1,15 @@
 # *Guidelines for Research Assistants*
 
-## ii. Managing project tasks with Asana.
-We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. 
-In the rest of this section, I will refer to academic projects (for example, an analysis of a financial inclusion experiment) as *Projects*, and the subcomponents/sections of Asana teams and workspaces as *projects*.
+## ii. Managing project tasks with Asana
+We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. As a very brief introduction, Asana has five levels of organization:
+1. **Organizations**. Your user will be part of the Northwestern Kellogg organization. This is defined by the email address you use, so it is important that you register with your @kellog.northwestern.edu email address.
+2. **Teams**. Teams are comprised of groups/sections of tasks (what asana calls "projects") and team members. We will have one team per academic project.
+3. **Projects**. Projects are groupings of tasks in similar categories.  For example, we will always have an Admin and Analysis section in our Projects, and these sections are what Asana defines as projects. In the rest of this guide, I will refer to academic projects as *Projects*, and the subcomponents/sections of Asana teams and workspaces as *projects*.
+4. **Tasks**. Tasks are individual components of projects that contain deadlines, descriptions and opportunities to comment and upload content. Tasks can be assigned to multiple projects.
+5. **Subtasks**. Tasks are subdivisions of tasks that function in the same way, allowing you to set deadlines and update content.
 
 ### Setting up new Projects
-1. First, download and install [Asana](https://asana.com/). For Asana to function correctly, you must register with your @kellog.northwestern.edu email, which will grant you access to the Kellogg organization on Asana. 
+1. First, download and install [Asana](https://asana.com/). For Asana to function correctly, you must register with your Kellogg email, which will grant you access to the Kellogg organization on Asana. 
 2. Create a new team by clicking on **Add Team** in the left panel. We will have one team per Project, and if you're working on more than one Project, you will be able to see all the teams in the same window.
 
     <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_1.png" align="center" height="30%" width="30%">
@@ -14,7 +18,7 @@ In the rest of this section, I will refer to academic projects (for example, an 
 
     <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_2.png" align="center" height="35%" width="35%">
     
-3. The next step is to create Asana projects, which will be sections of our Project. For example, we will always have an Admin and Analysis section in our Projects, and these sections are what Asana defines as projects. 
+3. The next step is to create Asana projects, which will be sections of our Project.
     1. Click on **Create a Project** below the selected team.
 
         <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_3.png" align="center" height="30%" width="30%">
@@ -86,13 +90,11 @@ Lengthier tasks should be broken down into subtasks:
 
 <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/subtask.png" align="center" height="40%" width="40%">
 
-
-Here are some guidelines for tasks
-Tasks should have clear, short names that makes it easy to identify them. You can write down a full breakdown of the required task in the description section of the task. When creating tasks, assign them to the main person responsible for completing the task, and assign a deadline. They are generally not hard deadlines, but can help to prioritize and identify tasks that have dragged on for longer than necessary. For tasks assigned to you, if the person creating the task did not put a deadline, set your own deadline to give the researchers a sense of when you think the task will be completed by.
-ubtasks can also have deadlines assigned to them. 
-
-Can add results to each task as screenshots (JPG or PNG work well, PDF and EPS do not show previews)
-
+General guidelines for working with tasks and subtasks:
+- **Naming**: Tasks and subtasks should have clear, short names that makes it easy to identify them. You can write down a full breakdown of the required task in the description section of the task or subtask. 
+- **Deadlines**: When creating tasks, assign them to the main person responsible for completing the task, and assign a deadline. They are generally not hard deadlines, but can help to prioritize and identify tasks that have dragged on for longer than necessary. For tasks assigned to you, if the person creating the task did not put a deadline, set your own deadline to give the researchers a sense of when you think the task will be completed by. Subtasks can also have deadlines assigned to them. 
+- **Adding results**: When adding results (graphs or tables), attach them as screenshots or JPG / PNG files, since PDF and EPS files will not show previews. If necessary, you can also attach Excel documents. If the description does not include it, add the reason why the analysis is being conducted, what the hypothesis was being tested, whether the results confirm or reject the hypothesis, and what can be concluded from the results.
+- **Likes**: Use the like button to indicate that you've seen a task that has been assigned to you.
 
 ### Tracking priorities in the admin section
 The first column in the **Admin** section should be called "Priorities", and will include a task for each team member with their priorities:
