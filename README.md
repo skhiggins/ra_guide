@@ -6,6 +6,7 @@ Contents:
         1. [Setting up new projects](#setting-up-new-projects)
         2. [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
         3. [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
+        4. [Following up on presentation comments](#following-up-on-presentation-comments)
     3. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
     4. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
 2. Keeping files organized
@@ -150,20 +151,20 @@ Follow these steps to add tasks to the agenda:
 
 5. Once you have added all relevant tasks to the agenda, it will be easier to write the agenda email and add the detailed agenda to the Google Docs with detailed agendas and meeting recaps.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_5.png" align="center" height="40%" width="40%"> 
+    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_5.png" align="center" height="25%" width="25%"> 
 
 ### Following up on presentation comments
 PIs receive valuable comments from conferences where they present their academic projects. Asana can help convert these comments to actionable tasks, and by grouping comments by topic, prioritize which should be worked on first.
 
 1. After each paper presentation, add a task in **Admin** asking the presenter to share the comments from the presentation. If you have the opportunity of being at the presentation, write down _every_ question asked, and who asked the question.
-2. Create a document in the Project's Dropbox where you keep all presentation comments (example [here](https://github.com/clandinq/ra_guide/blob/main/docs/Presentation comments.docx)). Color-code comments from PIs and RAs and highlight comments that should become tasks:
+2. Create a document in the Project's Dropbox where you keep all presentation comments (example [here](https://github.com/clandinq/ra_guide/blob/main/docs/Presentation%20comments.docx)). Color-code comments from PIs and RAs and highlight comments that should become tasks:
 
     <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_1.png" align="center" height="40%" width="40%"> 
 
 3. Add comments to the **Comments** section on Asana. Group comments by topic, and make sure to assign actionable comments to the **Analysis** section.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_2.png" align="center" height="40%" width="40%"> 
-    
+    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_2.png" align="center" height="50%" width="45%"> 
+    <br/><br/>
     <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_3.png" align="center" height="40%" width="40%"> 
     
 4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Complete** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Archive** column.
