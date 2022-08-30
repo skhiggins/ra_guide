@@ -7,8 +7,10 @@ Contents:
         2. [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
         3. [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
-    3. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    4. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
+    2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
+    3. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
+    
+
 2. Keeping files organized
     1. [Working with GitHub](#i-working-with-github). Setting up and using GitHub locally and in the server.
         1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
@@ -194,6 +196,32 @@ Managing this manually is both time consuming and often leads to unwanted errors
 4.	Grant deadlines. This can be useful both when applying for grants and when submitting grant deliverables.
 
 Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
+
+## iv. Generating different presentation versions
+When presenting papers in academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides are included in the main presentation and which slides are sent to the appendix. The following system helps generate multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
+
+1. **Update master presentation**. 
+    - Generate a "master presentation" with all of the slides that can be included in the different presentation versions.
+    - To modify a slide for all presentations, make changes in the master presentation. 
+	- Keep all slides clearly labeled, with labels defined as *group*_*slidename*. For example, a slide in the model section could be labeled *model_introduction*, and a slide in the results section discussing takeup *takeup_overall*. Labels have to be included in the line immediately following `\begin{frame}`:
+
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_1.png" align="center" height="45%" width="45%">
+	- Insert all buttons to slides that could or will be in the appendix in the master presentation. 
+        - If a slide is included in the main part of the presentation, any buttons from other slides in the main presentation to that slide will be removed. 
+        - For example, if slides A and B are included in the main presentation, they will not have any buttons referencing each other. If slide A is in the main presentation and slide B is in the appendix, buttons from slide A to B and slide B to A will not be removed.
+	    
+            <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_2.png" align="center" height="60%" width="60%">
+
+2. **Define which slides to include in main presentation and in presentation appendix**. 
+	- If this is the first time using this system, run script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R) to generate /presentations/slide_dataset.xlsx. Remember to first update the name of the master presentation (line 25).
+	- To define what content will be in a presentation, modify the relevant presentation colum in presentations/slide_dataset.xlsx. For example, the content for the 15-minute version of the presentation is defined in the column titled “15”.  Each slide can be included in the main part of the presentation, in the appendix, or not included at all. To include a slide in the main part of the presentation, mark the slide as 1. To include the slide in the appendix, mark the slide with a 2. To omit the slide, mark the slide with a 0.
+	- Both slides included in the main part and in the appendix have the same order as in the master presentation. To update the order, the master presentation must be updated. 
+    	    
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_3.png" align="center" height="60%" width="60%">
+3. **Update and run the presentation versions script**.
+	1. Update the presentation or presentations to modify (line 87) in script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R).
+	2. Run the full script to generate the desired .tex document.
+4. **Compile the presentation and push changes to GitHub**.
 
 # 2. Keeping files organized
 ## i. Working with GitHub
