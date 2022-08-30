@@ -9,7 +9,7 @@ Contents:
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
     2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
     3. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
-    
+    4. [Generating different presentation versions](https://github.com/skhiggins/ra_guide#iv-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
 2. Keeping files organized
     1. [Working with GitHub](#i-working-with-github). Setting up and using GitHub locally and in the server.
