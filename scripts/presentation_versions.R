@@ -3,7 +3,7 @@
 # Creation date:      2022-08-21
 # Author:          		César Landín
 # Files used:
-# 	- here("presentations", "master_presentation.tex"))
+# 	- here("presentations", "SmallBusinessesProfitableOpportunities.tex")
 # Files created:
 #   - here("presentations", "slide_dataset.xlsx")
 # Purpose:
@@ -22,7 +22,8 @@ source(here("scripts", "programs", "output_directory.R"))
 ##    (1): Generate slide dataset from master presentation.  ##
 ###############################################################
 # (1.1): Import master presentation. #
-master_pres <- read_file(here("presentations", "master_presentation.tex"))
+master_pres_name <- "SmallBusinessesProfitableOpportunities.tex"
+master_pres <- read_file(here("presentations", master_pres_name))
 
 # (1.2): Get content from title onwards. #
 master_pres %<>% str_sub(str_locate(master_pres, fixed("\\maketitle"))[1] + 20, str_length(master_pres))
@@ -83,7 +84,7 @@ rm(current_slide_dataset, slide_dataset)
 ##    (2): Generate different presentation versions.  ##
 ########################################################
 # Loop over presentation versions
-p_vers <- c(40)
+p_vers <- c(20)
 
 for (p in p_vers) {
   # (2.1): Import slide dataset. #
@@ -125,9 +126,9 @@ for (p in p_vers) {
     # Save slide 
     pres_slides[slide] <- current_slide
   }
-
+  
   # (2.4): Prepare and export output. #
-  master_pres <- read_file(here("presentations", "master_presentation.tex"))
+  master_pres <- read_file(here("presentations", master_pres_name))
   output <- master_pres %>% str_sub(1, str_locate_all(master_pres, fixed("\\begin{frame}"))[[1]][4,1]- 1)
   output %<>%
     # Append main slides
@@ -135,7 +136,7 @@ for (p in p_vers) {
     # Append transition slide
     append(pres_slides$appendix_trans) %>% 
     append(paste(pres_slides[names(pres_slides) %in% 
-                              (appendix_slides %>% filter(label != "appendix_trans") %>% pull(label))], "\n") %>% unlist()) %>% 
+                               (appendix_slides %>% filter(label != "appendix_trans") %>% pull(label))], "\n") %>% unlist()) %>% 
     append("\\end{document}")
-  write_(output, here("presentations", paste0("presentation_", p, ".tex")))
+  write_(output, here("presentations", paste0(str_remove(master_pres_name, ".tex"), p, ".tex")))
 }
