@@ -208,6 +208,8 @@ By 5pm the night before the meeting, please e-mail me with:
     3. Discuss things you'd like to grow into.
 3. An outline of other issues you'd like to discuss
 
+At the end each meeting, remember to schedule next month's/quarter's meeting. You can set up a repeating Google Calendar event with an email reminder a few weeks before to confirm the date and time.
+
 ## iv. Keeping track of conference and presentation deadlines
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
 - Applications to dozens of conferences over the course of a single year to present their current work
