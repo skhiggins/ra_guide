@@ -219,7 +219,7 @@ When presenting papers in academic conferences, we will have to generate multipl
     	    
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_3.png" align="center" height="60%" width="60%">
 3. **Update and run the presentation versions script**.
-	1. Update the presentation or presentations to modify (line 87) in script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R).
+	1. Update the presentation or presentations to modify (line 95) in script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R).
 	2. Run the full script to generate the desired .tex document.
 4. **Compile the presentation and push changes to GitHub**.
 
