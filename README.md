@@ -8,8 +8,8 @@ Contents:
         3. [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
     2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    3. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
-    4. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
+    3. [Professional development meetings](#iii-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    4. [remindR deadline tracker](#iv-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
     5. [Generating different presentation versions](#v-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
 2. Keeping files organized
