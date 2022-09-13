@@ -83,8 +83,16 @@ rm(current_slide_dataset, slide_dataset)
 ########################################################
 ##    (2): Generate different presentation versions.  ##
 ########################################################
+# (2.0): Function to get currrent OS. #
+define_os <- function() {
+  output <- Sys.info()["sysname"]
+  current_os <- case_when(output == "Darwin" ~ "mac",
+                          output == "Windows" ~ "windows")
+  return(current_os)
+}
+
 # Loop over presentation versions
-p_vers <- c(20)
+p_vers <- c(10, 15, 20, 40)
 
 for (p in p_vers) {
   # (2.1): Import slide dataset. #
@@ -92,8 +100,10 @@ for (p in p_vers) {
     select(title, label, group, all_of(as.character(p))) %>% 
     rename(loc = all_of(as.character(p)))
   
-  # (2.2): Filter 0's (slides not in presentation) and split slides in main and appendix. #
-  slide_dataset %<>% filter(loc != 0)
+  # (2.2): Filter out 0's (slides not in presentation) and missings (new slides not yet assigned to presentations). #
+  slide_dataset %<>% filter(loc != 0 & !is.na(loc))
+  
+  # (2.3): Split slides in main and appendix. #
   main_slides <- slide_dataset %>% filter(loc == 1)
   appendix_slides <- slide_dataset %>% 
     filter(loc == 2) %>% 
@@ -101,10 +111,10 @@ for (p in p_vers) {
     arrange(order) %>% 
     select(-order)
   
-  # (2.3): Remove buttons from main presentation that reference slides in main presentation. #
+  # (2.4): Remove buttons from main presentation that reference slides in main presentation or missing slides. #
   pres_slides <- all_slides
   # Loop over all slides
-  for (slide in main_slides$label) {
+  for (slide in slide_dataset$label) {
     current_slide <- pres_slides[[slide]]
     # Identify buttons
     button_loc <- str_locate_all(current_slide, fixed("\\buttonto"))[[1]] %>% 
@@ -115,28 +125,51 @@ for (p in p_vers) {
              button_text = str_sub(current_slide, start, end),
              button_label = str_extract(button_text, "(?<=\\{).+?(?=\\})") %>% str_remove("s:"),
              slide_main = (button_label %in% main_slides$label) %>% as.numeric(),
+             slide_missing = (!(button_label %in% slide_dataset$label)) %>% as.numeric(),
              button_text = str_extract(button_text, "[^\\}]*\\}[^\\}]*\\}"))
-    # Remove buttons that reference slides in main
-    button_loc %<>% filter(slide_main == 1)
-    if (nrow(button_loc) > 0) {
-      for (i in 1:nrow(button_loc)) {
-        current_slide %<>% str_remove(fixed(button_loc$button_text[i]))
+    # If slide in main presentation, remove buttons from main presentation that reference slides in main presentation.
+    if (slide %in% main_slides$label) {
+      remove_slides <- button_loc %>% filter(slide_main == 1)
+    }
+    # For all slides, remove buttons from presentation that reference slides not in presentation.
+    remove_slides %<>% bind_rows(button_loc %>% filter(slide_missing == 1))
+    # Remove slides.
+    if (nrow(remove_slides) > 0) {
+      for (i in 1:nrow(remove_slides)) {
+        current_slide %<>% 
+          str_remove(fixed(paste0(remove_slides$button_text[i], "\n"))) %>% 
+          str_remove(fixed(paste0(remove_slides$button_text[i], "   \n"))) %>% 
+          str_remove(fixed(paste0(remove_slides$button_text[i], "\r\n"))) %>% 
+          str_remove(fixed(paste0(remove_slides$button_text[i], "   \r\n")))
       }
     }
     # Save slide 
     pres_slides[slide] <- current_slide
   }
   
-  # (2.4): Prepare and export output. #
+  # (2.6): Prepare and export output. #
   master_pres <- read_file(here("presentations", master_pres_name))
   output <- master_pres %>% str_sub(1, str_locate_all(master_pres, fixed("\\begin{frame}"))[[1]][4,1]- 1)
   output %<>%
     # Append main slides
-    append(paste(pres_slides[names(pres_slides) %in% main_slides$label], "\n") %>% unlist()) %>% 
+    append(pres_slides[names(pres_slides) %in% main_slides$label] %>% 
+             unlist() %>% 
+             paste(collapse = "\n\n")) %>% 
     # Append transition slide
-    append(pres_slides$appendix_trans) %>% 
-    append(paste(pres_slides[names(pres_slides) %in% 
-                               (appendix_slides %>% filter(label != "appendix_trans") %>% pull(label))], "\n") %>% unlist()) %>% 
+    append(paste("\n\n",
+                 pres_slides$appendix_trans,
+                 "\n\n")) %>% 
+    append(pres_slides[names(pres_slides) %in% 
+                               (appendix_slides %>% filter(label != "appendix_trans") %>% pull(label))] %>% 
+             unlist() %>% 
+             paste(collapse = "\n\n")) %>% 
     append("\\end{document}")
-  write_(output, here("presentations", paste0(str_remove(master_pres_name, ".tex"), p, ".tex")))
+  
+  # (2.7): Fix characters if using Windows #
+  if (define_os() != "mac") {
+    output %<>% map_chr(\(x) str_replace_all(x, "\r\n", "\n"))
+  }
+  
+  # (2.8): Export presentation. #
+  cat(output, file = here("presentations", paste0(str_remove(master_pres_name, ".tex"), "_", p, ".tex")), append = FALSE)
 }
