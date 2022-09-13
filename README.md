@@ -8,8 +8,8 @@ Contents:
         3. [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
     2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    3. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
-    4. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    3. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    4. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
     5. [Generating different presentation versions](#v-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
 2. Keeping files organized
@@ -183,23 +183,9 @@ PIs receive valuable comments from conferences where they present their academic
         2. Immediately add items from tasks section to Asana.
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
 
-## iii. Keeping track of conference and presentation deadlines
-One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
-- Applications to dozens of conferences over the course of a single year to present their current work
-- Sending paper drafts to discussants on time
-- Preparing slides for presentations
-- Submitting grand deliverables
-
-Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
-1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
-2.	Conference deadlines. Reminders to submit papers or abstracts to conferences.
-3.	Upcoming presentations. Reminders for upcoming presentations, including slide submission deadlines.
-4.	Grant deadlines. This can be useful both when applying for grants and when submitting grant deliverables.
-
-Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
-
-## iv. Professional development meetings
+## iii. Professional development meetings
 We will have regularly scheduled (monthly or quarterly) professional development meetings to provide feedback to each other, help pinpoint strengths I can highlight in a letter of recommendation, discuss areas to improve (which will be a mandatory point in each meeting, so don’t interpret feedback on areas to improve as a bad sign), and check in on the status of your preparation for grad school applications.
+
  
 In general, we can discuss the following things in the meeting:
 
@@ -221,6 +207,21 @@ By 5pm the night before the meeting, please e-mail me with:
     2. Describe areas you can improve.
     3. Discuss things you'd like to grow into.
 3. An outline of other issues you'd like to discuss
+
+## iv. Keeping track of conference and presentation deadlines
+One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
+- Applications to dozens of conferences over the course of a single year to present their current work
+- Sending paper drafts to discussants on time
+- Preparing slides for presentations
+- Submitting grand deliverables
+
+Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
+1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
+2.	Conference deadlines. Reminders to submit papers or abstracts to conferences.
+3.	Upcoming presentations. Reminders for upcoming presentations, including slide submission deadlines.
+4.	Grant deadlines. This can be useful both when applying for grants and when submitting grant deliverables.
+
+Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
 
 ## v. Generating different presentation versions
 When presenting papers in academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides are included in the main presentation and which slides are sent to the appendix. The following system helps generate multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
