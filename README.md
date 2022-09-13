@@ -9,7 +9,8 @@ Contents:
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
     2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
     3. [remindR deadline tracker](#iii-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
-    4. [Generating different presentation versions](https://github.com/skhiggins/ra_guide#iv-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
+    4. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    5. [Generating different presentation versions](#v-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
 2. Keeping files organized
     1. [Working with GitHub](#i-working-with-github). Setting up and using GitHub locally and in the server.
@@ -197,7 +198,31 @@ Managing this manually is both time consuming and often leads to unwanted errors
 
 Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
 
-## iv. Generating different presentation versions
+## iv. Professional development meetings
+We will have regularly scheduled (monthly or quarterly) professional development meetings to provide feedback to each other, help pinpoint strengths I can highlight in a letter of recommendation, discuss areas to improve (which will be a mandatory point in each meeting, so don’t interpret feedback on areas to improve as a bad sign), and check in on the status of your preparation for grad school applications.
+ 
+In general, we can discuss the following things in the meeting:
+
+1. **Graduate school preparation**
+    - What classes are you taking/how are they going?
+    - Status of GRE/TOEFL/anything else you need to do for grad school applications
+    - Give me feedback: how can I do a better job mentoring/supporting you?
+2. **RA work**
+    - What were you most proud of this month/quarter?
+    - What do you think you could improve on?
+    - What areas would you like to grow?
+
+By 5pm the night before the meeting, please e-mail me with:
+
+1. Graduate school preparation:
+    - An outline of how your graduate school preparation is going (if applicable)
+2. RA work:
+    1. A brief summary of what you've accomplished in the last month.
+    2. Describe areas you can improve.
+    3. Discuss things you'd like to grow into.
+3. An outline of other issues you'd like to discuss
+
+## v. Generating different presentation versions
 When presenting papers in academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides are included in the main presentation and which slides are sent to the appendix. The following system helps generate multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
 
 1. **Update master presentation**. 
