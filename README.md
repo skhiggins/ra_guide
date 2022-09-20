@@ -18,6 +18,7 @@ Contents:
         1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
         2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
         3. [Updating the GitHub repo](#updating-the-github-repo)
+        4. [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
     2. [Working with KLC](#ii-working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
         1. [Accessing KLC](#accessing-klc)
         2. [Uploading files with FileZilla](#uploading-files-via-filezilla)
