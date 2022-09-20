@@ -477,7 +477,7 @@ GitHub is used to facilitate sharing results and scripts with PIs and other rese
 
 ### Setting up and running dual Github-Dropbox updates
 1. Download and edit Github to Dropbox backup script.
-    1. Download the file githhub_to_dropbox.R and put it in your local project folder inside /scripts/programs/.
+    1. Download the file [github_to_dropbox.R](githhub_to_dropbox.R) and put it in your local project folder inside /scripts/programs/.
     2. Update the path of the Dropbox folder where files should be routinely backed up to.
 
 2. Add shortcuts to bash profile.
