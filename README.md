@@ -14,15 +14,18 @@ Contents:
     6. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
 
 2. Keeping files organized
-    1. [Working with GitHub](#i-working-with-github). Setting up and using GitHub locally and in the server.
+    1. [General project organization](#i-general-project-organization). Overview of how you should use Dropbox, Github and Overleaf for academic projects.
+    2. [Working with GitHub](#ii-working-with-github). Setting up and using GitHub locally and in the server.
         1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
         2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
         3. [Updating the GitHub repo](#updating-the-github-repo)
-        4. [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
-    2. [Working with KLC](#ii-working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
+    3. [Working with Dropbox](#iii-working-with-dropbox). Keep a backup of project files and data on Dropbox.
+    4. [Working with KLC](#iv-working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
         1. [Accessing KLC](#accessing-klc)
         2. [Uploading files with FileZilla](#uploading-files-via-filezilla)
         3. [Running scripts](#running-scripts)
+    5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Setting up and running dual Github-Dropbox updates.
+
 3. Coding best practices
     1. [Working with EPS figures](#i-working-with-eps-figures)
 
@@ -274,7 +277,43 @@ When presenting papers in academic conferences, we will have to generate multipl
 The process for days off if you are going to make up the hours and not take a vacation day are steps 1 and 3 above.
 
 # 2. Keeping files organized
-## i. Working with GitHub
+## i. General project organization
+In academic projects, it's essential to keep files synchronized between multiple computers and backed-up over time. This allows to easily share scripts and results with PIs, keep raw and processed data backed up, maintain a record of changes in different files, and permit other RAs and PIs to work on the same papers, presentations and scripts. We accomplish all of these tasks with the help of Dropbox, Github and Overleaf: Dropbox mainly for backing-up data, GitHub to track the history of file changes and update files, and Overleaf to allow PIs to easily modify papers without having to use a Latex processor. This system also integrates with the KLC server for processing large datasets.
+
+Our system works the following way:
+1. **Local folder set-up and structure**. For existing projects, you should [clone the repo in your computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer). If this is a new project, start by setting up a local project folder with the following structure:
+    - **admin**: This folder should contain administrative files, for example agreements, contracts, and grant proposals.
+    - **data**: Only raw data go in this folder.
+    - **documentation**: Documentation about the data goes in this folder.
+    - **logs**: Only create this folder when generating logs from running scripts on the server.
+    - **paper**: Paper tex and pdf documents.
+    - **pictures**: Any pictures to be included in the paper or presentation.
+    - **presentations**: Presentation tex and pdf documents.
+    - **proc**: Processed data sets go in this folder.
+    - **results**: Results go in this folder.
+        - **figures**: Subfolder for figures.
+	- **tables**: Subfolder for tables.
+    - **scripts**: Code goes in this folder
+        - **programs**: A subfolder containing functions called by the analysis scripts (if applicable).
+    - An .Rproj file for the project. (This can be created in RStudio, with File > New Project.).
+    You will normally work in your local folder unless working with large datasets or complex scripts (when you will have to use the server).
+
+2. **Keep files backed-up and updated with GitHub**
+    - Git is an open-source version control system that helps track file changes across time. GitHub is a company that hosts Git repositories (project folders), including the full history of each file. For example, for any given script that is constantly synchronized with GitHub, you can access the different versions of the script you had backed up over time. You can learn more about Git and GitHub [here](https://docs.github.com/en/get-started/using-git/about-git). 
+    - If you set up a new project folder from scratch, follow the [instructions](#setting-up-a-new-repo-on-github-and-cloning-locally) to set up a new GitHub repo.
+    - Every time you are done making important changes to a file, want to back-up your work or share it with another project member, you should [push your changes to GitHub](#updating-the-github-repo). At the same time, during this process you will import the changes made (pushed) by other users to the repository (repo).
+    
+3. ** Back up data with Dropbox**
+    - Dropbox is mainly used for backing-up raw datasets. This can help reduce disk usage when working with large datasets, as you can delete the raw dataset from your local `data` folder and still be able to access it on Dropbox. We also use Dropbox for keeping constant backups of results and scripts that can easily be shared with PIs.
+
+4. **Working on papers using Overleaf**
+    - Some PIs prefer to work on papers using Overleaf, and it can also be useful to access and edit papers and presentations from any computer. To sync with GitHub, the users who want to make changes on Overleaf must have a Premium Overleaf subscription, either the Standard or Professional plan. Project members that don't need to make changes on Overleaf do not need to have a Premium subscription.
+  
+5. **Working on the server**
+    - When working from the server, you will [set up the GitHub repo on the server](#setting-up-an-existing-repo-on-the-server-or-a-new-computer) and keep scripts and results backed-up with GitHub.
+    - Files can be sent (raw data) and retrieved (processed data) using [FileZilla](#transferring-files-via-filezilla)
+
+## ii. Working with GitHub
 GitHub is used to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ### Setting up a new repo on GitHub and cloning locally
 1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
@@ -381,13 +420,19 @@ To make changes in repos where you are not the collaborator, you need to fork (c
     gh pr create
     ```   
 
-## ii. Working with the Kellogg Linux Cluster (KLC) server
+## iii. Working with Dropbox
+- Keep all raw data backed up in the Dropbox. You should **never** save scripts directly or reference raw data that in the Dropbox project folder.
+- The Dropbox folder can also contain administrative files and presentations that are not required in the GitHub.
+- All files from the local project folder (the one synced with GitHub) except `data` should be routinely copied from the local folder over to Dropbox to keep a back-up of all files. We accomplish this using a [shortcut](#v-keeping-github-and-dropbox-updated) that substitutes multiple git commands and copies the data to Dropbox.
+- For large project folders you will need a Dropbox Plus account. The easiest way to get it is to buy it (choose the “billed yearly” option for the price discount – it costs about $100) and then send the receipt to [Adam Troutman](adam.troutman@kellogg.northwestern.edu) and you will receive reimbursement into the bank account where you are paid by Northwestern. 
+
+## iv. Working with the Kellogg Linux Cluster (KLC) server
 Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
 1. Write scripts locally and push to GitHub.
 2. Upload raw files with FileZilla to KLC, update server with scripts using GitHub.
 3. Update results produced in server with GitHub.
 
-### Uploading files via FileZilla
+### Transferring files via FileZilla
 You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
 - **Host**: klc.ci.northwestern.edu
 - **Username**: Your NetID
@@ -423,8 +468,7 @@ stata-mp
 # Set base directory and relative file paths
 do scripts/myscript.do
 ```
-
-## iii. Keeping Github and Dropbox updated 
+## v. Keeping Github and Dropbox updated 
 GitHub is used to facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 
 ### Setting up and running dual Github-Dropbox updates
