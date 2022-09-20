@@ -280,11 +280,11 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
 1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
 2. Type the following commands in terminal:
     1. Change to directory where repo will be cloned 
-        ```
+        ```sh
         cd work
         ``` 
     2. Clone repo
-        ```
+        ```sh
         git clone https://github.com/user123/myproject
         ```
 
@@ -294,61 +294,61 @@ KLC folders should be set up using Github (as if they were additional computers)
 #### If there is already a folder set up on the server or computer and that be linked to the GitHub project repo
 Type the following commands in the terminal:
 1. Change directory to the existing folder
-    ```
+    ```sh
     cd existing_folder
     ``` 
 2. Initialize repo
-    ```
+    ```sh
     git init
     ``` 
 3. Link to existing repo
-    ```
+    ```sh
     git remote add origin https://github.com/user123/myproject
     ``` 
 4. Git fetch using personal access token instead of password (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-    ```
+    ```sh
     git fetch
     ``` 
 5. Checkout (here substitute main for master if master is name of branch generated on Github).
-    ```
+    ```sh
     git checkout origin/main -ft
     ``` 
 
 #### If there is no folder set up on the server/computer:
 Type the following commands in the terminal:
 1. Change to directory where repo will be cloned 
-    ```
+    ```sh
     cd work
     ``` 
 2. Clone repo
-    ```
+    ```sh
     git clone https://github.com/user123/myproject
     ```
 
 ### Updating the GitHub repo
 First, modify files locally. Then, type the following commands in the terminal:
 1. Change directory to project folder
-    ```
+    ```sh
     cd work/myrepo
     ``` 
 2. Add new and modified files
-    ```
+    ```sh
     git add .
     ``` 
 3. Review added files
-    ```
+    ```sh
     git status
     ``` 
 4. Commit files and add a message
-    ```
+    ```sh
     git commit -m “This message describes what was changed in the current commit"
     ``` 
 5. Get most up to date code from remote repo.
-    ```
+    ```sh
     git pull
     ```
 6. Push changes to remote repo
-    ```
+    ```sh
     git push
     ```
 
@@ -357,27 +357,27 @@ To make changes in repos where you are not the collaborator, you need to fork (c
 
 1. Install the [GitHub Command Line Interface (CLI)](https://cli.github.com/). If you have [Homebrew](https://brew.sh/) installed (on Mac OS X), you can install by typing on the command line `brew install gh`.
 2. [Fork the repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-    ```
+    ```sh
     gh repo fork https://github.com/otheruser/repo_a
     ``` 
 3. Clone forked repo
-    ```
+    ```sh
     git clone https://github.com/myuser/repo_a
     ``` 
 4. Change directory to local folder
-    ```
+    ```sh
     cd repo_a
     ``` 
 5. Make changes to files locally 
 6. Add, commit and push changes. This updates files on your own fork of the repo.
 7. Change directory to local folder
-    ```
+    ```sh
     git add .
     git commit -m “Add a message here”
     git push
     ```   
 8. Create [pull request](https://cli.github.com/manual/gh_pr_create). Add title, insert details in body (if necessary) and submit pull request. Select other user’s repo as base repo.
-    ```
+    ```sh
     gh pr create
     ```   
 
@@ -399,7 +399,7 @@ To upload files, drag to the selected folder on the right pane. To download file
 1.	If you’re not connected to a network at Northwestern, use [GlobalProtect](https://kb.northwestern.edu/page.php?id=94726) to connect via VPN.
 2.	If you have a Mac, open the terminal. If you have Windows, first install Cygwin so that you can use Linux commands from the command line, then you can open the command line with Windows+R, type cmd, Enter.
 3.	In the terminal or command line, type:
-    ```
+    ```sh
     ssh <netID>@klc.ci.northwestern.edu
     ```
 4.	Enter the password you created for your netID.
@@ -409,14 +409,14 @@ To upload files, drag to the selected folder on the right pane. To download file
 Once you have (1) set up GitHub to work with the KLC folder, (2) uploaded necessary data files, and (3) updated scripts using GitHub, there are two ways to run scripts on the server:
 #### Running files with a 00_run script and no visible output
 This first version will generate logs and return the command line for other work.
-```
+```sh
 cd path_of_project_folder
 module load stata/14 # or module load R/4.0.3 [or latest; check what’s available with module avail R]
 nohup R CMD BATCH --vanilla -q scripts/00_run.do logs/00_run.log & # Nohup is so that if you get logged out the script keeps running.
 ```
 #### Running do files (Stata) with visible output
 The second option will display the output on the terminal.
-```
+```sh
 cd path_of_project_folder
 module load stata/14
 stata-mp
@@ -432,40 +432,39 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
     1. Download the file githhub_to_dropbox.R and put it in your local project folder inside /scripts/programs/.
     2. Update the path of the Dropbox folder where files should be routinely backed up to.
 
-2. Add shortcuts to bash profile
+2. Add shortcuts to bash profile.
     1. Open a new terminal window and edit the bash profile:
-        ```
-	vi ~/.zprofile
-        ```	
-
+        ```sh
+        vi ~/.zprofile
+        ``` 
     2. Insert at the bottom of the bash profile the following lines:
-        ```
-	function logupdate () {
-	    echo "********Pull from repo********"
-	    git pull
-	    echo "********Push recent changes to repo********"
-	    git push
-	    echo "********Export commit to log********"
-	    echo "Generating log..."
-	    git log --name-status HEAD^..HEAD >          "$(pwd)/zettle_git_log.txt"
-	    echo "********Update Dropbox********"
-	    echo "Updating files on Dropbox..."
-	    Rscript $(pwd)/scripts/programs/github_to_dropbox.R
-	}
-	function gitcommit () {
-	    echo "********Adding all files to commit********"
-	    git add .
-	    git commit -m $@
-	    logupdate
-	}
-        ```
-
-	The first function pulls and pushes a recent commit, generates a log of this commit, and mirrors the same changes on Dropbox. The second function adds all files to the commit and runs the first function. To add only certain files to the commit, do the commit manually  (git add file_special, git commit -m “Upload only one file”) and the run ‘log update’.
+		```sh
+		function logupdate () {
+		    echo "********Pull from repo"********"
+		    git pull
+		    echo "********Push recent changes to repo"********"
+		    git push
+		    echo "********Export commit to log********"
+		    echo "Generating log..."
+		    git log --name-status HEAD^..HEAD > "$(pwd)/zettle_git_log.txt"
+		    echo "********Update Dropbox********"
+		    echo "Updating files on Dropbox..."
+		    Rscript $(pwd)/scripts/programs/github_to_dropbox.R
+		}
+		
+		function gitcommit () {
+		    echo "********Adding all files to commit********"
+		    git add .
+		    git commit -m $@
+		    logupdate
+		}
+		``` 
+		The first function pulls and pushes a recent commit, generates a log of this commit, and mirrors the same changes on Dropbox. The second function adds all files to the commit and runs the first function. To add only certain files to the commit, do the commit manually  (`git add file_special; git commit -m "Upload only one file"`) and the run `log update`.
 
     3. Save the bash profile (press Escape, type :wq, and hit Enter)
 
 3. Make changes and run Github - Dropbox dual backup shortcut. Remember to change directory to the desired project folder.
-    ```
+    ```sh
     cd project_folder
     gitcommit "My first commit with the shortcut"
     ``` 
