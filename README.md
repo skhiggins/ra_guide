@@ -473,7 +473,7 @@ stata-mp
 do scripts/myscript.do
 ```
 ## v. Keeping Github and Dropbox updated 
-- We use Dropbox as a backup folder and to easily share files with PIs. We use a shortcut that substitutes multiple git commands and copies the data to Dropbox, and this reduces the time necessary to update the git (making it easier to make multiple commits and keep files constantly up to date), and makes it much easier to keep Dropbox in sync with the git (instead of having to manually copy files every time you make a commit).
+- We use Dropbox as a backup folder and to easily share files with PIs. Since copying files manually to update the Dropbox is a tedious task, and we are interested in mantaining the folder up to date, we developed a shortcut that substitutes multiple git commands and copies the data to Dropbox. This reduces the time necessary to update the git (making it easier to make multiple commits and keep the git up to date), and makes it much easier to keep Dropbox in sync with the git (instead of having to manually copy files every time you make a commit).
 - Files we only want in Dropbox and not in the git (for example, admin files) will not be modified by this system, as they are never involved in a commit.
 - Processed data will also not be linked to Dropbox. Anyone who needs to have the processed data will need to run the scripts to obtain the data in proc/ on their local git folder. 
  
