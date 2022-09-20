@@ -275,7 +275,7 @@ The process for days off if you are going to make up the hours and not take a va
 
 # 2. Keeping files organized
 ## i. Working with GitHub
-GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
+GitHub is worked to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ### Setting up a new repo on GitHub and cloning locally
 1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
 2. Type the following commands in terminal:
