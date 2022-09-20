@@ -355,7 +355,7 @@ First, modify files locally. Then, type the following commands in the terminal:
 ### Creating a fork of a repo and making a pull request    
 To make changes in repos where you are not the collaborator, you need to fork (create your own version of) the repo, make changes, and make a *pull request* to merge these changes back into the original repo. Follow these steps to fork a repo and create a pull request:
 
-1. Install the [GitHub Command Line Interface (CLI)](https://cli.github.com/)
+1. Install the [GitHub Command Line Interface (CLI)](https://cli.github.com/). If you have [Homebrew](https://brew.sh/) installed (on Mac OS X), you can install by typing on the command line `brew install gh`.
 2. [Fork the repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
     ```
     gh repo fork https://github.com/otheruser/repo_a
