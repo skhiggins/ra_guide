@@ -425,7 +425,7 @@ do scripts/myscript.do
 ```
 
 ## iii. Keeping Github and Dropbox updated 
-GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
+GitHub is used to facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 
 ### Setting up and running dual Github-Dropbox updates
 1. Download and edit Github to Dropbox backup script.
@@ -459,7 +459,7 @@ GitHub is worked to keep facilitate sharing results and scripts with PIs and oth
 		    logupdate
 		}
 		``` 
-		The first function pulls and pushes a recent commit, generates a log of this commit, and mirrors the same changes on Dropbox. The second function adds all files to the commit and runs the first function. To add only certain files to the commit, do the commit manually  (`git add file_special; git commit -m "Upload only one file"`) and the run `log update`.
+		The first function pulls and pushes a recent commit, generates a log of this commit, and mirrors the same changes on Dropbox. The second function adds all files to the commit and runs the first function. To add only certain files to the commit, do the commit manually  (`git add file_special; git commit -m "Upload only one file"`) and the run `logupdate`.
 
     3. Save the bash profile (press Escape, type :wq, and hit Enter)
 
