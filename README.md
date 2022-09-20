@@ -479,6 +479,8 @@ GitHub is used to facilitate sharing results and scripts with PIs and other rese
 1. Download and edit Github to Dropbox backup script.
     1. Download the file [github_to_dropbox.R](githhub_to_dropbox.R) and put it in your local project folder inside /scripts/programs/.
     2. Update the path of the Dropbox folder where files should be routinely backed up to.
+            
+	    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/gh_db_1.png" align="center" height="60%" width="60%">
 
 2. Add shortcuts to bash profile.
     1. Open a new terminal window and edit the bash profile:
@@ -516,7 +518,9 @@ GitHub is used to facilitate sharing results and scripts with PIs and other rese
     cd project_folder
     gitcommit "My first commit with the shortcut"
     ``` 
-
+    
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/gh_db_2.png" align="center" height="80%" width="80%">
+	    
 # 3. Coding best practices
 ## i. Working with eps figures
 Working with .eps files is useful because of their high resolution and ability to modify them. However, Latex can only compile PDF files, so we must use the package `epstopdf` to convert files automatically to .eps when compiling. Sometimes, the `epstopdf` package will not generate a PDF file. The following steps have been useful to solve this issue:
