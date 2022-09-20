@@ -424,6 +424,52 @@ stata-mp
 do scripts/myscript.do
 ```
 
+## iii. Keeping Github and Dropbox updated 
+GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
+
+### Setting up and running dual Github-Dropbox updates
+1. Download and edit Github to Dropbox backup script.
+    1. Download the file githhub_to_dropbox.R and put it in your local project folder inside /scripts/programs/.
+    2. Update the path of the Dropbox folder where files should be routinely backed up to.
+
+2. Add shortcuts to bash profile
+    1. Open a new terminal window and edit the bash profile:
+        ```
+	vi ~/.zprofile
+        ```	
+
+    2. Insert at the bottom of the bash profile the following lines:
+        ```
+	function logupdate () {
+	    echo "********Pull from repo********"
+	    git pull
+	    echo "********Push recent changes to repo********"
+	    git push
+	    echo "********Export commit to log********"
+	    echo "Generating log..."
+	    git log --name-status HEAD^..HEAD >          "$(pwd)/zettle_git_log.txt"
+	    echo "********Update Dropbox********"
+	    echo "Updating files on Dropbox..."
+	    Rscript $(pwd)/scripts/programs/github_to_dropbox.R
+	}
+	function gitcommit () {
+	    echo "********Adding all files to commit********"
+	    git add .
+	    git commit -m $@
+	    logupdate
+	}
+        ```
+
+	The first function pulls and pushes a recent commit, generates a log of this commit, and mirrors the same changes on Dropbox. The second function adds all files to the commit and runs the first function. To add only certain files to the commit, do the commit manually  (git add file_special, git commit -m “Upload only one file”) and the run ‘log update’.
+
+    3. Save the bash profile (press Escape, type :wq, and hit Enter)
+
+3. Make changes and run Github - Dropbox dual backup shortcut. Remember to change directory to the desired project folder.
+    ```
+    cd project_folder
+    gitcommit "My first commit with the shortcut"
+    ``` 
+
 # 3. Coding best practices
 ## i. Working with eps figures
 Working with .eps files is useful because of their high resolution and ability to modify them. However, Latex can only compile PDF files, so we must use the package `epstopdf` to convert files automatically to .eps when compiling. Sometimes, the `epstopdf` package will not generate a PDF file. The following steps have been useful to solve this issue:
