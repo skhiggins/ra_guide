@@ -313,6 +313,10 @@ Our system works the following way:
     - When working from the server, you will [set up the GitHub repo on the server](#setting-up-an-existing-repo-on-the-server-or-a-new-computer) and keep scripts and results backed-up with GitHub.
     - Files can be sent (raw data) and retrieved (processed data) using [FileZilla](#transferring-files-via-filezilla)
 
+The system is summarized in the following chart:
+
+<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
+
 ## ii. Working with GitHub
 GitHub is used to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ### Setting up a new repo on GitHub and cloning locally
