@@ -473,8 +473,10 @@ stata-mp
 do scripts/myscript.do
 ```
 ## v. Keeping Github and Dropbox updated 
-GitHub is used to facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
-
+- We use Dropbox as a backup folder and to easily share files with PIs. We use a shortcut that substitutes multiple git commands and copies the data to Dropbox, and this reduces the time necessary to update the git (making it easier to make multiple commits and keep files constantly up to date), and makes it much easier to keep Dropbox in sync with the git (instead of having to manually copy files every time you make a commit).
+- Files we only want in Dropbox and not in the git (for example, admin files) will not be modified by this system, as they are never involved in a commit.
+- Processed data will also not be linked to Dropbox. Anyone who needs to have the processed data will need to run the scripts to obtain the data in proc/ on their local git folder. 
+ 
 ### Setting up and running dual Github-Dropbox updates
 1. Download and edit Github to Dropbox backup script.
     1. Download the file [github_to_dropbox.R](githhub_to_dropbox.R) and put it in your local project folder inside /scripts/programs/.
