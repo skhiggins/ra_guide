@@ -24,7 +24,7 @@ Contents:
         1. [Accessing KLC](#accessing-klc)
         2. [Uploading files with FileZilla](#uploading-files-via-filezilla)
         3. [Running scripts](#running-scripts)
-    5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Setting up and running dual Github-Dropbox updates.
+    5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Update Github and Dropbox with one simple terminal command.
 
 3. Coding best practices
     1. [Working with EPS figures](#i-working-with-eps-figures)
@@ -494,7 +494,7 @@ GitHub is used to facilitate sharing results and scripts with PIs and other rese
 		    git push
 		    echo "********Export commit to log********"
 		    echo "Generating log..."
-		    git log --name-status HEAD^..HEAD > "$(pwd)/zettle_git_log.txt"
+		    git log --name-status HEAD^..HEAD > "$(pwd)/git_log.txt"
 		    echo "********Update Dropbox********"
 		    echo "Updating files on Dropbox..."
 		    Rscript $(pwd)/scripts/programs/github_to_dropbox.R
