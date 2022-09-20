@@ -251,6 +251,8 @@ When presenting papers in academic conferences, we will have to generate multipl
 	2. Run the full script to generate the desired .tex document.
 4. **Compile the presentation and push changes to GitHub**.
 
+**Note**: The person updating the master presentation should also run the presentation versions script and push to GitHub, to ensure all presentations are kept up to date.
+
 # 2. Keeping files organized
 ## i. Working with GitHub
 GitHub is worked to keep facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
