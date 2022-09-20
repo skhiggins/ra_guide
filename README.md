@@ -351,6 +351,35 @@ First, modify files locally. Then, type the following commands in the terminal:
     git push
     ```
 
+### Creating a fork of a repo and making a pull request    
+To make changes in repos where you are not the collaborator, you need to fork (create your own version of) the repo, make changes, and make a *pull request* to merge these changes back into the original repo. Follow these steps to fork a repo and create a pull request:
+
+1. Install the [GitHub Command Line Interface (CLI)](https://cli.github.com/)
+2. [Fork the repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+    ```
+    gh repo fork https://github.com/otheruser/repo_a
+    ``` 
+3. Clone forked repo
+    ```
+    git clone https://github.com/myuser/repo_a
+    ``` 
+4. Change directory to local folder
+    ```
+    cd repo_a
+    ``` 
+5. Make changes to files locally 
+6. Add, commit and push changes. This updates files on your own fork of the repo.
+7. Change directory to local folder
+    ```
+    git add .
+    git commit -m “Add a message here”
+    git push
+    ```   
+8. Create [pull request](https://cli.github.com/manual/gh_pr_create). Add title, insert details in body (if necessary) and submit pull request. Select other user’s repo as base repo.
+    ```
+    gh pr create
+    ```   
+
 ## ii. Working with the Kellogg Linux Cluster (KLC) server
 Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
 1. Write scripts locally and push to GitHub.
