@@ -460,14 +460,14 @@ Once you have (1) set up GitHub to work with the KLC folder, (2) uploaded necess
 This first version will generate logs and return the command line for other work.
 ```sh
 cd path_of_project_folder
-module load stata/14 # or module load R/4.0.3 [or latest; check what’s available with module avail R]
+module load stata/17 # or module load R/4.0.3 [or latest; check what’s available with module avail R]
 nohup R CMD BATCH --vanilla -q scripts/00_run.do logs/00_run.log & # Nohup is so that if you get logged out the script keeps running.
 ```
 #### Running do files (Stata) with visible output
 The second option will display the output on the terminal.
 ```sh
 cd path_of_project_folder
-module load stata/14
+module load stata/17
 stata-mp
 # Set base directory and relative file paths
 do scripts/myscript.do
