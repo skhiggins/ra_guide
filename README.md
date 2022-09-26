@@ -479,7 +479,7 @@ do scripts/myscript.do
  
 ### Setting up and running dual Github-Dropbox updates
 1. Download and edit Github to Dropbox backup script.
-    1. Download the file [github_to_dropbox.R](/scripts/githhub_to_dropbox.R) and put it in your local project folder inside /scripts/programs/.
+    1. Download the file [github_to_dropbox.R](/scripts/github_to_dropbox.R) and put it in your local project folder inside /scripts/programs/.
     2. Update the path of the Dropbox folder where files should be routinely backed up to.
             
 	    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/gh_db_1.png" align="center" height="60%" width="60%">
