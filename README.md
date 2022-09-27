@@ -178,7 +178,7 @@ PIs receive valuable comments from conferences where they present their academic
 4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Complete** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Archive** column.
 
 ## ii. Managing meetings
-1.	Send a meeting agenda as early as possible before each meeting with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
+1.	Send a meeting agenda **at least an hour before each meeting** with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
     1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
     2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
     3. When tasks are complete, mark as complete and move to a section titled “Archive”.
