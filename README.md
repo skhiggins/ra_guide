@@ -8,9 +8,11 @@ Contents:
         3. [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
     2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    3. [Professional development meetings](#iii-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
-    4. [remindR deadline tracker](#iv-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of important conference and presentation deadlines.
-    5. [Generating different presentation versions](#v-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
+    3. [Weekly timesheets and recaps](#iii-weekly-timesheets-and-recaps). Preparing weekly timesheets and recaps.
+    4. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    5. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
+    	1. [remindR system](#reminder-system)
+        2. [Conference calendar](#calendar-with-conference-dates)
     6. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
 
 2. Keeping files organized
@@ -26,8 +28,10 @@ Contents:
         3. [Running scripts](#running-scripts)
     5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Update Github and Dropbox with one simple terminal command.
 
-3. Coding best practices
+3. Generating content for papers and presentations
     1. [Working with EPS figures](#i-working-with-eps-figures)
+    2. [Generating different presentation versions](#v-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
+
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
@@ -188,9 +192,90 @@ PIs receive valuable comments from conferences where they present their academic
         2. Immediately add items from tasks section to Asana.
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
 
-## iii. Professional development meetings
-We will have regularly scheduled (monthly or quarterly) professional development meetings to provide feedback to each other, help pinpoint strengths I can highlight in a letter of recommendation, discuss areas to improve (which will be a mandatory point in each meeting, so don’t interpret feedback on areas to improve as a bad sign), and check in on the status of your preparation for grad school applications.
+## iii. Weekly timesheets and recaps
 
+## Timesheets
+All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. HERE is an example of a timesheet.
+
+### Filling out timesheets
+There are two options for filling out timesheets: filling out the timesheet directly or using [Clockify](https://clockify.me/).
+
+#### 1. Filling out Excel timesheet directly
+One option is to keep the Excel open and fill it in when you start and stop working on a task. You can use a couple of shortcuts to make filling out the timesheet easier: `Ctrl+` to enter the current date in a cell and `Ctrl+Shift+` to enter the current time. 
+
+#### 2. Using Clockify 
+[Clockify](https://clockify.me/) is a time tracking app for Mac OS X, Windows, and web browsers. With Clockify, you can register individual entries as parts of tasks and projects, which makes this app easily compatible with the format of timesheets: 
+- **Projects**: This field is useful when you want to track your time beyond RA work (for example, to keep yourself accountable when studying for the GRE or working on graduate school applications). You can make a project titled *RA work* and then only keep these entries for the timesheet.
+- **Tasks**: This field can be used for project names if you're working on multiple projects (or for multiple PIs), or for individual tasks that group several subtasks if you only work for one PI.
+- **Description**: Here, you should provide a short but useful description of the current task you're working on.
+
+To download your Clockify entries for last week:
+1. First, open https://app.clockify.me/reports/detailed. 
+2. Then, select the entries for last week and filter by project or client. 
+3. Afterward, click on **Export** and **Save as CSV**. 
+4. Download the Clockify processing script and update the location of the Downloads folder. 
+5. Once you run the script, you can copy and paste the output directly into the timesheet. 
+
+By default, Clockify keeps the filters you used in your last session, so it is easier to download data after doing the initial set-up.
+
+The benefit of using Clockify is that you can easily track time for your other personal projects, whether taking a class or preparing applications. Additionally, you can analyze how you're spending your time, which can help you make necessary changes to your workday.
+
+## Weekly recaps
+You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). Below are a few example emails from other RAs:  
+### RA working for 1 professor on 1 project
+Last week:
+1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
+2. Reviewed survey incentives documentation.
+3. Updated the tool data.
+4. Implemented, tested, and published the set of new questions in Qualtrics. I also updated the English and Spanish versions of the questionnaires.
+5. Minor tasks: Assigned tasks to Vicente, asked Nico about Google Ads consultation and posted his answer in Asana, emails with J-PAL, reviewed old budget documentation to switch to the research account after depleting TFI funds, and updated our master budget.
+
+This week:
+1. Work on NBER IRB submission.
+2. Review the last version of the follow-up survey.
+3. Pilot the follow-up survey.
+4. Finish all the pending tasks for the prize analysis (review my writing and update scripts).
+
+### RA working for 1 professor on multiple projects
+Last week:
+1. Project A:
+	1. Worked on updating non-adoption calculations (top priority for tomorrow’s meeting)
+	2. Worked on updating survey weights
+	3. Generated output directories, updated previous tables and scripts
+2. Project B:
+	1. Set up new git locally in server,
+	2. Started replication (currently about 50% through).
+
+This week:
+1. Project A:
+	1. Update survey weights
+	2. Finish updating non-adoption calculations
+	3. Finish updating above-below median number of workers heterogeneity
+	4. Finish updating Asana with all previous comments
+2. Project B:
+	1. Finish replication
+
+### RA working separately for multiple professors
+Last week:
+1. Sean:
+	1. Updated survey with profits note and num of employees questions
+	2. Tested new way to ask for banks/firms of POS in survey
+	3. Updated manual of surveyor
+	4. Summarized EMEC scripts
+2. Jacopo:
+	1. Analyzed the case of dscrgrp variable from ESS
+	2. Produced correlation tables (ESS, Gallup)
+	3. Produced new graphs about dscr variables
+
+This week:
+1. Sean:
+	1. Figure out what is going on with the NAs
+	2. Add pre-survey questions about finding the owner of the retail
+2. Jacopo:
+	1. Figure out what is going on with some countries and number of respondents in ESS
+
+## iv. Professional development meetings
+We will have regularly scheduled (monthly or quarterly) professional development meetings to provide feedback to each other, help pinpoint strengths I can highlight in a letter of recommendation, discuss areas to improve (which will be a mandatory point in each meeting, so don’t interpret feedback on areas to improve as a bad sign), and check in on the status of your preparation for grad school applications.
  
 In general, we can discuss the following things in the meeting:
 
@@ -215,7 +300,8 @@ By 5pm the night before the meeting, please e-mail me with:
 
 At the end each meeting, remember to schedule next month's/quarter's meeting. You can set up a repeating Google Calendar event with an email reminder a few weeks before to confirm the date and time.
 
-## iv. Keeping track of conference and presentation deadlines
+## v. Keeping track of conference and presentation deadlines
+### Reminder system
 One important aspect of RA work is keeping track of deadlines related to presentations and grants. Professors must keep track of several deadlines: 
 - Applications to dozens of conferences over the course of a single year to present their current work
 - Sending paper drafts to discussants on time
@@ -230,33 +316,10 @@ Managing this manually is both time consuming and often leads to unwanted errors
 
 Follow the instructions on the repo to set up remindR in your computer. The system is easy to set up, works with Mac OS X and Windows, and can be constantly modified when we’re notified of new deadlines. Please confirm with Sean / other PIs whenever you add a deadline to one of the lists. Also, it is important to keep track of the log to see that the system is working smoothly, and raise an issue on GitHub whenever there is a coding issue.
 
-## v. Generating different presentation versions
-When presenting papers in academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides are included in the main presentation and which slides are sent to the appendix. The following system helps generate multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
+### Calendar with conference dates
+Along with this reminder system, you should create a new calendar where you make all-day events for conferences we have applied, are applying to, and are presenting in. This way, we can determine whether there are any overlapping conferences and choose which one to apply to. 
 
-1. **Update master presentation**. 
-    - Generate a "master presentation" with all of the slides that can be included in the different presentation versions.
-    - To modify a slide for all presentations, make changes in the master presentation. 
-	- Keep all slides clearly labeled, with labels defined as *group*_*slidename*. For example, a slide in the model section could be labeled *model_introduction*, and a slide in the results section discussing takeup *takeup_overall*. Labels have to be included in the line immediately following `\begin{frame}`:
-
-        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_1.png" align="center" height="45%" width="45%">
-	- Insert all buttons to slides that could or will be in the appendix in the master presentation. 
-        - If a slide is included in the main part of the presentation, any buttons from other slides in the main presentation to that slide will be removed. 
-        - For example, if slides A and B are included in the main presentation, they will not have any buttons referencing each other. If slide A is in the main presentation and slide B is in the appendix, buttons from slide A to B and slide B to A will not be removed.
-	    
-            <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_2.png" align="center" height="60%" width="60%">
-
-2. **Define which slides to include in main presentation and in presentation appendix**. 
-	- If this is the first time using this system, run script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R) to generate /presentations/slide_dataset.xlsx. Remember to first update the name of the master presentation (line 25).
-	- To define what content will be in a presentation, modify the relevant presentation colum in presentations/slide_dataset.xlsx. For example, the content for the 15-minute version of the presentation is defined in the column titled “15”.  Each slide can be included in the main part of the presentation, in the appendix, or not included at all. To include a slide in the main part of the presentation, mark the slide as 1. To include the slide in the appendix, mark the slide with a 2. To omit the slide, mark the slide with a 0.
-	- Both slides included in the main part and in the appendix have the same order as in the master presentation. To update the order, the master presentation must be updated. 
-    	    
-        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_3.png" align="center" height="60%" width="60%">
-3. **Update and run the presentation versions script**.
-	1. Update the presentation or presentations to modify (line 95) in script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R).
-	2. Run the full script to generate the desired .tex document.
-4. **Compile the presentation and push changes to GitHub**.
-
-**Note**: The person updating the master presentation should also run the presentation versions script and push to GitHub, to ensure all presentations are kept up to date.
+Event titles should begin with **APP:** if applied or are applying to the conference, and **PRES:** if we are presenting at a conference. Include more details in the event description, including the conference website. Below is an example of a situation where having calendar events proved helpful: we found a conflict between two conferences and decided PIs could present in both.
 
 ## vi. Holidays and time off
 
@@ -528,3 +591,31 @@ do scripts/myscript.do
 Working with .eps files is useful because of their high resolution and ability to modify them. However, Latex can only compile PDF files, so we must use the package `epstopdf` to convert files automatically to .eps when compiling. Sometimes, the `epstopdf` package will not generate a PDF file. The following steps have been useful to solve this issue:
 1.  Use script [gen_figures.R](https://github.com/clandinq/ra_guide/blob/main/scripts/gen_figures.R) to make a list with all .eps files included in the folder /results/figures, and generate a .tex document with all of them.
 2.  Force full typeset this document to convert all eps figures to PDF.
+
+## ii. Generating different presentation versions
+When presenting papers in academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides are included in the main presentation and which slides are sent to the appendix. The following system helps generate multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
+
+1. **Update master presentation**. 
+    - Generate a "master presentation" with all of the slides that can be included in the different presentation versions.
+    - To modify a slide for all presentations, make changes in the master presentation. 
+	- Keep all slides clearly labeled, with labels defined as *group*_*slidename*. For example, a slide in the model section could be labeled *model_introduction*, and a slide in the results section discussing takeup *takeup_overall*. Labels have to be included in the line immediately following `\begin{frame}`:
+
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_1.png" align="center" height="45%" width="45%">
+	- Insert all buttons to slides that could or will be in the appendix in the master presentation. 
+        - If a slide is included in the main part of the presentation, any buttons from other slides in the main presentation to that slide will be removed. 
+        - For example, if slides A and B are included in the main presentation, they will not have any buttons referencing each other. If slide A is in the main presentation and slide B is in the appendix, buttons from slide A to B and slide B to A will not be removed.
+	    
+            <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_2.png" align="center" height="60%" width="60%">
+
+2. **Define which slides to include in main presentation and in presentation appendix**. 
+	- If this is the first time using this system, run script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R) to generate /presentations/slide_dataset.xlsx. Remember to first update the name of the master presentation (line 25).
+	- To define what content will be in a presentation, modify the relevant presentation colum in presentations/slide_dataset.xlsx. For example, the content for the 15-minute version of the presentation is defined in the column titled “15”.  Each slide can be included in the main part of the presentation, in the appendix, or not included at all. To include a slide in the main part of the presentation, mark the slide as 1. To include the slide in the appendix, mark the slide with a 2. To omit the slide, mark the slide with a 0.
+	- Both slides included in the main part and in the appendix have the same order as in the master presentation. To update the order, the master presentation must be updated. 
+    	    
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_3.png" align="center" height="60%" width="60%">
+3. **Update and run the presentation versions script**.
+	1. Update the presentation or presentations to modify (line 95) in script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R).
+	2. Run the full script to generate the desired .tex document.
+4. **Compile the presentation and push changes to GitHub**.
+
+**Note**: The person updating the master presentation should also run the presentation versions script and push to GitHub, to ensure all presentations are kept up to date.
