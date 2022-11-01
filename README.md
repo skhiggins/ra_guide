@@ -321,6 +321,8 @@ Along with this reminder system, you should create a new calendar where you make
 
 Event titles should begin with **APP:** if applied or are applying to the conference, and **PRES:** if we are presenting at a conference. Include more details in the event description, including the conference website. Below is an example of a situation where having calendar events proved helpful: we found a conflict between two conferences and decided PIs could present in both.
 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/calendar.png" align="center" height="40%" width="40%"> 
+
 ## vi. Holidays and time off
 
 ### University policies on holidays and time off
