@@ -9,11 +9,13 @@ Contents:
         4. [Following up on presentation comments](#following-up-on-presentation-comments)
     2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
     3. [Weekly timesheets and recaps](#iii-weekly-timesheets-and-recaps). Preparing weekly timesheets and recaps.
-    4. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
-    5. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
+    	1. [Weekly timesheets](#timesheets)
+    	2. [Weekly recaps](#weekly-recaps)
+    5. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    6. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
     	1. [remindR system](#reminder-system)
         2. [Conference calendar](#calendar-with-conference-dates)
-    6. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
+    7. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
 
 2. Keeping files organized
     1. [General project organization](#i-general-project-organization). Overview of how you should use Dropbox, Github and Overleaf for academic projects.
@@ -46,54 +48,54 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
 1. First, download and install [Asana](https://asana.com/). For Asana to function correctly, you must register with your Kellogg email, which will grant you access to the Kellogg organization on Asana. 
 2. Create a new team by clicking on **Add Team** in the left panel. We will have one team per Project, and if you're working on more than one Project, you will be able to see all the teams in the same window.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_1.png" align="center" height="30%" width="30%">
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_1.png" align="center" height="30%" width="30%">
 
 2. Write down the name of the Project (preferrably one or two words) and a short description. You can start inviting members at this point, but you will have to add them to each Asana project once they are created.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_2.png" align="center" height="35%" width="35%">
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_2.png" align="center" height="35%" width="35%">
     
 3. The next step is to create Asana projects, which will be sections of our Project.
     1. Click on **Create a Project** below the selected team.
 
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_3.png" align="center" height="30%" width="30%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_3.png" align="center" height="30%" width="30%">
         
     2. Select **Blank project** for project setup.
     
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_4.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_4.png" align="center" height="40%" width="40%">
     
     3. Define the section's name (e.g. "Admin"), choose **Board** as the default view, and leave privacy settings as **Public to team**. Click **Continue** to finalize creating this project. If you forget to set this up when creating the project, you can configure Board as the default view in the project settings.
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_6.png" align="center" height="30%" width="30%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_6.png" align="center" height="30%" width="30%">
         
     4. Click on **Start adding tasks** and **Go to project**.
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="30%" width="30%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="30%" width="30%">
         
     5. By default, the project will have three columns: To do, In progress, and Complete. Add a fourth column called "Archive".
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
         
-    6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project, since most tasks will fall into the Analysis category, Agenda is used for meetings, and Admin will contain administrative tasks. More details are explained in the [following part of the guide](https://github.com/clandinq/ra_guide/#using-sections-to-keep-track-of-different-types-of-tasks).
+    6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project, since most tasks will fall into the Analysis category, Agenda is used for meetings, and Admin will contain administrative tasks. More details are explained in the [following part of the guide](https://github.com/skhiggins/ra_guide/#using-sections-to-keep-track-of-different-types-of-tasks).
 
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_9.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_9.png" align="center" height="40%" width="40%">
         
     7. For each duplicated project, click on the down arrow next to the project name, and change the project's color so that it is easily identifiable.
     
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_11.png" align="center" height="40%" width="40%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_11.png" align="center" height="40%" width="40%">
         
     8. Here is an example of how the sections of a Project looks like:
         
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="25%" width="25%">        
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="25%" width="25%">        
         
     9. Once all projects have been set up, invite all researchers and RAs as collaborators to the team.Once they have accepted your invitation, you can (and should) invite them to join the rest of the projects.  Ask collaborators (by assigning them a first task) to input their full name and a picture so that it's easy to identify task ownership. You can invite new members to a maximum of three projects. You can see who is a member of each project on the left of the search bar: 
     
-        <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/colab_1.png" align="center" height="40%" width="40%">        
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/colab_1.png" align="center" height="40%" width="40%">        
         
 ### Using sections, columns, tasks and subtasks to keep track of work
 #### Sections
 Keep different types of tasks in separate sections. Most projects will have the following sections:
 - **Admin**: This section should contain administrative tasks. For example, writing up presentation comments and organizing tasks in Asana.
-- **Agenda**: Keep items to be discussed in meetings in this section. Also, there should be a category (column) titled "Priorities" with the priorities of all the team members. This is explained more in detail in the [next part of the guide](https://github.com/clandinq/ra_guide/#keeping-track-of-agenda-contents).
+- **Agenda**: Keep items to be discussed in meetings in this section. Also, there should be a category (column) titled "Priorities" with the priorities of all the team members. This is explained more in detail in the [next part of the guide](https://github.com/skhiggins/ra_guide/#keeping-track-of-agenda-contents).
 - **Analysis**: All analysis-related tasks will be in this section. This should be the center of any project.
 - **Presentations**: Tasks for presentations and conferences.
 - **References**: Relevant references to keep in mind when writing the paper.
@@ -118,11 +120,11 @@ When completing a task, move it to the **Complete** column and add the task to t
 #### Tasks and subtasks
 All the work you do can be added as tasks and subtasks. The following is an example of a couple of tasks in Asana:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/task.png" align="center" height="25%" width="25%">
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/task.png" align="center" height="25%" width="25%">
 
 Lengthier tasks should be broken down into subtasks:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/subtask.png" align="center" height="40%" width="40%">
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/subtask.png" align="center" height="40%" width="40%">
 
 General guidelines for working with tasks and subtasks:
 - **Naming**: Tasks and subtasks should have clear, short names that makes it easy to identify them. You can write down a full breakdown of the required task in the description section of the task or subtask. 
@@ -133,51 +135,51 @@ General guidelines for working with tasks and subtasks:
 ### Tracking priorities in the admin section
 The first column in the **Admin** section should be called "Priorities", and will include a task for each team member with their priorities:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/priorities_1.png" align="center" height="25%" width="25%">     
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/priorities_1.png" align="center" height="25%" width="25%">     
 
 Include as subtasks current tasks by order of priority, with the most important tasks first. Delete subtasks when completed. This is so that it's easier to keep track of current tasks (since most of the time there will be several tasks assigned to you), and that PIs can know what your curent priorities are. **Always keep this section up to date**. Here is an example of a priorities task:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/priorities_2.png" align="center" height="40%" width="40%">     
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/priorities_2.png" align="center" height="40%" width="40%">     
 
 ### Keeping track of agenda contents
 The agenda section is used to keep track of current priorities and items to be discussed in each meeting. Start by creating a column for each regular meeting:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_0.png" align="center" height="50%" width="50%">     
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_0.png" align="center" height="50%" width="50%">     
 
 Follow these steps to add tasks to the agenda:
 1. Click on a task that you want to add to a meeting agenda.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_1.png" align="center" height="25%" width="25%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_1.png" align="center" height="25%" width="25%"> 
     
 2. Click on **Add to projects** and select **Agenda**.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_2.png" align="center" height="30%" width="30%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_2.png" align="center" height="30%" width="30%"> 
   
 3. Select the meeting to add the task to.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_3.png" align="center" height="30%" width="30%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_3.png" align="center" height="30%" width="30%"> 
 
 4. The other section's color will display in the selected task. For example, this task is in the section **Analysis** and the Admin's section pink color is drawn over the task.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_4.png" align="center" height="25%" width="25%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_4.png" align="center" height="25%" width="25%"> 
 
 5. Once you have added all relevant tasks to the agenda, it will be easier to write the agenda email and add the detailed agenda to the Google Docs with detailed agendas and meeting recaps.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/agenda_5.png" align="center" height="25%" width="25%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_5.png" align="center" height="25%" width="25%"> 
 
 ### Following up on presentation comments
 PIs receive valuable comments from conferences where they present their academic projects. Asana can help convert these comments to actionable tasks, and by grouping comments by topic, prioritize which should be worked on first.
 
 1. After each paper presentation, add a task in **Admin** asking the presenter to share the comments from the presentation. If you have the opportunity of being at the presentation, write down _every_ question asked, and who asked the question.
-2. Create a document in the Project's Dropbox where you keep all presentation comments (example [here](https://github.com/clandinq/ra_guide/blob/main/docs/Presentation%20comments.docx)). Color-code comments from PIs and RAs and highlight comments that should become tasks:
+2. Create a document in the Project's Dropbox where you keep all presentation comments (example [here](https://github.com/skhiggins/ra_guide/blob/main/docs/Presentation%20comments.docx)). Color-code comments from PIs and RAs and highlight comments that should become tasks:
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_1.png" align="center" height="40%" width="40%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_1.png" align="center" height="40%" width="40%"> 
 
 3. Add comments to the **Comments** section on Asana. Group comments by topic, and make sure to assign actionable comments to the **Analysis** section.
 
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_2.png" align="center" height="50%" width="45%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_2.png" align="center" height="50%" width="45%"> 
     <br/><br/>
-    <img src="https://github.com/clandinq/ra_guide/blob/main/pictures/asana/comments_3.png" align="center" height="40%" width="40%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_3.png" align="center" height="40%" width="40%"> 
     
 4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Complete** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Archive** column.
 
@@ -195,7 +197,7 @@ PIs receive valuable comments from conferences where they present their academic
 ## iii. Weekly timesheets and recaps
 
 ## Timesheets
-All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. HERE is an example of a timesheet.
+All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. You can start by using the [timesheet template](https://github.com/skhiggins/ra_guide/blob/main/docs/Timesheet_template_individual.xlsx).
 
 ### Filling out timesheets
 There are two options for filling out timesheets: filling out the timesheet directly or using [Clockify](https://clockify.me/).
@@ -209,19 +211,30 @@ One option is to keep the Excel open and fill it in when you start and stop work
 - **Tasks**: This field can be used for project names if you're working on multiple projects (or for multiple PIs), or for individual tasks that group several subtasks if you only work for one PI.
 - **Description**: Here, you should provide a short but useful description of the current task you're working on.
 
+	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_1.png" align="center" height="40%" width="40%">
+	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_2.png" align="center" height="25%" width="25%"> 
+
 To download your Clockify entries for last week:
 1. First, open https://app.clockify.me/reports/detailed. 
-2. Then, select the entries for last week and filter by project or client. 
+2. Then, select the entries for last week and filter by project or client.
+ 
+	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_3.png" align="center" height="35%" width="35%">
+
 3. Afterward, click on **Export** and **Save as CSV**. 
-4. Download the Clockify processing script and update the location of the Downloads folder. 
+
+	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_4.png" align="center" height="30%" width="30%">
+
+4. Download the [Clockify processing script](https://github.com/skhiggins/ra_guide/blob/main/scripts/prepare_timesheet.R) and update the location of the Downloads folder. 
 5. Once you run the script, you can copy and paste the output directly into the timesheet. 
 
 By default, Clockify keeps the filters you used in your last session, so it is easier to download data after doing the initial set-up.
 
 The benefit of using Clockify is that you can easily track time for your other personal projects, whether taking a class or preparing applications. Additionally, you can analyze how you're spending your time, which can help you make necessary changes to your workday.
 
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_5.png" align="center" height="60%" width="60%">
+
 ## Weekly recaps
-You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). Below are a few example emails from other RAs:  
+You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). Below are a few example emails from other RAs:
 ### RA working for 1 professor on 1 project
 Last week:
 1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
@@ -321,7 +334,7 @@ Along with this reminder system, you should create a new calendar where you make
 
 Event titles should begin with **APP:** if applied or are applying to the conference, and **PRES:** if we are presenting at a conference. Include more details in the event description, including the conference website. Below is an example of a situation where having calendar events proved helpful: we found a conflict between two conferences and decided PIs could present in both.
 
-    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/calendar.png" align="center" height="40%" width="40%"> 
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/calendar.png" align="center" height="60%" width="60%">        
 
 ## vi. Holidays and time off
 
@@ -380,7 +393,7 @@ Our system works the following way:
 
 The system is summarized in the following chart:
 
-<img src="https://github.com/clandinq/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
 
 ## ii. Working with GitHub
 GitHub is used to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
@@ -591,7 +604,7 @@ do scripts/myscript.do
 # 3. Coding best practices
 ## i. Working with eps figures
 Working with .eps files is useful because of their high resolution and ability to modify them. However, Latex can only compile PDF files, so we must use the package `epstopdf` to convert files automatically to .eps when compiling. Sometimes, the `epstopdf` package will not generate a PDF file. The following steps have been useful to solve this issue:
-1.  Use script [gen_figures.R](https://github.com/clandinq/ra_guide/blob/main/scripts/gen_figures.R) to make a list with all .eps files included in the folder /results/figures, and generate a .tex document with all of them.
+1.  Use script [gen_figures.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/gen_figures.R) to make a list with all .eps files included in the folder /results/figures, and generate a .tex document with all of them.
 2.  Force full typeset this document to convert all eps figures to PDF.
 
 ## ii. Generating different presentation versions
