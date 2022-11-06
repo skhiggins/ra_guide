@@ -15,8 +15,8 @@ Contents:
     5. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
     	1. [remindR system](#reminder-system)
         2. [Conference calendar](#calendar-with-conference-dates)
-    6. Partner data requests. Following up with partners on meetings and data requests.
-    7. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
+    6. [Partner data requests](#vi-partner-data-requests). Following up with partners on meetings and data requests.
+    8. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
 
 2. Keeping files organized
     1. [General project organization](#i-general-project-organization). Overview of how you should use Dropbox, Github and Overleaf for academic projects.
