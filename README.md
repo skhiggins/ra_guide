@@ -11,10 +11,11 @@ Contents:
     3. [Weekly timesheets and recaps](#iii-weekly-timesheets-and-recaps). Preparing weekly timesheets and recaps.
     	1. [Weekly timesheets](#timesheets)
     	2. [Weekly recaps](#weekly-recaps)
-    5. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
-    6. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
+    4. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
+    5. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
     	1. [remindR system](#reminder-system)
         2. [Conference calendar](#calendar-with-conference-dates)
+    6. Partner data requests. Following up with partners on meetings and data requests.
     7. [Holidays & time off](#vi-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
 
 2. Keeping files organized
@@ -336,7 +337,15 @@ Event titles should begin with **APP:** if applied or are applying to the confer
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/calendar.png" align="center" height="60%" width="60%">        
 
-## vi. Holidays and time off
+## vi. Partner data requests
+Many of our projects will have partners who help us implement the project. It is important to confirm meetings with partners, which might not happen in regular intervals and could be forgotten, and follow up on data requests to keep track of their progress. 
+
+1. **Meetings**. On days with a meeting programmed, send the partner an email in the morning confirming the call. 
+2. **Data requests**. 
+	1. When a meeting is programmed, include a summary of what was requested in the email confirming the call. When there are pending data requests but no meetings programmed, send weekly emails asking for the status of the data requests. 
+	2. Add a task in the "Agenda" section in Asana titled "Current data requests," where you update the status of current data requests each week. You can create a new subtask for every piece of data requested.
+
+## vii. Holidays and time off
 
 ### University policies on holidays and time off
 
