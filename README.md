@@ -616,7 +616,7 @@ Working with .eps files is useful because of their high resolution and ability t
 2.  Force full typeset this document to convert all eps figures to PDF.
 
 ## ii. Generating different presentation versions
-When presenting papers in academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides are included in the main presentation and which slides are sent to the appendix. The following system helps generate multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
+When presenting papers at academic conferences, we will have to generate multiple versions of presentations with different lengths, changing which slides we include in the main presentation and which we send to the appendix. The following system generates multiple versions of presentations while keeping them all up to date with the latest content and reducing the need for making manual changes:
 
 1. **Update master presentation**. 
     - Generate a "master presentation" with all of the slides that can be included in the different presentation versions.
@@ -624,11 +624,24 @@ When presenting papers in academic conferences, we will have to generate multipl
 	- Keep all slides clearly labeled, with labels defined as *group*_*slidename*. For example, a slide in the model section could be labeled *model_introduction*, and a slide in the results section discussing takeup *takeup_overall*. Labels have to be included in the line immediately following `\begin{frame}`:
 
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_1.png" align="center" height="45%" width="45%">
-	- Insert all buttons to slides that could or will be in the appendix in the master presentation. 
-        - If a slide is included in the main part of the presentation, any buttons from other slides in the main presentation to that slide will be removed. 
-        - For example, if slides A and B are included in the main presentation, they will not have any buttons referencing each other. If slide A is in the main presentation and slide B is in the appendix, buttons from slide A to B and slide B to A will not be removed.
+
+    - Insert all buttons to slides that could or will be in the appendix in the master presentation. Buttons reference slide labels.
+    	- To insert a button, define the following button functions in the preamble of the document:
+    		```latex
+			\newcommand{\inlinebuttonto}[2]{%
+				\hyperlink{#1}{\beamergotobutton{#2}}
+			}
+			\newcommand{\buttonto}[2]{%
+				\centering
+				\hyperlink{#1}{\beamergotobutton{#2}}
+			}
+			```
+		- The first type of button can be used to insert a buton right after a sentence. The second type is for creating links in the bottom of a slide:
+
+			<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_2.png" align="center" height="60%" width="60%">
+
+        - If a slide is included in the main part of the presentation, any buttons from other slides in the main presentation to that slide will be removed. For example, if slides A and B are included in the main presentation, they will not have any buttons referencing each other. If slide A is in the main presentation and slide B is in the appendix, buttons from slide A to B and slide B to A will not be removed.
 	    
-            <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_2.png" align="center" height="60%" width="60%">
 
 2. **Define which slides to include in main presentation and in presentation appendix**. 
 	- If this is the first time using this system, run script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R) to generate /presentations/slide_dataset.xlsx. Remember to first update the name of the master presentation (line 25).
