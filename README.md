@@ -33,8 +33,7 @@ Contents:
 
 3. Generating content for papers and presentations
     1. [Working with EPS figures](#i-working-with-eps-figures)
-    2. [Generating different presentation versions](#v-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
-
+    2. [Generating different presentation versions](#ii-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
