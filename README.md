@@ -26,8 +26,8 @@ Contents:
         3. [Updating the GitHub repo](#updating-the-github-repo)
     3. [Working with Dropbox](#iii-working-with-dropbox). Keep a backup of project files and data on Dropbox.
     4. [Working with KLC](#iv-working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
-        1. [Accessing KLC](#accessing-klc)
-        2. [Uploading files with FileZilla](#uploading-files-via-filezilla)
+        1. [Transferring files with FileZilla](#transferring-files-via-filezilla)
+        2. [Accessing KLC](#accessing-klc)
         3. [Running scripts](#running-scripts)
     5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Update Github and Dropbox with one simple terminal command.
 
