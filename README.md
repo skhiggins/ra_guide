@@ -622,9 +622,10 @@ When presenting papers at academic conferences, we will have to generate multipl
     - Generate a "master presentation" with all of the slides that can be included in the different presentation versions.
     - To modify a slide for all presentations, make changes in the master presentation. 
 	- Keep all slides clearly labeled, with labels defined as *group*_*slidename*. For example, a slide in the model section could be labeled *model_introduction*, and a slide in the results section discussing takeup *takeup_overall*. Labels have to be included in the line immediately following `\begin{frame}`:
-
-        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_1.png" align="center" height="45%" width="45%">
-
+		```latex
+		\begin{frame}{Effect of Reminder by Offer Value}
+			\label{s:takeup_beta_rem_short_byfee}
+		```
     - Insert all buttons to slides that could or will be in the appendix in the master presentation. Buttons reference slide labels.
     	- To insert a button, define the following button functions in the preamble of the document:
     		```latex
@@ -636,10 +637,30 @@ When presenting papers at academic conferences, we will have to generate multipl
 				\hyperlink{#1}{\beamergotobutton{#2}}
 			}
 			```
-		- The first type of button can be used to insert a buton right after a sentence. The second type is for creating links in the bottom of a slide:
+		- The first type of button can be used to insert a buton right after a sentence:
+			
+			```latex
+			\item<+-> Anticipated reminders do not reduce initial take-up
+				\begin{itemize}
+					\item Evidence of overconfidence about memory \inlinebuttonto{s:model_predictions}{Model predictions}
+				\end{itemize}	
+			```
+			
+			<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_4.png" align="center" height="70%" width="70%">
 
-			<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_2.png" align="center" height="60%" width="60%">
+		- The second type is for creating links in the bottom of a slide:
 
+			```latex
+				% Buttons
+				\vspace{.5\baselineskip}
+				\buttonto{s:takeup_beta_dl_short}{Pooled across value of the offer}
+				\buttonto{s:takeup_beta_dl_short_openemail_byfee}{Opened first email}
+				\buttonto{s:takeup_dl_long_byfee}{Longer-term take-up}
+			\end{frame}
+			```
+			
+			<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/pres_tex_5.png" align="center" height="70%" width="70%">
+			
         - If a slide is included in the main part of the presentation, any buttons from other slides in the main presentation to that slide will be removed. For example, if slides A and B are included in the main presentation, they will not have any buttons referencing each other. If slide A is in the main presentation and slide B is in the appendix, buttons from slide A to B and slide B to A will not be removed.
 	    
 
