@@ -35,6 +35,11 @@ Contents:
     1. [Working with EPS figures](#i-working-with-eps-figures)
     2. [Generating different presentation versions](#ii-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
+4. Conducting Surveys
+	1. [Pre-fieldwork](#pre-fieldwork)
+	2. [During fieldwork](#during-fieldwork)
+	3. [Post-fieldwork](#post-fieldwork)
+
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
 We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. As a very brief introduction, Asana has five levels of organization:
@@ -676,3 +681,257 @@ When presenting papers at academic conferences, we will have to generate multipl
 4. **Compile the presentation and push changes to GitHub**.
 
 **Note**: The person updating the master presentation should also run the presentation versions script and push to GitHub, to ensure all presentations are kept up to date.
+
+# 4. Conducting Surveys
+
+Some of the projects involve conducting surveys. This section aims to outline the general process of conducting surveys. The most important thing to keep in mind is that **each survey is unique**. This means that while there is a general process, each step should be analyzed and evaluated within the context of each survey. To make it easier to identify parts of the process, you can divide it into three main parts: pre-fieldwork, during fieldwork and post-fieldwork.
+
+## Pre-fieldwork
+
+**Project organization**
+
+- Folder structure
+  - It is important to have a defined folder structure for the project, saved in either Dropbox or Box (for easy encryption using Boxcryptor). This is to ensure easy collaboration with team members that may not be in close proximity, and to ensure that project files are organized in an easily understandable structure
+  - A sample project structure folder from IPA looks like this:
+
+(Image 1)
+
+- 01\_Project development is for storing proposals, contracts, and concept notes for the project prior to its start.
+- 02\_Project and Survey Management is for storing timesheets, deliverables.
+- 03\_Project Finance is to store files pertaining to budgets, expenses and financial reports.
+- 04\_Research Design is to store articles, pre-analysis plan materials, and anything pertaining to the design of the project.
+- 05\_Intervention is for files regarding the intervention. If the intervention requires a data workflow (such as with SMS/encouragement design projects), It could be put in here, encrypting the folders with any PII so only team members with PII access can use these files. Other files that can be stored here are Meeting minutes with partners, design files for the intervention (presentations, images, etc).
+- 06\_Human Subjects is for files regarding IRB. The original application, and any subsequent amendments, should be stored in separate folders for ease of navigation.
+- 07\_Questionnaires & Data is to store all the items pertaining data collection. This is arguably the most important folder in your project structure, as it will contain the survey materials (training materials, questionnaire, survey programming), the survey data, and the survey data workflow files (cleaning, quality checks, anonymization). At least three subfolders should be had within this folder, for the questionnaire, the logistics/training files, and data and analysis. Within data and analysis, an organized folder structure for each round of data collection (baseline, midline, endline, etc.) will be key in ensuring data security and easy collaboration with the rest of the team. A proposed structure from IPA is as follows: Note the Rproj file in this folder, for usage of the here package in R. For python users using Spyder, the project .spyproject folder should also be set at this level. Most likely, folders rawdata, dtafiles, and proc will be encrypted. It is recommended that data with identifiable information is not stored anywhere outside these folders, to minimize the copies of identifiable data in the project folders and the chances of a data security breach.
+
+- 08\_Analysis & Results is a folder where de-identified (clean) data should be stored, to conduct analyses for the final deliverable of the project (working paper). Data would come from the final cleaning file (do file, python or R script) to a similar folder structured as seen above, but simplified to data (no rawdata), analysis files (dofiles, scripts) and outputs(tables, graphs, proc). That way, a shareable, replicable analysis package can be prepared to accompany the project's working paper while ensuring data security. A proposed data flow would be as follows:
+    - Survey raw data is downloaded into the rawdata folder is 07\_Questionnaires & Data
+    - Survey data is processed (through do files or scripts) and de anonymized
+    - From the processing files, the de-anonimized data is exported to 08\_Analysis & Results\data
+    - Analysis scripts can be prepared starting from 08\_Analysis & Results\data to produce the results of the project
+- 09\_Outreach, is to store files pertaining to dissemination of results. Thai folder serves primarily to store pictures of the project for use in dissemination materials.
+- 10\_Field manager is for survey productivity projections and other smaller documents pertaining to data collection. This folder can be ignored and its contents be included in 07\_Questionnaires & Data, in the subfolder for logistics and training.
+
+**Tasks organization**
+
+- The project needs to have a tool for delegating and tracking the completion of project tasks.
+- For Sean's projects this should be using Asana, but a simple todo list, deadlines, and gantt chart, which can be prepared through excel, should be the minimum.
+- Minimum tasks for a survey project, roughly in chronological order (many of these can be done simultaneously):
+  - Finalize questionnaire.
+  - Translate survey in local language.
+  - Program survey.
+  - Encrypt SurveyCTO forms.
+  - Submit IRB protocol.
+  - Bench test survey.
+  - Hire supervisors.
+  - Pilot survey.
+  - Hire enumerators.
+  - Set up field manager budget, payroll system, per diem, and incentives.
+  - Create field protocols and survey manual.
+  - Create safety and security plan for field staff.
+  - Program backcheck survey.
+  - Set up backcheck randomization.
+  - Set up high frequency checks.
+  - Create action plan for HFCs and BCs.
+  - Create training materials.
+  - Train survey team.
+  - Setup devices with programmed survey.
+  - Establish reporting system for PIs.
+  - Implement false launch and implement changes to team and/or survey.
+  - Implement soft launch and implement changes to team and/or survey.
+  - Accompany enumerators in first week.
+  - Spot check enumerators.
+  - Run HFCs.
+  - Conduct backchecks.
+  - Provide field team feedback based on data.
+  - Download and clean survey data.
+  - Close SurveyCTO server.
+  - De-identify data.
+  - Backup project folders and data.
+  - Close IRB.
+
+### I. Designing the survey 
+
+- Before starting to write a draft, keep in mind the following:
+  - Purpose of the survey: you only want to pose questions that are actually aligned with the purpose of the survey. No more, no less.
+  - Characteristics of the sample: Since you are asking people, you should know their characteristics and their context. You cannot ask people their experience with snowy weather if they live in the desert.
+- Prepare a draft of the survey:
+  - Create the draft in a word document that includes the _track changes_ option. This is helpful because the draft will have a lot of changes that can be approved or discarded.
+  - Structure the draft as follows:
+    + Introductory speech: It should include the purpose of the survey and why we are interested in surveying that person.
+    + Informed consent: It should include the information that IRB boards ask every study to tell to their participants. It also includes their authorization or agreement to participate in the study. Also, it may include their authorization to record them for quality check purposes.
+    + Questions: There are several types of questions, the best way to ask a question depends on the answer you want to get.
+    + Concluding comments: After all the questions have been asked, there should be a concluding section acknowledging the person's participation in the study and, if applicable, about delivering the compensation for having participated.
+  - All sections and questions should be numbered, this makes referencing questions easier, e.g., A.1., B.2., C.3.
+  - Note that the wording of questions may change and new questions may be added even when data is already being collected.
+- Conduct bench tests: One common practice is to conduct bench tests, which consist of surveying other RAs or people you know to check if the proposed questions in the draft 1) make sense, 2) are efficiently worded, 3) actually ask what you want to ask and 4) are sorted correctly. At this point of the process, a bench test will serve as a preliminary test.
+
+### II. Programming the survey in SurveyCTO 
+
+Once the draft has been tested enough times, it is time to program it using SurveyCTO. SurveyCTO is a platform that allows people to collect high-quality data using mobile phones, tablets, or computers—even offline. For more information, visit [https://www.surveycto.com/](https://www.surveycto.com/). Usually, programming the survey is a cyclical stage.
+
+- Open a server in SurveyCTO: note that there are free and premium servers in the platform. For the purpose of draft and piloting, you can use a free server.
+- It is highly recommended to program it using the excel template, it makes editing easier.
+- Name variables as question numbers. Ensure that the paper questionnaire is numbered _section.question number_. Using question numbers allows to more easily sync changes between paper and programmed survey versions, also Stata has a 32 character limit, ensures we do not go over and have truncated variables.
+- SurveyCTO works closely with Stata, so for R users, do not divide section and numbers with periods (.). If imported into Stata periods are ignored as separators, always use underscore(\_).
+
+Once you have completed the survey programming, you should perform bench tests with the fieldwork team (field coordinator, supervisors, and surveyors) as well. It is important that all the team practice as they are going to conduct the survey. At the end of them, you should have a well-tested instrument. You may have found some typos, sentences that could be better explained, and perhaps questions that need more context. It is way preferable to find these opportunity areas before starting fieldwork.
+
+### III. IRB
+
+An Institutional Review Board (IRB) is an administrative committee that provides ethical and regulatory oversight of research that involves human subjects. For the case of surveys, it is always necessary to have an IRB involved. Note that for internationally conducted surveys, some local regulations may apply. Most commonly IRB will be approved by the university (in Sean's case, Northwestern - [https://irb.northwestern.edu/submitting-to-the-irb/eirb/](https://irb.northwestern.edu/submitting-to-the-irb/eirb/)). If the project is managed by IPA, IPA has its own IRB that can provide this service.
+
+Each project must have an IRB approval, whether it is just one or many surveys. In order to have an approval, you must submit a series of documents that show the purpose of the study, and the study itself. The main documents that should be submitted to IRB are:
+
+1. Study protocol: This document is addressed to the IRB. It describes the study, its purpose, targeted sample, and procedures.
+2. Consent form: A document that explains the participants all the details of the study and asks them to authorize their own participation.
+3. Survey: a final draft of the survey in a Microsoft Word format. It is important to do it in this format because it allows the IRB to track changes if necessary.
+4. Other documents may be added to the submission if necessary.
+
+The IRB will review the application and send comments if necessary before the approval. It is important to note that all documents must be consistent. Also note that the actual survey cannot be implemented until the IRB approves it. After the approval, you can request an amendment if necessary. This process takes some time and changes cannot be implemented until the amendment is approved. In some institutions, amendments have a cost.
+
+### IV. Piloting the survey 
+
+Piloting the survey is an essential step in the process. Its purpose is to test the survey out of the sample, so that when the actual sample is surveyed, the survey is ready. Make sure that the survey is already programmed in SurveyCTO. There can be many series of piloting, in line with its purpose.
+
+One thing to measure during pilots is the success rate. Through this analysis, you can be able to identify the reasons why the rate can be low and reinforce strategies to increase it. Also, piloting can define
+
+It is recommended that a final piloting is held right before the actual fieldwork. It is a simulation of what the actual fieldwork would look like. This is the part of the survey where a lot of improvements can be done. Most of the steps that will be described in the fieldwork section should be implemented during the pilot. During this step of the process, dynamics will be designed.
+
+### V. Hiring of field team 
+
+**Hiring supervisors:** Supervisors must have proven data supervisor experience, or extensive survey experience and show aptitude to lead data collection teams and be organized. In particular, supervisors need to be:
+
+- Communicative, able to relay information efficiently to the research team
+- Organized, able to assign and follow up on work to their assigned survey team
+- Leaders, able to provide advice and resolve any conflicts in the field according to the established survey protocols
+
+Supervisor should be hired ideally before the enumerators, and should be employed during the piloting phase of the questionnaire, to intimately familiarize them with the questionnaire, which will allow them to provide further feedback to the surveyors in the field and grant them more independence when making decisions.
+
+**Hiring enumerators:** Hiring of the field team should be done such that the field team is assembled at most a week before launching field work. This is to ensure that there is sufficient training and filtering processes conducted on the team before field work. If the survey is short (15 min or less), this timeline can be condensed as training time should be shorter. Further, this timeline can be reduced if it is not possible to hire all the enumerators on time. It is important to start training with at least the expected amount of surveyors.
+
+**Surveyor profile:** Work in progress.
+
+## During fieldwork
+
+### VI. Data collection team composition
+
+Having a good task distribution by usage of the team is recommended to avoid burnout, and ensure that protocol is followed for all the activities that happen simultaneously during fieldwork. As a result, solo RA work should be discouraged unless no other alternative is possible.
+
+1. Field work coordinator: this person is in charge of supervising the field team and procures all the material, such as telephones, tablets or uniforms.
+2. Human Resources manager: this person is in charge of hiring the field team and deals with the issues that can emerge during the field work and programs payments.
+3. RA - data cleaner: this person is in charge of cleaning data from the survey, so that it can be analyzed without issues like typos or coding mistakes.
+4. RA - survey programmer: this person is in charge of maintaining the SurveyCTO updated with the last version of the survey.
+5. RA - quality controller: this person is in charge of running quality checks and documents mistakes in the field so that the data cleaner can implement those changes.
+6. General coordinator: this person manages the budget, coordinates the whole team and serves as a liaison between the team and the PI.
+
+### VII. Quality checks
+
+To ensure that high-quality data is being produced, we must monitor data collection to detect programming errors, surveyor errors, data fabrication, poorly understood questions, and other issues. The two useful tools you must work with to monitor are the **survey tracker** and **back checks**.
+
+a. **Survey Tracker**: It is highly recommended to create a survey tracker on Google Sheets. [SurveyCTO has a functionality](https://docs.surveycto.com/05-exporting-and-publishing-data/03-publishing-data-to-the-cloud/02.forms-to-google-sheets.html#:~:text=To%20configure%20any%20one%20of,Sheets%20and%20Google%20Drive%20accounts.) where you can connect your selected data to a spreadsheet in real time. You can find a template [here](https://docs.google.com/spreadsheets/d/1_9gNi29DZlGjvSPkMg1I5NqQzB8P2BagJ9EB5SXAJpA/edit?usp=sharing).
+With it, you will keep track of:
+(i) how many responses you obtain daily and the last seven days, (ii) what is the status of each survey, (iii) the distance to the goal at the target level, (iv) the average duration of the survey and its main sections, (iv) the productivity of each surveyor.
+
+Examples where the tracker is useful:
+- You observe that you're not reaching the goal in a geographic area or group and time is running out.
+  - With survey statuses, you could plan revisiting eligible respondents, for example those who didn't fully reject to participate.
+- You observe that a certain surveyor has a survey duration time above the mean or a low response rate.
+  - Above all, creating the tracker would help to identify this situation promptly. Once you have identified it, you could do back checks (audits) to identify challenges that the surveyor is facing, plan a strategy to improve, and give useful feedback to do it better.
+
+b. **Back checks**: [Data quality checks](https://www.povertyactionlab.org/resource/data-quality-checks) are important to identify the reliability of the data collected, specifically back checks. We will choose the way in which we want to corroborate that collected responses are reliable depending on survey logistics, budget, respondent availability, respondent fatigue, among others. We could re-interview respondents with a shorter form based on the original, but with fewer questions, or audit the audios of the interviews generated by surveyCTO.
+
+Option 1: Re-interviewing. The questions to be included in this survey must be selected strategically. You should ask the most important questions you want to confirm. We don't want to fatigue respondents. The team that would perform back check interviews should not be the same team conducting the original survey; you may have to hire and train additional staff. As such, back-checking surveys can carry a high cost. One money-saving alternative can be to record telephone numbers of respondents so that surveyors can call respondents instead of traveling to their locations. Visit [J-Pal's research resources](https://www.povertyactionlab.org/resource/data-quality-checks)for more information on this.
+
+Option 2: Audits. The questions to be included in an audit survey could be all in the original survey. The team that would perform audits will listen to the audios and fill out a survey specifically for audits. Remember that people without Human Subjects certification can access a maximum of 20% of all data with PII.
+
+We recommend adding time stamps for the most important questions, or those you want to observe closely, for any reason. Once you collect responses, you could:
+- Compare the original data to the audit data and observe if there are any differences.
+- Monitor surveyors performance.
+- Identify issues during data collection that can't be identified through the survey tracker, such as a poor introductory speech, questions that were not properly asked, or surveyors not making sure they are surveying the right person.
+
+### VIII. Documenting mistakes
+
+Errors in the survey, or data entry errors by the enumerators, should be documented in a google sheet shared with the research team.
+
+The person documenting errors is a team member that is in constant communication with the enumerators, such as a supervisor, or the field coordinator. This allows these mistakes to be documented in a timely fashion. The reporter must have easy access to the internet and a computer to do this. As such, in the case of in person surveys, the reporter will likely be the field coordinator, who should be looped into all communication channels used by the survey team. An Example of the reporting format for survey errors is as follows:
+
+(image)
+
+Key here is to have the question number, such that the question with issues can be quickly found and dealt with by any member of the team.
+
+For data entry errors, the format for reporting issues is similar:
+
+(image)
+
+An example flow for how these formats can be employed is as follows:
+
+- A surveyor finds a mistake in the programming, or makes a mistake in the form.
+- The surveyor writes or calls their field supervisor to report the problem.
+- The field supervisor confirms the mistake with the surveyor.
+- The field supervisor passes on the report to the field coordinator.
+- The field coordinator documents the instance in the report on google docs.
+- An RA will check the errors, and attempt to fix them.
+  - Programming errors will be corrected and a new survey version with the correction will be shared with the team.
+  - Data entry errors will be added to a replacements file to make the corrections manually with the raw data.
+- If the error cannot be fixed, the RA will discuss with the field supervisor to gather more information and solve the problem reported, or clarify if the issue was due to user error.
+- The RA marks the error corrected or not, and provides comments based on this assessment.
+
+This format allows having issues with the survey programming organized in a collaborative environment, where any member of the team can document issues with the survey, and can be particularly helpful with larger survey teams where the amount of feedback from enumerators can be overwhelming.
+
+### IX. High Frequency Checks (HFC)
+
+HFCs are to be run daily (or, with projects of low intensity, every other day), should be reviewed by the RA team daily, and feedback on them (if any) should be prepared for the day after. As a result, it is important to have a dedicated person to run the page and revise the output of these quality checks so that prompt feedback can be given to the enumerators when quality issues arise.
+
+For IPA staff, HFCs are set up using a IPA's internal ipacheck package, which can be used by anyone outside of IPA. This can be set up using Stata (Stata 17 or higher needed at the time of writing), using:
+
+net install ipacheck, all replace from([https://raw.githubusercontent.com/PovertyAction/high-frequency-checks/master](https://raw.githubusercontent.com/PovertyAction/high-frequency-checks/master))
+
+ipacheck update
+
+Using the command ipacheck new, files will create all the files needed to run the HFCs and the necessary instructions on how to feed the inputs. More information can be found in IPA's [Github page](https://github.com/PovertyAction/high-frequency-checks).
+
+J-Pal has worked on a template for using [R](https://drive.google.com/file/d/1f-5SPiGKZqWg70BL9ov9aBKNBJuRPm1d/view) in HFCs.
+
+SurveyCTO also has a version of HFCs that should fulfill the most basic needs of data collection, and are easy to set up. More information on this through this [link](https://support.surveycto.com/hc/en-us/articles/4468397058963-Guide-to-automated-quality-checks).
+
+Broadly, HFCs should check your data for:
+
+- Flag forms with variable outliers that may indicate falsification or quality issues with the surveyors
+- Duplicated surveys (if no controls to constrain surveyors from filling forms for already-surveyed IDs are in place)
+- Flag incomplete surveys
+- Flag surveys that are missing certain key variables that may suggest issues with the survey or the data collection devices themselves
+- Flag variables that have all missing values and may be because of a faulty skip pattern in the survey
+- Flag "other" answers for multiple-choice questions to assess surveyor quality, or possibly add more answer choices to the questions.
+- Flag percentage of non-response answers by enumerator, to assess quality
+- Conduct backchecks/audio audits
+
+It is strongly encouraged that RAs use the IPA package as it is complete and provides outputs to easily check responses and/or entire surveys, connecting directly to the SurveyCTO server. If no Stata license is available for RAs, other options for R and Python users should be scoped out. HFCs should **always** be conducted for any data collection effort.
+
+**Open-ended and multiple-choice with** _ **other** _ **option questions**
+
+Adding relevant answer choices promptly could significantly reduce fieldwork and data cleaning efforts. HFCs provide an easy way to observe responses to these types of questions. All you need to do is run them. You should monitor these responses periodically (at least weekly) and count the number of times they are repeated to propose new answer choices if eligible.
+
+For these responses to be eligible as new answer choices, these should appear in (at least) a set percentage of the sample size. The principal investigator must approve the minimum percentage and new options.
+
+Example for a minimum percentage of 5% and a sample size of 1000 surveys: to propose a repeated response as a new answer choice, it should have been observed in at least 50 surveys.
+
+### X. Survey Report
+
+Another important tool to ensure that high-quality data is being produced is the survey report. The survey report also helps to visualize how data is behaving, have an idea of responses, have evidence of the functionality of a question and double check the surveyor's productivity. For example, if many people answer "Don't know" to question A.3, it means that question A.3 is probably a bad question.
+
+The survey report can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors.
+
+The survey report must include the following:
+
+1. Text Audit Data: This section includes a table for average time in successful surveys, to measure duration of successful surveys and a table for average time in successful surveys per enumerator. Other tables of duration per section can be added.
+2. Response Rate Statistics: This section includes tables of response rate in general and per enumerator. Other tables of response rates can be added according to the necessity of each survey.
+3. Unsuccessful surveys: Includes a table of reasons for unsuccessful surveys.
+4. Surveyor Productivity: This section includes tables per enumerator to visualize their productivity.
+5. Results: This section includes three figures per question of the survey. First, a figure showing the results or answers of the question. Second, a histogram of the duration of the question. And third, a figure comparing actual answers with "Don't know" and "Refused to answer".
+
+Here is an example of the [survey report](https://drive.google.com/file/d/1YsYWqxyzbAVqum63lh2ckK989HldRimT/view?usp=sharing).
+
+## Post-fieldwork
+
+Work in progress.
