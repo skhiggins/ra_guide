@@ -36,9 +36,9 @@ Contents:
     2. [Generating different presentation versions](#ii-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
 4. Conducting Surveys
-	1. [Pre-fieldwork](#pre-fieldwork)
-	2. [During fieldwork](#during-fieldwork)
-	3. [Post-fieldwork](#post-fieldwork)
+	1. [Pre-fieldwork](#i-pre-fieldwork)
+	2. [During fieldwork](#ii-during-fieldwork)
+	3. [Post-fieldwork](#iii-post-fieldwork)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
@@ -686,7 +686,7 @@ When presenting papers at academic conferences, we will have to generate multipl
 
 Some of the projects involve conducting surveys. This section aims to outline the general process of conducting surveys. The most important thing to keep in mind is that **each survey is unique**. This means that while there is a general process, each step should be analyzed and evaluated within the context of each survey. To make it easier to identify parts of the process, you can divide it into three main parts: pre-fieldwork, during fieldwork and post-fieldwork.
 
-## 1. Pre-fieldwork
+## i. Pre-fieldwork
 
 **Project organization**
 
@@ -812,7 +812,7 @@ Supervisor should be hired ideally before the enumerators, and should be employe
 
 **Surveyor profile:** Work in progress.
 
-## 2. During fieldwork
+## ii. During fieldwork
 
 ### VI. Data collection team composition
 
@@ -933,6 +933,6 @@ The survey report must include the following:
 
 Here is an example of the [survey report](https://drive.google.com/file/d/1YsYWqxyzbAVqum63lh2ckK989HldRimT/view?usp=sharing).
 
-## 3. Post-fieldwork
+## iii. Post-fieldwork
 
 Work in progress.
