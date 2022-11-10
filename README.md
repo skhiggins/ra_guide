@@ -686,7 +686,7 @@ When presenting papers at academic conferences, we will have to generate multipl
 
 Some of the projects involve conducting surveys. This section aims to outline the general process of conducting surveys. The most important thing to keep in mind is that **each survey is unique**. This means that while there is a general process, each step should be analyzed and evaluated within the context of each survey. To make it easier to identify parts of the process, you can divide it into three main parts: pre-fieldwork, during fieldwork and post-fieldwork.
 
-## Pre-fieldwork
+## 1. Pre-fieldwork
 
 **Project organization**
 
@@ -694,7 +694,7 @@ Some of the projects involve conducting surveys. This section aims to outline th
   - It is important to have a defined folder structure for the project, saved in either Dropbox or Box (for easy encryption using Boxcryptor). This is to ensure easy collaboration with team members that may not be in close proximity, and to ensure that project files are organized in an easily understandable structure
   - A sample project structure folder from IPA looks like this:
 
-(Image 1)
+	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/conducting_surveys/folder_structure.png" align="center" height="70%" width="70%">
 
 - 01\_Project development is for storing proposals, contracts, and concept notes for the project prior to its start.
 - 02\_Project and Survey Management is for storing timesheets, deliverables.
@@ -812,7 +812,7 @@ Supervisor should be hired ideally before the enumerators, and should be employe
 
 **Surveyor profile:** Work in progress.
 
-## During fieldwork
+## 2. During fieldwork
 
 ### VI. Data collection team composition
 
@@ -855,14 +855,14 @@ We recommend adding time stamps for the most important questions, or those you w
 Errors in the survey, or data entry errors by the enumerators, should be documented in a google sheet shared with the research team.
 
 The person documenting errors is a team member that is in constant communication with the enumerators, such as a supervisor, or the field coordinator. This allows these mistakes to be documented in a timely fashion. The reporter must have easy access to the internet and a computer to do this. As such, in the case of in person surveys, the reporter will likely be the field coordinator, who should be looped into all communication channels used by the survey team. An Example of the reporting format for survey errors is as follows:
-
-(image)
+	
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/conducting_surveys/example_survey_errors.png" align="center" height="70%" width="70%">
 
 Key here is to have the question number, such that the question with issues can be quickly found and dealt with by any member of the team.
 
 For data entry errors, the format for reporting issues is similar:
 
-(image)
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/conducting_surveys/example_data_errors.png" align="center" height="70%" width="70%">
 
 An example flow for how these formats can be employed is as follows:
 
@@ -884,10 +884,11 @@ This format allows having issues with the survey programming organized in a coll
 HFCs are to be run daily (or, with projects of low intensity, every other day), should be reviewed by the RA team daily, and feedback on them (if any) should be prepared for the day after. As a result, it is important to have a dedicated person to run the page and revise the output of these quality checks so that prompt feedback can be given to the enumerators when quality issues arise.
 
 For IPA staff, HFCs are set up using a IPA's internal ipacheck package, which can be used by anyone outside of IPA. This can be set up using Stata (Stata 17 or higher needed at the time of writing), using:
-
+```stata
 net install ipacheck, all replace from([https://raw.githubusercontent.com/PovertyAction/high-frequency-checks/master](https://raw.githubusercontent.com/PovertyAction/high-frequency-checks/master))
 
 ipacheck update
+```
 
 Using the command ipacheck new, files will create all the files needed to run the HFCs and the necessary instructions on how to feed the inputs. More information can be found in IPA's [Github page](https://github.com/PovertyAction/high-frequency-checks).
 
@@ -932,6 +933,6 @@ The survey report must include the following:
 
 Here is an example of the [survey report](https://drive.google.com/file/d/1YsYWqxyzbAVqum63lh2ckK989HldRimT/view?usp=sharing).
 
-## Post-fieldwork
+## 3. Post-fieldwork
 
 Work in progress.
