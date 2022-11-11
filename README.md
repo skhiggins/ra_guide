@@ -678,6 +678,8 @@ When presenting papers at academic conferences, we will have to generate multipl
 3. **Update and run the presentation versions script**.
 	1. Update the presentation or presentations to modify (line 95) in script [presentation_versions.R](https://github.com/skhiggins/ra_guide/blob/main/scripts/presentation_versions.R).
 	2. Run the full script to generate the desired .tex document.
+	3. Compile the master presentation and verify that there are no bugs or errors. **Remember to always pull the latest presentation content from Github before compiling the presentation**.
+	
 4. **Compile the presentation and push changes to GitHub**.
 
 **Note**: The person updating the master presentation should also run the presentation versions script and push to GitHub, to ensure all presentations are kept up to date.
