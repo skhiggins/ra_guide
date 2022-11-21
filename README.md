@@ -923,8 +923,29 @@ Example for a minimum percentage of 5% and a sample size of 1000 surveys: to pro
 
 Another important tool to ensure that high-quality data is being produced is the survey report. The survey report also helps to visualize how data is behaving, have an idea of responses, have evidence of the functionality of a question and double check the surveyor's productivity. For example, if many people answer "Don't know" to question A.3, it means that question A.3 is probably a bad question.
 
-The survey report can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors.
+**Survey report protocol**
 
+In order for the survey report to be helpful, this protocol should be followed:
+
+1. A preliminary version of the scripts should be written before the field-work starts. 
+2. Once the field-work starts, the survey report should be updated every certain time. It is reccomended to update the report before every periodic meeting. For example, in the Financial Technology Adoption survey, the report was updated every week.
+3. After updating the survey report, share it with Sean and other team members, so that they can take a look at it before a meeting.
+4. Read the report and identify strange patterns or answers to the questions and discuss them.
+5. Apply the agreed changes to the report.
+6. When the field-work ends, produce a final version of the report. This will be useful for further data analysis.
+
+
+**How to produce the survey report**
+
+Data cleaning is essential to produce the report. This step implies manipulating data to facilitate the production of tables and figures. Usually, data cleaning is done in one script and includes the following three sections: 
+
+1. Basic cleaning of the responses dataset: This section cleans and formats the dataset to have uniform responses. For example, in this section, one can make sure that all columns with dates have the same format.
+2. Text Audit data cleaning: Text Audit data is a group of .csv files created by SurveyCTO that include a list of the questions of the survey and a timestamp that indicates the second that have passed since the beginning of the survey until the question's first appereance. This data is helpful to measure duration and if there are any questions that people are slow to answer. In the second case, it could be a red flag.
+3. Reshaping data: To make easier the production of tables and figures, it is often helpful to reshape data.
+
+Here is an example of the [script that cleans data from a survey](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_cleaning.R)
+
+Once the cleaning step is complete, the survey report can be produced. It can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors. Here is an example of a [script that produces a survey report using markdown](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report_markdown.R) and a [script that produces figures and tables for a survey report](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report.R).
 The survey report must include the following:
 
 1. Text Audit Data: This section includes a table for average time in successful surveys, to measure duration of successful surveys and a table for average time in successful surveys per enumerator. Other tables of duration per section can be added.
@@ -933,7 +954,7 @@ The survey report must include the following:
 4. Surveyor Productivity: This section includes tables per enumerator to visualize their productivity.
 5. Results: This section includes three figures per question of the survey. First, a figure showing the results or answers of the question. Second, a histogram of the duration of the question. And third, a figure comparing actual answers with "Don't know" and "Refused to answer".
 
-Here is an example of the [survey report](https://drive.google.com/file/d/1YsYWqxyzbAVqum63lh2ckK989HldRimT/view?usp=sharing).
+Here is an example of the [survey report](https://github.com/skhiggins/ra_guide/blob/main/docs/survey_report_anonymized.pdf).
 
 ## iii. Post-fieldwork
 
