@@ -1,0 +1,3918 @@
+---
+title: "Survey Report"
+author: "Noah Forougi"
+date: "`r Sys.Date()`"
+knit: (function(inputFile, encoding) {
+ rmarkdown::render(inputFile, encoding = encoding, output_dir = "../results/tables/", output_format = "pdf_document") })
+output:
+  pdf_document:
+    toc: TRUE
+    number_sections: true
+    fig_crop: no
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, include = FALSE}
+library(tidyverse)
+library(here)
+library(magrittr)
+library(data.table)
+library(kableExtra)
+library(readxl)
+library(pander)
+library(lubridate)
+library(modelsummary)
+
+# Functions
+source(file = here("scripts", "programs", "myfunctions.R"))
+source(file = here("scripts", "programs", "set_theme.R"))
+
+# Find most recently download data
+newest_download <- max(ymd(list.files(here("data", "SurveyCTO_downloads"))))
+newest_download <- gsub("-", "_", newest_download)
+
+# Read in data
+surveyraw <- fread(here("data", "SurveyCTO_downloads", newest_download, "Encuesta oferta iZettle_WIDE.csv"))
+survey <- read_csv(here("proc", "30_survey_results.csv"))
+survey_code <- readxl::read_excel(path = here("survey", "20201211_izettle_survey.xlsx"))
+TA_files <- read_csv(here("proc", "30_TA_results.csv"))
+TA_files_nofilter <- read_csv(here("proc", "30_TA_results_nofilter.csv"))
+izettle_fee <- fread(here("proc", "izettle_fee.csv"))
+survey_long <- read_csv(here("proc", "30_survey_results_long.csv"))
+
+survey_sample_pilot <- read_csv(here("proc", "survey_sample_pilot.csv"))
+survey_sample1124   <- read_csv(here("proc", "survey_sample1124.csv"))
+survey_sample1125   <- read_csv(here("proc", "survey_sample1125.csv"))
+survey_sample1130   <- read_csv(here("proc", "survey_sample1130.csv"))
+survey_sample1207   <- read_csv(here("proc", "survey_sample1207.csv"))
+survey_sample0105   <- read_csv(here("proc", "survey_sample0105.csv"))
+survey_sample0120   <- read_csv(here("proc", "survey_sample0120.csv"))
+survey_sample0126   <- read_csv(here("proc", "survey_sample0126.csv"))
+survey_sample0128   <- read_csv(here("proc", "survey_sample0128.csv"))
+survey_sample0209   <- read_csv(here("proc", "survey_sample0209.csv"))
+survey_sample0216   <- read_csv(here("proc", "survey_sample0216.csv"))
+survey_sample0303   <- read_csv(here("proc", "survey_sample0303.csv"))
+
+
+results <- survey_long #%>% filter(!is.na(value) & value != "")
+
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+```
+ 
+\newpage
+\section{Text Audit Data}
+These tables compute the average time in seconds that the question appeared in the survey, for three questions which are the variables "attention_scale", "success_end" and "comentarios_u_observaciones". In the first table, this is the average across all surveys, and the second table breaks it down by surveyor. 
+      
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+TA_files %>% 
+  filter( field_name == "success_end" ) %>% 
+  group_by(field_name) %>% 
+  summarise(average_first_appeared = mean(first_appeared), 
+            n = n()) %>%
+  knitr::kable(booktabs = T) %>% 
+  kableExtra::kable_styling(latex_options = c("striped"))
+
+TA_files %>% 
+  filter( field_name == "success_end" ) %>% 
+  group_by(field_name, callername) %>% 
+  summarise(average_first_appeared = mean(first_appeared), 
+            n = n()) %>%
+  knitr::kable(booktabs = T) %>% 
+  kableExtra::kable_styling(latex_options = c("striped"))
+```
+
+We have less observations than in the following section because we look at the variable for "success_end". In some of the surveys, the respondent leaves the interviewer earlier and we do not get this variable which is where the discrepancy shows up. 
+
+
+Next, we want to look at average phone_call_duration total and per enumerator. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+survey %>% 
+  select(encuestador, phone_call_duration) %>% 
+  summarise(average_pc_duration = mean(phone_call_duration, na.rm = T), 
+            n_obs = n()) %>%
+  knitr::kable(caption = "average phone call duration", booktabs = T) %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+
+survey %>% 
+  select(encuestador, phone_call_duration) %>% 
+  group_by(encuestador) %>% 
+  summarise(average_pc_duration = mean(phone_call_duration, na.rm = T), 
+            n_obs = n()) %>%
+  knitr::kable(caption = "average phone call duration by encuestador", booktabs = T) %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+We want to see at what point respondents will refuse to continue with the survey. 
+```{r, echo = FALSE}
+survey %>% 
+  filter(!is.na(reqpassword)) %>%
+  select(1:329) %>% 
+  mutate_all(as.character) %>%
+  pivot_longer(cols = 18:length(.)) %>% 
+  select(text_audit,encuestador, uuid, name, value) %>% 
+  filter(!grepl("section|duration|format|form_time_label",name)) %>%
+  mutate(nc = ifelse(!is.na(value), 1, 0)) %>%
+  group_by(text_audit, uuid) %>%
+  mutate(nc_cumulative = cumsum(nc))  %>%
+  group_by(text_audit, uuid) %>% 
+  filter(nc_cumulative == max(nc_cumulative) & nc == 1) %>% 
+  count(name) %>%
+  arrange(desc(n)) %>% 
+  ungroup() %>%
+  count(name) %>%
+  select(name, n) %>%
+  arrange(desc(n)) %>% 
+  kableExtra::kable(booktabs = T, caption = "Last non-NA value") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+\newpage
+
+\section{Response Rate Statistics}
+First, here is a table of the completion rate of all the incomplete surveys. 
+```{r, echo = FALSE}
+survey %>% 
+  filter(is.na(reqpassword)) %>%
+   mutate(monthlyprofits = as.numeric(monthlyprofits), 
+         periodprofits_when = as.numeric(periodprofits_when), 
+         monthlyprofits_guess =as.numeric(monthlyprofits_guess), 
+         periodprofits = as.numeric(periodprofits))   %>%
+  mutate(periodprofits = case_when(
+    periodprofits_when == 1 ~ as.numeric(periodprofits)*365/12, 
+    periodprofits_when == 2 ~ as.numeric(periodprofits)*52/12, 
+    periodprofits_when == 3 ~ as.numeric(periodprofits)*26/12, 
+    periodprofits_when == 4 ~ as.numeric(periodprofits)*1/12, 
+  )) %>%
+  # create new variable called mckenzieprofits, by default has the values of monthlyprofits
+  mutate(mckenzieprofits = monthlyprofits) %>%
+  # recode monthly version of periodprofits to mckenzieprofits if is.na(monthlyprofits)
+  mutate(mckenzieprofits = ifelse(monthlyprofits < 0 & !is.na(periodprofits), periodprofits, mckenzieprofits))  %>%
+  mutate(mckenzieprofits = case_when(
+    mckenzieprofits >= 0 ~ mckenzieprofits, 
+    mckenzieprofits < 0 & (monthlyprofits_guess <= 0|is.na(monthlyprofits_guess))   ~ mckenzieprofits, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 1  ~  2500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 2  ~  7500, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 3  ~  12500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 4  ~  17500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 5  ~  22500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 6  ~  27500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 7  ~  32500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 8  ~  37500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 9  ~  42500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 10 ~  47500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 11 ~  55000
+  )) %>%
+  mutate(incomplete = as.numeric(is.na(nb_employees) +
+                                  is.na(perform_review) +
+                                  is.na(budget_costs) +
+                                  is.na(mckenzieprofits) +
+                                  is.na(tech_importance) +
+                                  is.na(value_transactions) +
+                                  is.na(recall_old_fee) +
+                                  is.na(compare_fee) +
+                                  is.na(amount_paid_fee) +
+                                  is.na(exp_savings) +
+                                  is.na(firstemail_recall) +
+                                  is.na(recall_sms) +
+                                  is.na(read_sms) +
+                                  is.na(click_recall) +
+                                  is.na(accept_offer_recall) +
+                                  is.na(recall_sms) +
+                                  is.na(why_no_open) +
+                                  is.na(why_no_click) +
+                                  is.na(why_no_accept) +
+                                  is.na(form_time_cat2) +
+                                  is.na(exp_form_time_cat2) +
+                                  is.na(offer_effect_time) +
+                                  is.na(noticed_deadline) +
+                                  is.na(why_deadline) +
+                                  is.na(why_activate_firstday) +
+                                  is.na(days_format) +
+                                  is.na(days_to_accept) +
+                                  is.na(reminder_recall) +
+                                  is.na(open_reminder_recall) +
+                                  is.na(why_reminder) +
+                                  is.na(offer_value_change) +
+                                  is.na(reminder_feel_cat) +
+                                  is.na(a_reminder_takeup) +
+                                  is.na(section10_ts1_end) +
+                                  is.na(offer_impact_cat) +
+                                  is.na(recurr_bill_cat) +
+                                  is.na(recall_pay_bill_yesno) +
+                                  is.na(reminder_useful) +
+                                  is.na(sudden_remind_open) +
+                                  is.na(sudden_remind_stress) +
+                                  is.na(sudden_remind_thankful) +
+                                  is.na(sudden_remind_annoy) +
+                                  is.na(sudden_remind_happy) +
+                                  is.na(accept_bill_reminder) +
+                                  is.na(recurr_bill) +
+                                  is.na(reminder) +
+                                  is.na(confidence_scale1) +
+                                  is.na(confidence_scale2) +
+                                  is.na(reciprocity_scale) +
+                                  is.na(procrastination_scale) +
+                                  is.na(memory_scale1) +
+                                  is.na(memory_scale2) +
+                                  is.na(attention_scale))) %>%
+  summarise(mean(incomplete)/length(unique(results$field_name))) %>%
+  knitr::kable(booktabs = T, caption = "How incomplete are the incomplete surveys?") 
+
+
+```
+
+
+
+ We can look at the response rate overall and broken down by survey enumerator. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+# Create data frame
+response_rate <- surveyraw %>%
+  mutate(submission_date = gsub(",.*$", "", SubmissionDate)) %>%
+  mutate(submission_date = lubridate::mdy(submission_date))  %>%
+  filter(submission_date >= ymd(20201123)) %>% # Start of real survey
+  filter(!(uuid %in% c("1", "2", "3", "4", "5", "6"))) %>% # Filter out test surveys
+  filter(!(KEY == "uuid:a241740a-dbcb-4f5f-b00f-afc28c0f38a6" | # Duplicates
+             KEY == "uuid:c7e1be4d-5f99-4dca-ac3f-3c20fe751e8f" |
+             KEY == "uuid:2a03e341-15c6-4704-afbb-2ee08cff607a")) %>%
+  filter(text_audit != "media/TA_df096320-1862-4b27-a815-5f788ccc7048.csv") %>%# get rid of one of the duplicate surveys for this uuid
+  mutate(successful = if_else(is.na(successful), 0, 1, 0)) 
+
+# 
+
+`%nin%` <- Negate(`%in%`)
+response_rate %>% 
+  filter(uuid %nin% survey_sample0216$id) %>% 
+  summarise(sample = "Not including 2/16 sample",
+            successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = round( successful/unique_firms_called,5)) %>% 
+  bind_rows(response_rate %>% 
+  summarise(sample = "Full Sample", 
+            successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = round( successful/unique_firms_called,5))) %>% 
+  knitr::kable(booktabs = T, caption = "Response Rate Overall") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+  
+
+response_rate %>%
+  group_by(callername) %>%
+  summarise(successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = round( successful/unique_firms_called,4)) %>% 
+  knitr::kable(booktabs = T, caption = "Response Rate by Surveyor") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+  
+  
+```
+
+Next, we look at the response rate by time of day. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+response_rate %>%
+  mutate(hour_of_day = hour(mdy_hms(gsub(",", "", starttime)))) %>%
+  group_by(hour_of_day) %>%
+  summarise(successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = round( successful/unique_firms_called,4)) %>% 
+  knitr::kable(caption = "Response Rates by Hour of Day", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+Next, we create a response rate for merchants that say to call them back. In this case, we filter to the firms that say to call them back and count how many successful interviews have been completed. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+call_backfirms <- surveyraw %>% 
+  filter(isavailable == 5) %>%
+  select(uuid)
+
+response_rate %>%
+  filter(uuid %in% call_backfirms$uuid) %>%
+  summarise(successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = successful/unique_firms_called )%>% 
+  knitr::kable(caption = "Response Rates for Firms that Say to Call Back", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+Response rate by whether the firm accepted the offer, and by reminder type. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+rr_accept <- response_rate %>%
+  filter(accepted_offer == 1) %>%
+  summarise(successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = successful/unique_firms_called ) %>%
+  mutate(group = "accepted_offer")
+
+rr_antrem <- response_rate %>%
+  filter(anticipated_reminder == 1) %>%
+  summarise(successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = successful/unique_firms_called ) %>%
+  mutate(group = "anticipated_reminder")
+
+rr_unantrem <- response_rate %>%
+  filter(unanticipated_reminder == 1) %>%
+  summarise(successful = sum(successful), 
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = successful/unique_firms_called ) %>%
+  mutate(group = "unanticipated_reminder")
+
+bind_rows(rr_accept, rr_antrem, rr_unantrem) %>% 
+  knitr::kable(caption = "Response Rates for Firms by Experiment Characteristic", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+Response rate by total intentos.
+```{r, echo = FALSE}
+response_rate %>% 
+  group_by(total_intentos = as.character(total_intentos)) %>% 
+  summarise(completed_surveys = sum(successful),
+            unique_firms_called = length(unique(uuid)), 
+            response_rate = round(completed_surveys/unique_firms_called,2)) %>% 
+  knitr::kable(caption = "Response rate by Total Intentos", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+Finally, we want a response rate by the sample. 
+```{r, echo = FALSE}
+# Response rate broken down by sample
+sample_uuids  <- survey_sample1124 %>%  mutate(sample = "survey_sample1124") %>%
+   bind_rows(survey_sample1125 %>% mutate(sample = "survey_sample1125")) %>%
+   bind_rows(survey_sample1130 %>% mutate(sample = "survey_sample1130")) %>%
+   bind_rows(survey_sample1207 %>% mutate(sample = "survey_sample1207")) %>%
+   bind_rows(survey_sample0105 %>% mutate(sample = "survey_sample0105")) %>%
+   bind_rows(survey_sample0120 %>% mutate(sample = "survey_sample0120")) %>%
+   bind_rows(survey_sample0126 %>% mutate(sample = "survey_sample0126"))  %>%
+   bind_rows(survey_sample0128 %>% mutate(sample = "survey_sample0128")) %>%
+   bind_rows(survey_sample0209 %>% mutate(sample = "survey_sample0209")) %>%
+   bind_rows(survey_sample0216 %>% mutate(sample = "survey_sample0216")) %>% 
+   bind_rows(survey_sample0303 %>% mutate(sample = "survey_sample0303")) %>%
+   mutate(uuid = id)
+ 
+response_rate %>% 
+ left_join(sample_uuids %>% select(uuid, sample), by = "uuid") %>%
+ group_by(sample) %>%
+ summarise(successful_ = sum(successful, na.rm = T), 
+           unique_firms_called = length(unique(uuid)), 
+           response_rate = round( successful_/unique_firms_called,5), 
+           email_sms = round(sum(firstemail_recall ==1 & recall_sms ==1, na.rm = T) / sum(!is.na(successful)),4), 
+           open_reminder_recall = round(sum(open_reminder_recall == 1, na.rm =T)/sum(!is.na(successful)),4)) %>% 
+  knitr::kable(caption = "Response rate by Survey Sample", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position", "scale_down"))
+
+
+#response_rate %>% filter(uuid %nin% sample_uuids$uuid)
+#samp
+#izettle_fee %>% filter(organization_uuid == "cf0e7930-c730-11e8-9fe3-751a04624381")
+```
+
+
+\newpage
+
+\section{Cross Tables}
+Here we want a cross-tab of those who clicked a link (in the reminder or initial email) vs those who opened a message (email or reminder). 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+izettle_fee %<>%
+  mutate(click_link = if_else(email_linkcount > 0 | reminder_linkcount, 1, 0, 0), 
+         open_message = if_else(open_email_late == 1 | open_reminder_late == 1, 1, 0, 0))
+
+survey %<>%
+  mutate(organization_uuid = uuid) %>%
+  left_join(izettle_fee,"organization_uuid") 
+
+survey %>%
+  mutate(click_link = if_else(click_link == 1, "Clicked link in initial message or reminder", "Did not click any links"), 
+         open_message = if_else(open_message == 1, "Opened initial message or reminder", "Did not open any message")) %>%
+  group_by(click_link, open_message) %>% 
+  count() %>% 
+  pivot_wider(names_from = "click_link", values_from = "n") %>%
+  mutate_if(is.numeric, funs(ifelse(is.na(.), 0, .))) %>% 
+  knitr::kable(booktabs = T, caption = "Cross Table of llicked link and opened message")  %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+
+  
+
+
+```
+  
+Here, we want the same type of cross table but applying the filter `click_recall == 1`. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+survey %>%
+  mutate(click_link = if_else(click_link == 1, "Clicked link in initial message or reminder", "Did not click any links"), 
+         open_message = if_else(open_message == 1, "Opened initial message or reminder", "Did not open any message")) %>%
+  filter(click_recall == 1) %>%
+  group_by(click_link, open_message) %>% 
+  count() %>% 
+  pivot_wider(names_from = "click_link", values_from = "n") %>%
+  mutate_if(is.numeric, funs(ifelse(is.na(.), 0, .))) %>% 
+  knitr::kable(booktabs = T, caption = "Cross Table of llicked link and opened message") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+  
+
+
+```
+
+```{r, echo = FALSE, warning=FALSE, message = FALSE, include = FALSE}
+#assertthat::assert_that(all(survey$anticipated_reminder.x ==survey$anticipated_reminder.y))
+survey %>%
+  mutate(anticipated_reminder = as.character(anticipated_reminder.x)) %>%
+  ggplot(aes(x = anticipated_reminder)) + 
+  geom_histogram(bins = 2, stat = "count")  + 
+  theme_minimal() + 
+  xlab("Anticipated Reminder (yes = 1)") + 
+  scale_y_continuous(breaks = seq(0,14,2), labels = seq(0,14,2))
+```
+
+
+\newpage
+
+\section{Stratification and Respondents}
+We stratified on 3 binary variables - deadline, reminder and accept fee We wanted to weight some of the groups more heavily, so we followed this structure. 8% of our total sample was from the subset of firms which did not open email, click the link and did not accept offer. We completely random sampled those firms. Of the remaining 92%, we applied the following weights to each group to construct the rest of our sample - see the first column in the table.
+
+However, for the survey sample on 1/28, we wanted to oversample the firms that had the "opposite" accept value for the firms that we overweighted. So the randomization proportions are now not fully in line with the weights we wanted.     
+
+Here are the results from how our survey falls. 
+```{r, echo = FALSE, warning=FALSE, message = FALSE}
+# Weights
+weights <- tibble( "No open email, no clicked link, no accept" = 0.08, 
+ "No DL, No Rem, No Accept" = .92*1/24, 
+ "No DL, No Rem, Accept" = .92*1/24, 
+ "No DL, Unant Rem, No Accept" = .92*1/6, 
+ "No DL, Unant Rem, Accept" = .92*1/24, 
+ "No DL, Ant Rem, No Accept" = .92*1/24, 
+ "No DL, Ant Rem, Accept" = .92*1/6, 
+ "DL, No Rem, No Accept" =.92*1/24, 
+ "DL, No Rem, Accept" = .92*1/24, 
+ "DL, Unant Rem, No Accept" = .92*1/6, 
+ "DL, Unant Rem, Accept" = .92*1/24, 
+ "DL, Ant Rem, No Accept" = .92*1/24, 
+ "DL, Ant Rem, Accept" = .92*1/6) %>% 
+  pivot_longer(cols = everything())
+
+
+# Table of our randomization results
+randomization_samples <- survey_sample1124 %>%
+  bind_rows(survey_sample1125) %>%
+  bind_rows(survey_sample1130) %>%
+  bind_rows(survey_sample1207) %>%
+  bind_rows(survey_sample0105) %>%
+  bind_rows(survey_sample0120) %>%
+  bind_rows(survey_sample0126)  %>%
+  bind_rows(survey_sample0128) %>%
+  bind_rows(survey_sample0209) %>%
+  bind_rows(survey_sample0216) %>% 
+  bind_rows(survey_sample0303)
+
+
+
+randomization_samples %<>%
+  mutate(temp = 1) %>%
+  group_by(id) %>%
+  mutate(temp2 = cumsum(temp)) %>%
+  filter(temp2 == 1)
+randomization_samples$temp <- NULL
+randomization_samples$temp2 <- NULL
+
+randomization_results <- randomization_samples %>% 
+  mutate(group = case_when(
+    open_email == 0 & click_link == 0 & accepted_offer == 0     ~ "No open email, no clicked link, no accept", 
+    deadline == 0 & reminder     == 0 & accepted_offer == 0     ~ "No DL, No Rem, No Accept", 
+    deadline == 0 & reminder     == 0 & accepted_offer == 1     ~ "No DL, No Rem, Accept", 
+    deadline == 0 & u_reminder   == 1 & accepted_offer == 0     ~ "No DL, Unant Rem, No Accept", 
+    deadline == 0 & u_reminder   == 1 & accepted_offer == 1     ~ "No DL, Unant Rem, Accept", 
+    deadline == 0 & a_reminder   == 1 & accepted_offer == 0     ~ "No DL, Ant Rem, No Accept", 
+    deadline == 0 & a_reminder   == 1 & accepted_offer == 1     ~ "No DL, Ant Rem, Accept", 
+    deadline == 1 & reminder     == 0 & accepted_offer == 0     ~ "DL, No Rem, No Accept", 
+    deadline == 1 & reminder     == 0 & accepted_offer == 1     ~ "DL, No Rem, Accept", 
+    deadline == 1 & u_reminder   == 1 & accepted_offer == 0     ~ "DL, Unant Rem, No Accept", 
+    deadline == 1 & u_reminder   == 1 & accepted_offer == 1     ~ "DL, Unant Rem, Accept", 
+    deadline == 1 & a_reminder   == 1 & accepted_offer == 0     ~ "DL, Ant Rem, No Accept", 
+    deadline == 1 & a_reminder   == 1 & accepted_offer == 1     ~ "DL, Ant Rem, Accept"
+  )) %>% 
+  tabulator::tab(group)
+
+# Table of our survey respondent results
+
+respondent_results <- survey %>% 
+  mutate(deadline = deadline.x, 
+         reminder = reminder.x, 
+         unanticipated_reminder = unanticipated_reminder.x, 
+         anticipated_reminder = anticipated_reminder.x) %>%
+   mutate(group = case_when(
+    opened_email == 0 & clicked_link == 0 & accepted_offer == 0     ~ "No open email, no clicked link, no accept", 
+    deadline == 0 & reminder     == 0 & accepted_offer == 0     ~ "No DL, No Rem, No Accept", 
+    deadline == 0 & reminder     == 0 & accepted_offer == 1     ~ "No DL, No Rem, Accept", 
+    deadline == 0 & unanticipated_reminder   == 1 & accepted_offer == 0     ~ "No DL, Unant Rem, No Accept", 
+    deadline == 0 & unanticipated_reminder   == 1 & accepted_offer == 1     ~ "No DL, Unant Rem, Accept", 
+    deadline == 0 & anticipated_reminder   == 1 & accepted_offer == 0     ~ "No DL, Ant Rem, No Accept", 
+    deadline == 0 & anticipated_reminder   == 1 & accepted_offer == 1     ~ "No DL, Ant Rem, Accept", 
+    deadline == 1 & reminder     == 0 & accepted_offer == 0     ~ "DL, No Rem, No Accept", 
+    deadline == 1 & reminder     == 0 & accepted_offer == 1     ~ "DL, No Rem, Accept", 
+    deadline == 1 & unanticipated_reminder   == 1 & accepted_offer == 0     ~ "DL, Unant Rem, No Accept", 
+    deadline == 1 & unanticipated_reminder   == 1 & accepted_offer == 1     ~ "DL, Unant Rem, Accept", 
+    deadline == 1 & anticipated_reminder   == 1 & accepted_offer == 0     ~ "DL, Ant Rem, No Accept", 
+    deadline == 1 & anticipated_reminder   == 1 & accepted_offer == 1     ~ "DL, Ant Rem, Accept"
+  )) %>% 
+  tabulator::tab(group)
+
+
+
+
+response_table <- weights %>% 
+  transmute(group = name, weight = round(value, 2)) %>% 
+  left_join(randomization_results %>% select(group,randomization_n = N, randomization_prop = prop), by = "group") %>%
+  left_join(respondent_results %>% select(group, respondent_n = N, respondent_prop = prop), by = "group") %>% 
+  arrange(desc(randomization_n, respondent_n)) %>% 
+  bind_rows(ungroup(.) %>% summarise(group = "Total", "weight" = sum(weight),
+  "randomization_n" = sum(randomization_n, na.rm = T), 
+  "randomization_prop" = round(sum(randomization_prop, na.rm = T)), 
+  "respondent_n" =  sum(respondent_n, na.rm = T), 
+  "respondent_prop" = round(sum(respondent_prop, na.rm = T))
+  )) 
+
+write_csv(response_table, here("proc", "response_table.csv"))
+
+response_table %>%
+  select(!weight) %>%
+  knitr::kable(booktabs = T, caption = "Randomization and respondent composition") %>%
+  kableExtra::row_spec(row = 13, hline_after =  T) %>%
+  kableExtra::row_spec(row = 14, bold = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position", "scale_down"))
+```
+
+\newpage
+
+\section{Surveyor Productivity}
+We first want to look at the total amount of time spend making surveys. Here, we do not impose any restrictions on whether the survey was successful or dates.   
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+# TA_files_nofilter %>% 
+#   filter(field_name == "comentarios_u_observaciones") %>%
+#   group_by(encuestador) %>%
+#   summarise("Hours Spent on Surveys (first appeared)" = sum(first_appeared)/3600, 
+#             "Hours Spent on Surveys (duration)" = sum(duration)/3600) %>%
+#   bind_rows(ungroup(.) %>% summarise(encuestador = "Total",
+#   "Hours Spent on Surveys (first appeared)" = sum(`Hours Spent on Surveys (first appeared)`), 
+#   "Hours Spent on Surveys (duration)" = sum(`Hours Spent on Surveys (duration)`)
+#   )) %>%
+#   knitr::kable(booktabs = T, caption = "Hours Spent on Surveys by Interviewer (Using Text Audit Data)") %>%
+#   kableExtra::row_spec(row = 8, bold = T) %>%
+#   kableExtra::row_spec(row = 7, hline_after =  T) %>%
+#   kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+surveyraw %>% 
+  select(encuestador, duration) %>%
+  group_by(encuestador)  %>%
+  summarise("Hours Spent on Surveys (duration)" = sum(duration)/3600) %>%
+  bind_rows(ungroup(.) %>% summarise(encuestador = "Total",
+  "Hours Spent on Surveys (duration)" = sum(`Hours Spent on Surveys (duration)`)
+  )) %>%
+  knitr::kable(booktabs = T, caption = "Hours Spent on Surveys by Interviewer (Using Raw Survey Data)") %>%
+  kableExtra::row_spec(row = 12, bold = T) %>%
+  kableExtra::row_spec(row = 11, hline_after =  T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+
+
+```
+
+\newpage
+Next, we want to look at the total number of days they have been surveying for. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+surveyraw %>%
+  mutate(date = mdy_hms(SubmissionDate)) %>%
+  mutate(day = ymd(gsub(" .*$", "", date))) %>%
+  summarise("Unique Days spent surveying" = length(unique(day))) %>%
+  knitr::kable(caption = "Days spent surveying", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_positions"))
+```
+
+
+We want to look at the attempted  surveys per hour by enumerator. 
+
+An attempted survey is a survey that shows up in the text audit files. This means that an attempted survey could be a survey in which the respondent does not answer the phone. 
+
+In this scenario, we do not apply any filters on dates or whether the survey was successful.
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+surveyraw %>% 
+  group_by(encuestador)  %>%
+  summarise("Hours Spent on Surveys (duration)" = sum(duration)/3600, 
+            "Surveys attempted" = length(unique(text_audit)), 
+            "Surveys attempted per hour"  = `Surveys attempted`/`Hours Spent on Surveys (duration)` ) %>%
+  knitr::kable(caption = "Surveys attempted", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+We also want to look at average surveys completed per day per enumerator. 
+```{r, echo = FALSE, warning=FALSE, message = FALSE}
+survey %>% 
+  group_by(encuestador) %>% 
+  summarise(completed_surveys = n(), 
+            days_surveying = length(unique(submission_date)), 
+            surveys_day = completed_surveys/days_surveying) %>%
+  knitr::kable(caption = "Average Surveys per Day per Enumerator", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+
+\subsection{Fatigue}
+
+\textbf{fatigue-bills}: coded 1 if variables sudden_remind_annoy,  sudden_remind_stress, sudden_remind_thankful and sudden_remind_happy all have the same answer and 0 otherwise (NA if values are NA).   
+
+```{r fatigue_bills, echo = FALSE, warning=FALSE, message = FALSE}
+results %>% 
+  filter(field_name == "fatigue_bills") %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +
+  set_theme()
+```
+
+\textbf{fatigue-scales}: coded 1 if confidence_scale1, confidence_scale2, reciprocity_scale, procrastination_scale, memory_scale1, memory_scale2, and attention_scale all have the same answer and 0 otherwise (NA if values are NA).  
+
+```{r fatigue_scales, echo = FALSE, warning=FALSE, message = FALSE}
+results %>% 
+  filter(field_name == "fatigue_scales") %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +
+  set_theme()
+```
+
+
+\textbf{indifferent-bills}: coded 1 if variables sudden_remind_annoy,  sudden_remind_stress, sudden_remind_thankful and sudden_remind_happy all have equal 2 and 0 otherwise (NA if values are NA).   
+
+```{r indifferent_bills, echo = FALSE, warning=FALSE, message = FALSE}
+results %>% 
+  filter(field_name == "indifferent_bills") %>% 
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +
+  set_theme()
+```
+
+Can you computer percentage of !is.na(successful) surveys that these variables equal 1? 
+```{r fatigue data, echo = FALSE, warning=FALSE, message = FALSE}
+tibble(" " = c("percentage", "n"),
+       "surveys w/ fatigue_bills == 1" = 
+         c(100*(survey %>% filter(fatigue_bills == 1) %>% nrow() / survey %>% nrow()) %>% round(4), 
+         survey %>% filter(fatigue_bills == 1) %>% nrow()),
+       "surveys w/ fatigue_scales == 1" = 
+         c(100*(survey %>% filter(fatigue_scales == 1) %>% nrow() / survey %>% nrow()) %>% round(4), 
+           survey %>% filter(fatigue_scales == 1) %>% nrow()), 
+       "surveys w/ indiffernt_bills == 1" = 
+         c(100*(survey %>% filter(indifferent_bills == 1) %>% nrow() / survey %>% nrow()) %>% round(4), 
+           survey %>% filter(indifferent_bills == 1) %>% nrow())
+           )  %>% 
+         knitr::kable(caption = "Fatigue Data", booktabs = T) %>% 
+         kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+Can you compute this percentage per enumerator? 
+```{r fatigue data by enumerator,echo = FALSE, warning=FALSE, message = FALSE}
+survey %>% 
+  group_by(encuestador) %>% 
+  summarise(fatigue_bills = sum(fatigue_bills, na.rm = T), 
+            fatigue_scales = sum(fatigue_scales, na.rm = T), 
+            n = n(), 
+            fatigue_bills_perc = fatigue_bills/n %>% round(3), 
+            fatigue_scales_perc = fatigue_scales/n %>% round(3)) %>% 
+  knitr::kable(caption = "Fatigue Data by Enumerator", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+\newpage
+\section{When do firms request to be called back?}
+```{r, echo = FALSE,warning = FALSE, message = FALSE}
+surveyraw %>%
+  select(tracking_latercall2) %>%
+  filter(!is.na(tracking_latercall2)) %>% 
+  filter(tracking_latercall2 != "")   %>%
+  mutate(call_backtime = str_extract(tracking_latercall2, 
+              "[0-9]{1,2} am|[0-9]{1,2}am|[0-9]{1,2}\\.[0-9]{1,2} am|[0-9]{1,2}\\.[0-9]{1,2}am|[0-9]{1,2} pm|[0-9]{1,2}pm|[0-9]{1,2}\\.[0-9]{1,2} pm|[0-9]{1,2}\\.[0-9]{1,2}pm|[0-9] [0-9]{1,2} pm")) %>% 
+  filter(!is.na(call_backtime)) %>%
+  mutate(hour = gsub(" |am|pm|\\..*$|40", "", call_backtime)) %>%
+  mutate(hour = as.numeric(hour)) %>%
+  mutate(hour = ifelse(hour == "75", "5", hour)) %>%
+    mutate(hour = ifelse(hour == "130", "1", hour)) %>%
+  mutate(hour = ifelse(hour == "530", "5", hour)) %>%
+  mutate(hour = ifelse(hour == "250", "3", hour)) %>%
+  mutate(hour = ifelse(hour == "30", "10", hour)) %>%
+
+  mutate(hour = as.numeric(hour) ) %>%
+  mutate(ampm = str_extract(call_backtime, "am|pm"))  %>%
+  mutate(hour = case_when(ampm == "am" ~ hour, 
+                          ampm == "pm" ~ hour + 12)) %>% 
+  mutate(hour = ifelse(call_backtime == "7 5 pm" & hour == 87, 17, hour)) %>%
+  mutate(hour = ifelse(call_backtime == "1 5 pm" & hour == 27, 5, hour)) %>%
+  mutate(hour = ifelse(hour == 24, 12, hour)) %>%
+  ggplot(aes(x = hour)) + 
+  geom_histogram() + 
+  scale_x_continuous(breaks = seq(0,24,1), 
+                     labels = seq(0,24,1)) + 
+  set_theme() 
+                                      
+```
+
+
+
+\newpage
+\section{Accuracy}
+Let's look at the accuracy of how firms recall their fee before the promotion.   
+ 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+survey %>% 
+  select(organization_uuid, recall_old_fee) %>%
+  left_join(izettle_fee %>% select(organization_uuid, commission_model)) %>%
+  mutate(old_fee = ifelse(commission_model == "FIXED_RATE", 3.75, 3.50)) %>% 
+  mutate(recall_old_fee_num = ifelse(recall_old_fee < 0, NA, recall_old_fee)) %>%
+  mutate(recall = case_when(
+    recall_old_fee_num > old_fee  ~ "Thought it was higher than actual fee", 
+    recall_old_fee_num == old_fee ~ "Correct", 
+    recall_old_fee_num < old_fee  ~ "Thought it was lower than actual fee",
+    recall_old_fee == -777 ~ "Didn't know", 
+    recall_old_fee == -888 ~ "Refuse to answer", 
+    recall_old_fee == -666 ~ "Other"
+  )) %>%
+  ggplot(aes(x = recall)) + 
+  xlab(element_blank()) + 
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  set_theme() +  
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) 
+```
+
+
+
+\newpage
+\section{All Results}
+A couple notes on the data: 
+\begin{itemize}
+  \item -10 = "other"
+  \item -7 = "didn't know"
+  \item -8 = "refuse to answer"
+\end{itemize}
+
+
+\subsection{nb-employees}  
+\textbf{Question}: How many employees work in your business, including yourself? 
+```{r nb_employees, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "nb_employees") %>%
+  select(field_name,label, value) %>%
+  mutate(value = as.numeric(value))  %>%
+  #filter(value >= 0) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Number of Employees") +
+  set_theme()  
+
+
+  
+results %>% 
+  filter(field_name == "nb_employees") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")   + 
+  set_theme() 
+
+
+
+```
+ 
+ 
+\subsection{perform-review}  
+\textbf{Question}: How frequently do you review the financial strength/performance of your business and analyze/identify areas for improvement?
+```{r perform_review, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "perform_review") %>% 
+   mutate(value = case_when(
+    field_name == "perform_review" & value == "1" ~ "Nunca", 
+    field_name == "perform_review" & value == "2" ~ "Una vez al año o menos",
+    field_name == "perform_review" & value == "3" ~ "Dos o tres veces al año",
+    field_name == "perform_review" & value == "4" ~ "Una vez al mes.",
+    field_name == "perform_review" & value == "5" ~ "Más de una vez al mes.",
+    field_name == "perform_review" & value == "-7" ~ "No sabe",
+    field_name == "perform_review" & value == "-8" ~ "No quiso responder"
+    )) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 9)) 
+
+results %>% 
+  filter(field_name == "perform_review") %>%
+   mutate(value = case_when(
+    field_name == "perform_review" & value == "1" ~ "Nunca", 
+    field_name == "perform_review" & value == "2" ~ "Una vez al año o menos",
+    field_name == "perform_review" & value == "3" ~ "Dos o tres veces al año",
+    field_name == "perform_review" & value == "4" ~ "Una vez al mes.",
+    field_name == "perform_review" & value == "5" ~ "Más de una vez al mes.",
+    field_name == "perform_review" & value == "-7" ~ "No sabe",
+    field_name == "perform_review" & value == "-8" ~ "No quiso responder"
+                   )) %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+
+\subsection{perform-review-monthly}  
+\textbf{Question}: How many times a month?
+```{r perform-review-monthly, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "perform_review_monthly") %>%
+  mutate(value = as.numeric(value)) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "perform_review_monthly") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{budget-costs}  
+\textbf{Question}: Have you made a budget of what costs facing your business are likely to be over the next year?
+```{r budget-costs, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "budget_costs") %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+
+results %>% 
+  filter(field_name == "budget_costs") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +
+  set_theme()  
+```
+
+\subsection{tech-importance}  
+\textbf{Question}: On a scale from 1 to 3, where 1 is not important at all, 2 is somewhat important and 3 is very important, how important is iZettle for your business? 
+```{r tech_importance, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "tech_importance") %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "tech_importance") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{value-transactions}  
+\textbf{Question}: What is the approximate value of all transactions you have made through iZettle in the past week? 
+\textbf{Note}: Need to check accuracy of these with admin data.
+```{r value_transactions, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "value_transactions") %>%
+  mutate(value = ifelse(value == "-777" | value == "-888", NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram() +
+    theme_bw() + 
+  theme(axis.text.x = element_text(angle = 90)) +
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "value_transactions") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{percent-sales}  
+\textbf{Question}: What share of your total pesos of sales did you make through iZettle in the past week? 
+```{r percent_sales, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "percent_sales") %>%
+  mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "percent_sales") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{\textcolor{magenta}{recall-old-fee}}
+\textbf{Question}: What was your commission with iZettle the week before you received the offer?
+```{r recall_old_fee, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "recall_old_fee") %>%
+  mutate(value = as.numeric(value)) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+  
+
+results %>% 
+  filter(field_name == "recall_old_fee") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  + 
+  set_theme()  
+```
+
+\subsection{compare-fee}  
+\textbf{Question}:We offered you a {new_rate} commission valid until March 31. Was this {new_rate} commission higher/lower/the same as the previous commission you had?
+```{r compare_fee, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "compare_fee") %>%
+  mutate(value = case_when(
+    value == 1 ~ "Mayor", 
+    value == 2 ~ "Menor",
+    value == 3 ~ "Igual"
+  )) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "compare_fee") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{\textcolor{magenta}{amount-paid-fee}}
+\textbf{Question}: How many pesos did you pay in commission in the last week? 
+```{r amount_paid_fee, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "amount_paid_fee") %>%
+  mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "amount_paid_fee") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{exp-savings yes or no}} 
+\textbf{Question}: How much did you expect to save per month in pesos if you accepted the lower fee? This variable is constructed to see if we have non-missing value. The next question shows the distribution, conditional on non-missings or unknown responses.
+```{r exp_savings_yn, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "exp_savings") %>%
+  mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  mutate(value_ = ifelse(value < 0, "missing or unknown", "known")) %>%
+  select(field_name,label, value_) %>%
+  ggplot(aes(x = value_)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "exp_savings") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{exp-savings}} 
+\textbf{Question}: How much did you expect to save per month in pesos if you accepted the lower fee?
+```{r exp_savings, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "exp_savings") %>%
+  mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  filter(value >= 0) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "exp_savings") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{firstemail-recall}  
+\textbf{Question}: Do you remember receiving an email about the offer? 
+```{r firstemail_recall, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "firstemail_recall") %>%
+  #mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "firstemail_recall") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  + 
+  set_theme()  
+```
+
+\subsection{recall-sms}  
+\textbf{Question}: You may have also received SMS text messages from iZettle recently. Do you remember receiving text messages from iZettle with an offer about your merchant fee?
+```{r recall_sms, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "recall_sms") %>%
+  #mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "recall_sms") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{read-sms}  
+\textbf{Question}: Did you read the text messages that you received from iZettle?
+```{r read_sms, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "read_sms") %>%
+  #mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme()
+
+results %>% 
+  filter(field_name == "read_sms") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{click-recall}  
+\textbf{Question}: Did you click on the offer you received by email or SMS?
+```{r click_recall, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "click_recall") %>%
+  #mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "click_recall") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{accept-offer-recall}  
+\textbf{Question}: Even though you may not recall having clicked on the offer, we see that you did activate the lower commission. Do you remember filling out the form to activate the offer? 
+```{r accept_offer_recall, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "accept_offer_recall") %>%
+  #mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "accept_offer_recall") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{\textcolor{magenta}{why-no-open}}  
+\textbf{Question}: Our records show that you did not open the email. Why not? 
+```{r why_no_open, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_no_open") %>%
+  separate("value", into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+        response1 == "1" ~ "No vi un correo eletrónico de iZettle",
+        response1 == "2" ~ "Quise hacerlo pero lo olvidé o me distraje",
+        response1 == "3" ~ "Se me acabó el tiempo ",
+        response1 == "4" ~ "Pensé que tomaría demasiado tiempo ",
+        response1 == "5" ~ "No pensé que fuera importante o valioso",
+        response1 == "6" ~ "Pensé que era una estafa o un anuncio engañoso",
+        response1 == "7" ~ "No estaba seguro de si me beneficiaría o podría haber una trampa ",
+        response1 == "8" ~ "También recibí un mensaje de texto e hice clic en ese enlace",
+        response1 == "-666"	~ "Otro",
+        response1 == "-777"	~ "No sabe",
+        response1 == "-888"	~ "No quiso responder"
+  )) %>%
+  mutate(response2 = case_when(
+        response2 == "1" ~ "No vi un correo eletrónico de iZettle",
+        response2 == "2" ~ "Quise hacerlo pero lo olvidé o me distraje",
+        response2 == "3" ~ "Se me acabó el tiempo ",
+        response2 == "4" ~ "Pensé que tomaría demasiado tiempo ",
+        response2 == "5" ~ "No pensé que fuera importante o valioso",
+        response2 == "6" ~ "Pensé que era una estafa o un anuncio engañoso",
+        response2 == "7" ~ "No estaba seguro de si me beneficiaría o podría haber una trampa ",
+        response2 == "8" ~ "También recibí un mensaje de texto e hice clic en ese enlace",
+        response2 == "-666"	~ "Otro",
+        response2 == "-777"	~ "No sabe",
+        response2 == "-888"	~ "No quiso responder"
+  )) %>%
+  mutate(response3 = case_when(
+        response3 == "1" ~ "No vi un correo eletrónico de iZettle",
+        response3 == "2" ~ "Quise hacerlo pero lo olvidé o me distraje",
+        response3 == "3" ~ "Se me acabó el tiempo ",
+        response3 == "4" ~ "Pensé que tomaría demasiado tiempo ",
+        response3 == "5" ~ "No pensé que fuera importante o valioso",
+        response3 == "6" ~ "Pensé que era una estafa o un anuncio engañoso",
+        response3 == "7" ~ "No estaba seguro de si me beneficiaría o podría haber una trampa ",
+        response3 == "8" ~ "También recibí un mensaje de texto e hice clic en ese enlace",
+        response3 == "-666"	~ "Otro",
+        response3 == "-777"	~ "No sabe",
+        response3 == "-888"	~ "No quiso responder"
+  )) %>%
+  select(field_name,label, response1, response2, response3)  %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value)) %>% # This gets rid of NAs created by "separate()"
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) 
+
+results %>% 
+  filter(field_name == "why_no_open") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{\textcolor{magenta}{why-no-open-other}  }
+\textbf{Question}: If you put other, please specify: 
+```{r why_no_open_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_no_open_other" & !is.na(value)) %>% 
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Other reasons for not opening message") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position")
+```
+
+\subsection{\textcolor{magenta}{why-no-click}  }
+\textbf{Question}: What inconvenience did you have to click the link and finish the form? 
+```{r why_no_click, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_no_click") %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == 1 ~ "No vi dónde hacer click en el correo electrónico para activar la oferta",
+    response1 == 2 ~ "Quería hacerlo, pero lo olvidé o me distraje",
+    response1 == 3 ~ "Se me acabó el tiempo ",
+    response1 == 4 ~ "Pensé que tomaría demasiado tiempo ",
+    response1 == 5 ~ "No pensé que fuera importante o valioso",
+    response1 == 6 ~ "Pense que era una estafa o un anuncio engañoso",
+    response1 == 7 ~ "No estaba seguro de si me beneficiaría o de si era una trampa ",
+    response1 == -666 ~ "Otro",
+    response1 == -777 ~ "No sabe",
+    response1 == -888 ~ "No quiso responder"
+  )) %>%
+  mutate(response2 = case_when(
+    response2 == 1 ~ "No vi dónde hacer click en el correo electrónico para activar la oferta",
+    response2 == 2 ~ "Quería hacerlo, pero lo olvidé o me distraje",
+    response2 == 3 ~ "Se me acabó el tiempo ",
+    response2 == 4 ~ "Pensé que tomaría demasiado tiempo ",
+    response2 == 5 ~ "No pensé que fuera importante o valioso",
+    response2 == 6 ~ "Pense que era una estafa o un anuncio engañoso",
+    response2 == 7 ~ "No estaba seguro de si me beneficiaría o de si era una trampa ",
+    response2 == -666 ~ "Otro",
+    response2 == -777 ~ "No sabe",
+    response2 == -888 ~ "No quiso responder"
+  )) %>%
+  mutate(response3 = case_when(
+    response3 == 1 ~ "No vi dónde hacer click en el correo electrónico para activar la oferta",
+    response3 == 2 ~ "Quería hacerlo, pero lo olvidé o me distraje",
+    response3 == 3 ~ "Se me acabó el tiempo ",
+    response3 == 4 ~ "Pensé que tomaría demasiado tiempo ",
+    response3 == 5 ~ "No pensé que fuera importante o valioso",
+    response3 == 6 ~ "Pense que era una estafa o un anuncio engañoso",
+    response3 == 7 ~ "No estaba seguro de si me beneficiaría o de si era una trampa ",
+    response3 == -666 ~ "Otro",
+    response3 == -777 ~ "No sabe",
+    response3 == -888 ~ "No quiso responder"
+  )) %>%
+  select(field_name,label, response1, response2, response3)  %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value)) %>%
+  count(value) %>%
+  mutate(prop = n/sum(n)) %>%
+  ggplot(aes(x = value,y = n)) + 
+  geom_col()  +
+  geom_text(aes(label = paste0(round(100 * prop, 1), "%")), vjust = -0.25)+ 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme(size = 10) + 
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 8))
+
+results %>% 
+  filter(field_name == "why_no_click") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")   + 
+  set_theme() 
+```
+
+\subsection{\textcolor{magenta}{why-no-click-other}}  
+\textbf{Question}: If you put other, please specify: 
+```{r why_no_click_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_no_click_other" & !is.na(value) & value != "") %>% 
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Other reasons for not clicking link") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position")
+```
+
+\subsection{exp-form-time-cat}  
+\textbf{Question}: How long did you expect completing the form to activate the lower fee would take you?
+```{r exp_offer_time, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "exp_form_time_cat") %>%
+  select(field_name,label, value)  %>%
+  mutate(value = case_when(
+    value == 1 ~ "1 minute or less", 
+    value == 2 ~ "Between 1 and 5 minutes", 
+    value == 3 ~ "5+ minutes", 
+    value == -7 ~ "Does not know", 
+    value == -8 ~ "Refuses to answer"
+  )) %>%
+  count(value) %>%
+  mutate(prop = n/sum(n)) %>%
+  mutate(value = factor(value, levels = c("1 minute or less", "Between 1 and 5 minutes", "5+ minutes", "Does not know"))) %>%
+  ggplot(aes(x = value,y = n)) + 
+  geom_col()  +
+  geom_text(aes(label = paste0(round(100 * prop, 1), "%")), vjust = -0.25)+ 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()  +   
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+results %>% 
+  filter(field_name == "exp_form_time_cat") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{exp-form-time-cat-2}  
+\textbf{Question}: How long did you expect completing the form to activate the lower fee would take you?
+```{r exp_offer_time_2, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "exp_form_time_cat2") %>%
+  select(field_name,label, value)  %>%
+  mutate(value = case_when(
+    value == 1 ~ "1 minute or less", 
+    value == 2 ~ "1 - 5 minutes", 
+    value == 3 ~ "6 - 10 minutes",
+    value == 4 ~ "10 + minutes",
+    value == -7 ~ "Does not know", 
+    value == -8 ~ "Refuses to answer"
+  )) %>%
+  mutate(value = factor(value, levels = c("1 minute or less", "1 - 5 minutes", "6 - 10 minutes", "10 + minutes", "Does not know", "Refuses to answer"))) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()  +   
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+results %>% 
+  filter(field_name == "exp_form_time_cat2") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{why-no-accept}  }
+\textbf{Question}: Actually, we observe that you did click on the link, but that you did not complete the form after clicking the offer. Why did you not complete the form? 
+```{r why_no_accept, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_no_accept") %>%
+  separate(value, into = c("response1", "response2"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 ==1	    ~ "Quería hacerlo, pero lo olvidé o me distraje",
+    response1 ==2	    ~ "Me quedé sin tiempo ",
+    response1 ==3	    ~ "Pensé que tomaría demasiado tiempo ",
+    response1 ==4	    ~ "No pensé que fuera importante o valioso",
+    response1 ==5	    ~ "Pense que era una estafa o un anuncio engañoso",
+    response1 ==-666	~ "Otro",
+    response1 ==-777	~ "No sabe",
+    response1 ==-888	~ "No quiso responder")
+    ) %>%
+    mutate(response2 = case_when(
+    response2 ==1	    ~ "Quería hacerlo, pero lo olvidé o me distraje",
+    response2 ==2	    ~ "Me quedé sin tiempo ",
+    response2 ==3	    ~ "Pensé que tomaría demasiado tiempo ",
+    response2 ==4	    ~ "No pensé que fuera importante o valioso",
+    response2 ==5	    ~ "Pense que era una estafa o un anuncio engañoso",
+    response2 ==-666	~ "Otro",
+    response2 ==-777	~ "No sabe",
+    response2 ==-888	~ "No quiso responder")
+    ) %>%
+  select(field_name,label, response1, response2)  %>%
+  pivot_longer(cols = c("response1", "response2")) %>%
+  filter(!is.na(value)) %>%
+  count(value) %>%
+  mutate(prop = n/sum(n)) %>%
+  ggplot(aes(x = value,y = n)) + 
+  geom_col()  +
+  geom_text(aes(label = paste0(round(100 * prop, 1), "%")), vjust = -0.25)+ 
+  theme_bw() + 
+  xlab("Response") +   set_theme() +  
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+results %>% 
+  filter(field_name == "why_no_accept") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{why-no-accept-other}  }
+\textbf{Question}: If you put other, please specify: 
+```{r why_no_accept_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_no_accept_other" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Other reasons for not accepting") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{form-time-cat}  
+\textbf{Question}: How long did it take you to fill out the offer? 
+```{r form_time, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "form_time_cat") %>%
+  select(field_name,label, value)  %>%
+  mutate(value = case_when(
+    value == 1 ~ "1 minute or less", 
+    value == 2 ~ "Between 1 and 5 minutes", 
+    value == 3 ~ "5+ minutes", 
+    value == -7 ~ "Does not know", 
+    value == -8 ~ "Refuses to answer"
+  )) %>%
+  count(value) %>%
+  mutate(prop = n/sum(n)) %>%
+  ggplot(aes(x = value,y = n)) + 
+  geom_col()  +
+  geom_text(aes(label = paste0(round(100 * prop, 1), "%")), vjust = -0.25)+ 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()  +   
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+results %>% 
+  filter(field_name == "form_time_cat") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +
+  set_theme()  
+```
+
+\subsection{form-time-cat-2}  
+\textbf{Question}: How long did it take you to fill out the offer? 
+```{r form_time_2, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "form_time_cat2") %>%
+  select(field_name,label, value)  %>%
+  mutate(value = case_when(
+    value == 1 ~ "1 minute or less", 
+    value == 2 ~ "1-5 minutes", 
+    value == 3 ~ "6-10 minutes",
+    value == 4 ~ "10+ minutes",
+    value == -7 ~ "Does not know", 
+    value == -8 ~ "Refuses to answer"
+  )) %>%
+  mutate(value = factor(value, levels = c("Does not know", "Refuses to answer", "1 minute or less", "1-5 minutes", "6-10 minutes", "10+ minutes"))) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()  +   
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+results %>% 
+  filter(field_name == "form_time_cat2") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +
+  set_theme()  
+```
+
+\subsection{offer-effect-time}  
+\textbf{Question}: When did you expect to see your commission change active?
+```{r offer_effect_time, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "offer_effect_time" | field_name == "offer_time_format")  %>%
+  select(field_name, value, TA_filename)   %>%
+  pivot_wider(names_from = "field_name", values_from = "value") %>%
+  mutate(offer_time_format = case_when(
+    offer_time_format == "1" ~ "Minutos", 
+    offer_time_format == "2" ~ "Segundos", 
+    offer_time_format == "-777" ~ "No sabe", 
+    offer_time_format == "-888" ~ "No quiso responder"
+  )) %>%
+  mutate(value = if_else(offer_time_format == "Minutos", as.numeric(offer_effect_time), as.numeric(offer_effect_time)/60)) %>%
+  mutate(value = ifelse(offer_effect_time >= 0,value, NA )) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Minutes") +
+  set_theme()
+
+
+results %>% 
+  filter(field_name == "offer_effect_time") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +
+  set_theme()  
+```
+
+\subsection{noticed-deadline}
+\textbf{Question}: Did you notice that your offer had a deadline? 
+```{r noticed_deadline, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "noticed_deadline") %>%
+  #mutate(value = ifelse(value == "-888" | value == -777, NA, as.numeric(value))) %>%
+  select(field_name,label, value) %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "noticed_deadline") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{why-deadline}
+\textbf{Question}: Why do you think the offer had a deadline? 
+```{r why_deadline, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%", fig.height=6}
+results %>% 
+  filter(field_name == "why_deadline") %>%
+  separate(value, into = c("response1", "response2"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Es una práctica comercial habitual",
+    response1 == "2"	~ "Es una herramienta de marketing común",
+    response1 == "3" ~ "iZettle solo puede reducir la comisión para un número limitado de usuarios",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Es una práctica comercial habitual",
+    response2 == "2"	~ "Es una herramienta de marketing común",
+    response2 == "3" ~ "iZettle solo puede reducir la comisión para un número limitado de usuarios",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name,label, response1, response2) %>%
+  pivot_longer(cols = c("response1", "response2")) %>%
+  filter(!is.na(value)) %>%
+  count(value) %>%
+  mutate(prop = n/sum(n)) %>%
+  ggplot(aes(x = value,y = n)) + 
+  geom_col()  +
+  geom_text(aes(label = paste0(round(100 * prop, 1), "%")), vjust = -0.25)+ 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+
+ results %>% 
+  filter(field_name == "why_deadline") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+\subsection{why-deadline-other}
+\textbf{Question}: If you put other, please specify:  
+```{r why_deadline_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_deadline_other" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(caption =  "Other reasons for deadline", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{why-activate-firstday}
+\textbf{Question}:  Our records show that you activated the offer on September 29, even though your deadline to activate the offer was not until October 6. Why did you activate the offer on September 29? 
+```{r why_activate_firstday, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_activate_firstday") %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Estaba preocupado de que lo olvidaría si esperaba",
+    response1 == "2"	~ "La oferta era demasiado buena para demorar la activación",
+    response1 == "3" ~ "Tuve tiempo ese día",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Estaba preocupado de que lo olvidaría si esperaba",
+    response2 == "2"	~ "La oferta era demasiado buena para demorar la activación",
+    response2 == "3" ~ "Tuve tiempo ese día",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Estaba preocupado de que lo olvidaría si esperaba",
+    response3 == "2"	~ "La oferta era demasiado buena para demorar la activación",
+    response3 == "3" ~ "Tuve tiempo ese día",
+    response3 == "-666"	~ "Otro",
+    response3 == "-777"	~ "No sabe",
+    response3 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name,label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  set_theme()  +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+  
+
+results %>% 
+  filter(field_name == "why_activate_firstday") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+\subsection{why-activate-firstday-other}
+\textbf{Question}: If you put other, please specify: 
+```{r why_activate_firstday_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_activate_firstday_other" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for activating first day", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{\textcolor{magenta}{why-activate-later}}
+\textbf{Question}:  We sent you the emails and SMS to let you know about this offer on September 29, but we see that you filled the form on {activation_date}. Why did you wait until {days_to_accept} day(s) later? 
+```{r why_activate_later, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_activate_later") %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Estaba demasiado ocupado cuando recibí inicialmente la oferta para activarla.",
+    response1 == "2"	~ "Tuve que discutir la oferta con otra persona antes de aceptarla.",
+    response1 == "3" ~ "Lo estaba posponiendo",
+    response1 == "4" ~ "Sabía que recibiría un recordatorio",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Estaba demasiado ocupado cuando recibí inicialmente la oferta para activarla.",
+    response2 == "2"	~ "Tuve que discutir la oferta con otra persona antes de aceptarla.",
+    response2 == "3" ~ "Lo estaba posponiendo",
+    response2 == "4" ~ "Sabía que recibiría un recordatorio",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Estaba demasiado ocupado cuando recibí inicialmente la oferta para activarla.",
+    response3 == "2"	~ "Tuve que discutir la oferta con otra persona antes de aceptarla.",
+    response3 == "3" ~ "Lo estaba posponiendo",
+    response3 == "4" ~ "Sabía que recibiría un recordatorio",
+    response3 == "-666"	~ "Otro",
+    response3 == "-777"	~ "No sabe",
+    response3 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name,label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+  
+
+results %>% 
+  filter(field_name == "why_activate_later") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{\textcolor{magenta}{why-activate-later-other}}
+\textbf{Question}: Si puso otro, por favor especifique:
+```{r why_activate_later_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_activate_later_other" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for activating later", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{reminder-recall}
+\textbf{Question}: Our records show that you received a reminder email and reminder SMS text messages. Do you remember receiving a reminder email or reminder SMS message about the offer?
+```{r reminder_recall, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "reminder_recall") %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme()
+
+results %>% 
+  filter(field_name == "reminder_recall") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{open-reminder-recall}
+\textbf{Question}: Do you remember reading the reminder? 
+```{r open_reminder_recall, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "open_reminder_recall") %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "open_reminder_recall") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{why-reminder}
+\textbf{Question}: Why do you think iZettle sent you a reminder? 
+```{r why_reminder, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_reminder") %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Práctica comercial habitual",
+    response1 == "2"	~ "Sabían que lo olvidaría",
+    response1 == "3" ~ "Asegurare de que no deje pasar una oferta valiosa",
+    response1 == "4" ~ "Tratando de hacerme caer en una estafa o un anuncio engañoso",
+    response1 == "5" ~ "Tratando de que me inscriba en algo que aumenten sus ganacias",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    )  %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Práctica comercial habitual",
+    response2 == "2"	~ "Sabían que lo olvidaría",
+    response2 == "3" ~ "Asegurare de que no deje pasar una oferta valiosa",
+    response2 == "4" ~ "Tratando de hacerme caer en una estafa o un anuncio engañoso",
+    response2 == "5" ~ "Tratando de que me inscriba en algo que aumenten sus ganacias",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    )  %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Práctica comercial habitual",
+    response3 == "2"	~ "Sabían que lo olvidaría",
+    response3 == "3" ~ "Asegurare de que no deje pasar una oferta valiosa",
+    response3 == "4" ~ "Tratando de hacerme caer en una estafa o un anuncio engañoso",
+    response3 == "5" ~ "Tratando de que me inscriba en algo que aumenten sus ganacias",
+    response3 == "-666"	~ "Otro",
+    response3 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name,label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme() +   
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) 
+  
+
+results %>% 
+  filter(field_name == "why_reminder") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{why-reminder-other}
+\textbf{Question}: If you put other, please specify: 
+```{r why_reminder_other, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "why_reminder_other" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for sending a reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{offer-value-change}
+\textbf{Question}: Did the reminder change your perception of the offer’s value? 
+```{r offer_value_change, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%", error=FALSE}
+results %>% 
+  filter(field_name == "offer_value_change") %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme()
+
+results %>% 
+  filter(field_name == "offer_value_change") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{offer-value-change-spec}
+\textbf{Question}: Why?
+```{r offer_value_change_spec, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "offer_value_change_spec" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Why did reminder change your perception of value", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "offer_value_change_spec") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{reminder-feel}}
+\textbf{Question}: How did you feel about receiving a reminder?
+```{r reminder_feel, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "reminder_feel" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder feelings") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "reminder_feel") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+
+\subsection{reminder-feel-cat}
+\textbf{Question}: How did you feel about receiving a reminder (categorical response)?
+```{r reminder_feel_cat, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>% 
+  filter(field_name == "reminder_feel_cat") %>%
+  filter(!is.na(value)) %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ")  %>%
+   mutate(response1 = case_when(
+    response1 == "1"~     "Makes me feel important as a client",
+    response1 == "2"~     "Indiferent, without much interest or importance",
+    response1 == "3"~     "Motivated to not pass up on the offer",
+    response1 == "4"~     "Would have forgotten the offer",
+    response1 == "-6"  ~	" Other",
+    response1 == "-7"  ~	" Does not know",
+    response1 == "-8"  ~	" Refuses to answer",
+    response1 == "-10"  ~ "Other"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1"~     "Makes me feel important as a client",
+    response2 == "2"~     "Indiferent, without much interest or importance",
+    response2 == "3"~     "Motivated to not pass up on the offer",
+    response2 == "4"~     "Would have forgotten the offer",
+    response2 == "-6"  ~	"Other",
+    response2 == "-7"  ~	"Does not know",
+    response2 == "-8"  ~	"Refuses to answer",
+    response2 == "-10"  ~ "Other"
+    )
+    ) %>%
+  mutate(response3 = case_when(
+    response3 == "1"~     "Makes me feel important as a client",
+    response3 == "2"~     "Indiferent, without much interest or importance",
+    response3 == "3"~     "Motivated to not pass up on the offer",
+    response3 == "4"~     "Would have forgotten the offer",
+    response3 == "-6"  ~	" Other",
+    response3 == "-7"  ~	" Does not know",
+    response3 == "-8"  ~	" Refuses to answer",
+    response3 == "-10"  ~ "Other"
+    )
+    ) %>%
+  select(field_name,label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme() +   
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) 
+  
+
+results %>% 
+  filter(field_name == "reminder_feel_cat") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+
+```
+
+
+\subsection{a-reminder-takeup}
+\textbf{Question:}We see that you received an anticipated notice in the first email and SMS of the offer, that you would receive a reminder about the offer a week after if you had not yet activated it. Did you of anything between receiving the initial email and receiving the reminder so that you would know whether to take up the offer when you received the reminder?
+```{r a_reminder_takeup, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "a_reminder_takeup") %>%
+  mutate(value = case_when(
+    value == 1 ~ "Yes", 
+    value == 0 ~ "No", 
+    value == -7 ~ "Doesn't know", 
+    value == -8 ~ "Refuse to respond"
+    )) %>% 
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme()
+
+results %>% 
+  filter(field_name == "a_reminder_takeup") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+
+\subsection{a-reminder-takeup-spec}
+\textbf{Question}: What action?  
+
+```{r a_reminder_takeup_spec, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "a_reminder_takeup_spec") %>%
+  select(field_name, value) %>%
+  filter(!is.na(value)) %>% 
+  knitr::kable(booktabs = T, caption = "a-reminder-takeup-spec: What action?") %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "a_reminder_takeup_spec") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+\subsection{reminder-criteria}
+\textbf{Question}: What criteria did you use to activate the promotion after receiving the reminder? 
+```{r reminder_criteria, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "reminder_criteria" & !is.na(value) & value != "") %>%
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder criteria") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "reminder_criteria") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{offer-impact}}
+\textbf{Question}: This promotion is working for your business? What impact has it had? 
+
+```{r offer_impact, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "offer_impact") %>%
+  filter(!is.na(value)) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Offer Impact") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+  
+  
+
+results %>% 
+  filter(field_name == "offer_impact") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{offer-impact-cat}}
+\textbf{Question}: This promotion is working for your business? What impact has it had? 
+
+```{r offer_impact_cat, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "offer_impact_cat") %>%
+  filter(!is.na(value)) %>% 
+  separate(value, into = c("response1", "response2", "response3", "response4", "response5"), sep = " ")  %>%
+  mutate(response1 = case_when(
+          response1 == "1" ~	  "Absorb comission",
+          response1 == "2" ~	  "Greater profits",
+          response1 == "3" ~	  "Discounts on products",
+          response1 == "4" ~	  "Greater competition with nearby businesses",
+          response1 == "5" ~	  "Saved comission",
+          response1 == "6" ~	  "More card transactions",
+          response1 == "7" ~	  "No impact because do not receive many card payments",
+          response1 == "8" ~	  "No impact because do not use iZettle much",
+          response1 == "-10" ~	"Other",
+          response1 == "-7" ~	"Does not know",
+          response1 == "-8" ~	"Refuses to answer"
+    )) %>% 
+  mutate(response2= case_when(
+          response2 == "1" ~	  "Absorb comission",
+          response2 == "2" ~	  "Greater profits",
+          response2 == "3" ~	  "Discounts on products",
+          response2 == "4" ~	  "Greater competition with nearby businesses",
+          response2 == "5" ~	  "Saved comission",
+          response2 == "6" ~	  "More card transactions",
+          response2 == "7" ~	  "No impact because do not receive many card payments",
+          response2 == "8" ~	  "No impact because do not use iZettle much",
+          response2 == "-10" ~	"Other",
+          response2 == "-7" ~	"Does not know",
+          response2 == "-8" ~	"Refuses to answer"
+    )) %>%  
+    mutate(response3 = case_when(
+          response3 == "1" ~	  "Absorb comission",
+          response3 == "2" ~	  "Greater profits",
+          response3 == "3" ~	  "Discounts on products",
+          response3 == "4" ~	  "Greater competition with nearby businesses",
+          response3 == "5" ~	  "Saved comission",
+          response3 == "6" ~	  "More card transactions",
+          response3 == "7" ~	  "No impact because do not receive many card payments",
+          response3 == "8" ~	  "No impact because do not use iZettle much",
+          response3 == "-10" ~	"Other",
+          response3 == "-7" ~	"Does not know",
+          response3 == "-8" ~	"Refuses to answer"
+    )) %>%   
+    mutate(response4 = case_when(
+          response4 == "1" ~	  "Absorb comission",
+          response4 == "2" ~	  "Greater profits",
+          response4 == "3" ~	  "Discounts on products",
+          response4 == "4" ~	  "Greater competition with nearby businesses",
+          response4 == "5" ~	  "Saved comission",
+          response4 == "6" ~	  "More card transactions",
+          response4 == "7" ~	  "No impact because do not receive many card payments",
+          response4 == "8" ~	  "No impact because do not use iZettle much",
+          response4 == "-10" ~	"Other",
+          response4 == "-7" ~	"Does not know",
+          response4 == "-8" ~	"Refuses to answer"
+    )) %>%
+    mutate(response5 = case_when(
+          response5 == "1" ~	  "Absorb comission",
+          response5 == "2" ~	  "Greater profits",
+          response5 == "3" ~	  "Discounts on products",
+          response5 == "4" ~	  "Greater competition with nearby businesses",
+          response5 == "5" ~	  "Saved comission",
+          response5 == "6" ~	  "More card transactions",
+          response5 == "7" ~	  "No impact because do not receive many card payments",
+          response5 == "8" ~	  "No impact because do not use iZettle much",
+          response5 == "-10" ~	"Other",
+          response5 == "-7" ~	"Does not know",
+          response5 == "-8" ~	"Refuses to answer"
+    )) %>%
+  select(field_name,label, response1, response2, response3, response4, response5) %>%
+  pivot_longer(cols = c("response1", "response2", "response3", "response4", "response5")) %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme(size = 8) +   
+  coord_flip() +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) + 
+  theme(axis.text.y = element_text(hjust = 1.3))
+  
+
+results %>% 
+  filter(field_name == "offer_impact_cat") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+
+\subsection{recurr-bill}
+\textbf{Question}: Do you have a bill for your business that, such as water, electricity, telephone, or rent, that you pay recurringly? 
+```{r recurr_bill, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "recurr_bill") %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme()
+
+results %>% 
+  filter(field_name == "recurr_bill") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+
+\subsection{recurr-bill-spec}
+\textbf{Question}: What bill is it? 
+```{r recurr_bill_spec, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "recurr_bill_cat") %>%
+  separate("value", " ", into = c("response1", "response2", "response3", "response4", "response5")) %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Luz",
+    response1 == "2" ~ "Agua",
+    response1 == "3" ~ "Renta",
+    response1 == "4" ~ "Telefonia celular",
+    response1 == "5" ~ "Internet", 
+    response1 == "-666" ~ "Otro"
+  )) %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Luz",
+    response2 == "2" ~ "Agua",
+    response2 == "3" ~ "Renta",
+    response2 == "4" ~ "Telefonia celular",
+    response2 == "5" ~ "Internet", 
+    response2 == "-666" ~ "Otro"
+    )) %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Luz",
+    response3 == "2" ~ "Agua",
+    response3 == "3" ~ "Renta",
+    response3 == "4" ~ "Telefonia celular",
+    response3 == "5" ~ "Internet", 
+    response3 == "-666" ~ "Otro"  
+    )) %>% 
+  mutate(response4 = case_when(
+    response4 == "1" ~ "Luz",
+    response4 == "2" ~ "Agua",
+    response4 == "3" ~ "Renta",
+    response4 == "4" ~ "Telefonia celular",
+    response4 == "5" ~ "Internet", 
+    response4 == "-666" ~ "Otro"  
+    )) %>%
+    mutate(response5 = case_when(
+    response5 == "1" ~ "Luz",
+    response5 == "2" ~ "Agua",
+    response5 == "3" ~ "Renta",
+    response5 == "4" ~ "Telefonia celular",
+    response5 == "5" ~ "Internet", 
+    response5 == "-666" ~ "Otro"  
+    )) %>%
+  select(field_name,label, response1, response2, response3, response4, response5) %>%
+  pivot_longer(cols = c("response1", "response2", "response3", "response4", "response5")) %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   set_theme() +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+
+results %>% 
+  filter(field_name == "recurr_bill_cat") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+\subsection{\textcolor{magenta}{recall-pay-bill-yesno}}
+\textbf{Question}: Have you ever forgotten to pay this bill on time?
+```{r recall_pay_bill_yesno, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "recall_pay_bill_yesno" ) %>%
+  
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+
+results %>% 
+  filter(field_name == "recall_pay_bill_yesno") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{reminder-useful}}
+\textbf{Question}: On a scale from 1 to 3, where 1 is “Of no help”, 2 is “Of some help”, and 3 is “Of a lot of help”, how much do you think a reminder would help you to pay your bill on time? [Surveyor: Read the 1-3 scale but not the “does not know” or “refuses to answer” options]
+```{r reminder_useful, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "reminder_useful") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") + 
+  set_theme() 
+
+results %>% 
+  filter(field_name == "reminder_useful") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{sudden-remind-open}}
+\textbf{Question}: If the person or institution to which you owe this bill suddenly called you and gave you a reminder to pay, on a scale from 1 to 3, where 1 is “not annoyed”, 2 is “indifferent”, and 3 is “annoyed” how annoyed would you feel? [Surveyor: Read the 1-3 scale but not the “does not know” or “refuses to answer” options]
+```{r sudden_remind_open, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "sudden_remind_open") %>%
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder feeling") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+
+results %>% 
+  filter(field_name == "sudden_remind_open") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +    
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{sudden-remind-annoy}}
+\textbf{Question}: If the person or institution to which you owe this bill suddenly called you and gave you a reminder to pay, on a scale from 1 to 3, where 1 is “not annoyed”, 2 is “indifferent”, and 3 is “annoyed” how annoyed would you feel? 
+```{r sudden_remind_annoy, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "sudden_remind_annoy") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+
+results %>% 
+  filter(field_name == "sudden_remind_annoy") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  + 
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{sudden-remind-stress}}
+\textbf{Question}: If the person or institution to which you owe this bill suddenly called you and gave you a reminder to pay, on a scale from 1 to 3, where 1 is “not stressed”, 2 is “indifferent”, and 3 is “stressed”, how stressed would you feel?  
+```{r sudden_remind_stress, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "sudden_remind_stress") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   set_theme() 
+
+
+results %>% 
+  filter(field_name == "sudden_remind_stress") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +    set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{sudden-remind-thankful}}
+\textbf{Question}: If the person or institution to which you owe this bill suddenly called you and gave you a reminder to pay, on a scale from 1 to 3, where 1 is “not thankful”, 2 is “indifferent”, and 3 is “thankful” how thankful would you feel?  
+```{r sudden_remind_thankful, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "sudden_remind_thankful") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme() 
+
+results %>% 
+  filter(field_name == "sudden_remind_thankful") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{sudden-remind-happy}}
+\textbf{Question}: If the person or institution to which you owe this bill suddenly called you and gave you a reminder to pay, on a scale from 1 to 3, where 1 is “not happy”, 2 is “indifferent”, and 3 is “happy” how happy would you feel?   
+```{r sudden_remind_happy, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "sudden_remind_happy") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme() 
+
+results %>% 
+  filter(field_name == "sudden_remind_happy") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+\subsection{accept-bill-reminder}
+\textbf{Question}: If the person or institution to which you owe this bill offered you the option to receive a reminder to pay, would you accept it?
+```{r accept_bill_reminder, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "accept_bill_reminder") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme()
+
+results %>% 
+  filter(field_name == "accept_bill_reminder") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{confidence-scale1}}
+\textbf{Question}: I trust advertised offers. Tell me your answer from the following scale:
+```{r confidence_scale1, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "confidence_scale1") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   
+  set_theme() 
+
+results %>% 
+  filter(field_name == "confidence_scale1") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{confidence-scale2}}
+\textbf{Question}: I believe that good advertised offers are too good to be true. Tell me your answer from the following scale:
+```{r confidence_scale2, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "confidence_scale2") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   set_theme() 
+
+results %>% 
+  filter(field_name == "confidence_scale2") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  + 
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{reciprocity-scale}}
+\textbf{Question}: I am more inclined to do business with people who live up to their promises. Tell me your answer from the following scale:
+```{r reciprocity_scale, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "reciprocity_scale") %>%
+  #filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme() 
+
+results %>% 
+  filter(field_name == "reciprocity_scale") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  + 
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{procrastination-scale}}
+\textbf{Question}: I tend to postpone tasks, even when I know it is better to do them immediately. Tell me your answer from the following scale: 
+```{r procrastination_scale, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "procrastination_scale") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()
+
+
+results %>% 
+  filter(field_name == "procrastination_scale") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{memory-scale1}}
+\textbf{Question}: I tend to have good memory about pending tasks that I have to do and complete. Tell me your answer from the following scale:
+```{r memory_scale1, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "memory_scale1") %>%
+  #filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +   set_theme() 
+
+
+results %>% 
+  filter(field_name == "memory_scale1") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +   
+  set_theme()  
+```
+
+
+\subsection{\textcolor{magenta}{memory-scale2}}
+\textbf{Question}: I tend to think my memory is better than it really is. Tell me your answer from the following scale:
+```{r memory_scale2, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "memory_scale2") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()
+
+
+results %>% 
+  filter(field_name == "memory_scale2") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  + 
+  set_theme()  
+```
+
+\subsection{\textcolor{magenta}{attention-scale}}
+\textbf{Question}: I can focus completely when I have to finish a task. Tell me your answer from the following scale:
+```{r attention_scale, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="50%"}
+results %>%
+  filter(field_name == "attention_scale") %>%
+  filter(!is.na(value))  %>%
+  ggplot(aes(x = value)) +  
+  geom_histogram(stat = "count") + 
+  theme_bw() + 
+  xlab("Response") +  
+  set_theme()  
+
+
+results %>% 
+  filter(field_name == "attention_scale") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+
+
+
+\subsection{monthlyprofits}
+\textbf{Question}: What was the total income the business earned LAST MONTH after paying all expenses including wages of employees, but not including any income you paid yourself. That is, what were the PROFITS of your business LAST MONTH?
+```{r monthlyprofits, echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+results %>%
+  filter(field_name == "monthlyprofits") %>%
+  ggplot(aes(x = as.numeric(value))) + 
+  geom_histogram() + 
+  set_theme()
+
+results %>% 
+  filter(field_name == "monthlyprofits") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\textbf{Note}: This is the same results from the question above, but filtered to  the non-missing values.
+```{r monthlyprofits_cond_notmissing, echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+results %>%
+  filter(field_name == "monthlyprofits") %>%
+  mutate(value = as.numeric(value)) %>%
+  filter(value >= 0) %>%
+  ggplot(aes(x = as.numeric(value))) + 
+  geom_histogram() + 
+  set_theme()
+```
+
+\subsection{periodprofits-ans}
+\textbf{Question}: Can you tell me your income after expenses for a different time period, such as yesterday, the last week, or the last year? 
+```{r periodprofits_ans, echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+results %>%
+  filter(field_name == "periodprofits_ans") %>%
+  ggplot(aes(x = value)) + 
+  geom_histogram(stat = "count") + 
+  set_theme()  +     
+  geom_text(stat= "count", aes(label=..count..), vjust=-1, size=3)         
+
+results %>% 
+  filter(field_name == "periodprofits_ans") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+
+```
+
+\subsection{periodprofits-when}
+\textbf{Question}: For what period can you provide profits after expenses? 
+```{r periodprofits_when, echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+results %>%
+  filter(field_name == "periodprofits_when") %>%
+  mutate(value = case_when(
+    value == 1 ~ "Yesterday",
+    value == 2 ~ "Last Week", 
+    value == 3 ~ "Two weeks ago", 
+    value == 4 ~ "Last year", 
+    value == -6 ~ "Other"
+  )) %>%
+  ggplot(aes(x = value)) + 
+  geom_histogram(stat = "count") + 
+  set_theme() + 
+  geom_text(stat= "count", aes(label=..count..), vjust=-1, size=3)  +
+  xlab(element_blank())
+
+
+results %>% 
+  filter(field_name == "periodprofits_when") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{periodprofits} 
+\textbf{Question}: What was your income for this period that you specified?
+```{r periodprofits,  echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+results %>%
+  filter(field_name == "periodprofits" | field_name == "periodprofits_when") %>%
+  select(field_name, value, TA_filename)   %>%
+  pivot_wider(names_from = "field_name", values_from = "value") %>%
+  mutate(value = case_when(
+    periodprofits_when == 1 ~ as.numeric(periodprofits)*365/12, 
+    periodprofits_when == 2 ~ as.numeric(periodprofits)*52/12, 
+    periodprofits_when == 3 ~ as.numeric(periodprofits)*26/12, 
+    periodprofits_when == 4 ~ as.numeric(periodprofits)*1/12, 
+  )) %>%
+  ggplot(aes(x = value)) + 
+  geom_histogram() + 
+  set_theme() 
+
+results %>% 
+  filter(field_name == "periodprofits") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+    xlab("Duration (seconds)")  +  
+  set_theme()  
+
+
+```
+
+\subsection{monthlyprofits-guess}
+\textbf{Question}: It is important for us to have an idea of the income of your business. Even though you cannot give us an exact number, please let us know the range of your income. Was the income after expenses earned by your business in the past month?
+```{r monthlyprofits_guess, echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+results %>%
+  filter(field_name == "monthlyprofits_guess")%>%
+  mutate(value = as.numeric(value)) %>%
+  ggplot(aes(x = value)) + 
+  geom_histogram(stat = "count") + 
+  set_theme() + 
+  geom_text(stat= "count", aes(label=..count..), vjust=-1, size=3)  +
+  xlab(element_blank())
+
+
+results %>% 
+  filter(field_name == "monthlyprofits_guess") %>%
+  select(field_name,label, duration) %>%
+  mutate(duration = as.numeric(duration))  %>%
+  ggplot(aes(x = duration)) +  
+  geom_histogram() + 
+  theme_bw() + 
+  xlab("Duration (seconds)")  +  
+  set_theme()  
+```
+
+\subsection{mckenzieprofits-yesno}
+\textbf{Question}: Do we have a non-missingvalue for the mckenzieprofits variable?
+```{r mckenzieprofits_yesno,  echo = FALSE, warning = FALSE, message = FALSE, out.width="50%", fig.height=8}
+results %>%
+  filter(field_name %in% c("monthlyprofits", "monthlyprofits_guess", "periodprofits", "periodprofits_when", "periodprofits_ans")) %>%
+  select(field_name, value, TA_filename)   %>%
+  pivot_wider(names_from = "field_name", values_from = "value") %>%
+  mutate(monthlyprofits = as.numeric(monthlyprofits), 
+         periodprofits_when = as.numeric(periodprofits_when), 
+         monthlyprofits_guess =as.numeric(monthlyprofits_guess), 
+         periodprofits = as.numeric(periodprofits))   %>%
+  mutate(periodprofits = case_when(
+    periodprofits_when == 1 ~ as.numeric(periodprofits)*365/12, 
+    periodprofits_when == 2 ~ as.numeric(periodprofits)*52/12, 
+    periodprofits_when == 3 ~ as.numeric(periodprofits)*26/12, 
+    periodprofits_when == 4 ~ as.numeric(periodprofits)*1/12, 
+  )) %>%
+  # create new variable called mckenzieprofits, by default has the values of monthlyprofits
+  mutate(mckenzieprofits = monthlyprofits) %>%
+  # recode monthly version of periodprofits to mckenzieprofits if is.na(monthlyprofits)
+  mutate(mckenzieprofits = ifelse(monthlyprofits < 0 & !is.na(periodprofits), periodprofits, mckenzieprofits))  %>%
+  mutate(mckenzieprofits = case_when(
+    mckenzieprofits >= 0 ~ mckenzieprofits, 
+    mckenzieprofits < 0 & (monthlyprofits_guess <= 0|is.na(monthlyprofits_guess))   ~ mckenzieprofits, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 1  ~  2500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 2  ~  7500, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 3  ~  12500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 4  ~  17500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 5  ~  22500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 6  ~  27500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 7  ~  32500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 8  ~  37500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 9  ~  42500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 10 ~  47500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 11 ~  55000
+  )) %>%
+  mutate(mckenzieprofits_yesno = as.character(as.numeric(mckenzieprofits >= 0))) %>%
+  ggplot(aes(x = mckenzieprofits_yesno))  + 
+  geom_histogram(stat = "count") + 
+  set_theme()  + 
+  xlab("Response")  + 
+  geom_text(stat='count', aes(label=..count..), vjust=-1)
+
+```
+
+
+\subsection{mckenzieprofits}
+\textbf{Question}: This is a variable we construct from all previous questions about profits to get an estimate or the true value of the firms profits.
+```{r mckenzieprofits,  echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+mckenzieprofits <- results %>%
+  filter(field_name %in% c("monthlyprofits", "monthlyprofits_guess", "periodprofits", "periodprofits_when", "periodprofits_ans")) %>%
+  select(field_name, value, TA_filename)   %>%
+  pivot_wider(names_from = "field_name", values_from = "value") %>%
+  mutate(monthlyprofits = as.numeric(monthlyprofits), 
+         periodprofits_when = as.numeric(periodprofits_when), 
+         monthlyprofits_guess =as.numeric(monthlyprofits_guess), 
+         periodprofits = as.numeric(periodprofits))   %>%
+  mutate(periodprofits = case_when(
+    periodprofits_when == 1 ~ as.numeric(periodprofits)*365/12, 
+    periodprofits_when == 2 ~ as.numeric(periodprofits)*52/12, 
+    periodprofits_when == 3 ~ as.numeric(periodprofits)*26/12, 
+    periodprofits_when == 4 ~ as.numeric(periodprofits)*1/12, 
+  )) %>%
+  # create new variable called mckenzieprofits, by default has the values of monthlyprofits
+  mutate(mckenzieprofits = monthlyprofits) %>%
+  # recode monthly version of periodprofits to mckenzieprofits if is.na(monthlyprofits)
+  mutate(mckenzieprofits = ifelse(monthlyprofits < 0 & !is.na(periodprofits), periodprofits, mckenzieprofits))  %>%
+  mutate(mckenzieprofits = case_when(
+    mckenzieprofits >= 0 ~ mckenzieprofits, 
+    mckenzieprofits < 0 & (monthlyprofits_guess <= 0|is.na(monthlyprofits_guess))   ~ mckenzieprofits, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 1  ~  2500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 2  ~  7500, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 3  ~  12500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 4  ~  17500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 5  ~  22500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 6  ~  27500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 7  ~  32500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 8  ~  37500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 9  ~  42500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 10 ~  47500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 11 ~  55000
+  )) %>%
+  filter(mckenzieprofits >= 0) 
+
+mckenzieprofits %>%
+  ggplot(aes(x = mckenzieprofits))  + 
+  geom_histogram() + 
+  set_theme()  + 
+  xlab("Response")  + 
+  geom_text(label = paste("N =", nrow(mckenzieprofits)), x= 1.5, y = 6)
+
+mckenzieprofits %>% 
+  filter(mckenzieprofits >= 0) %>% 
+  mutate(mckenzieprofits = as.numeric(mckenzieprofits)) %>%
+  tabulator::quantiles(mckenzieprofits)  %>%
+  knitr::kable(booktabs = T, caption = "Quantiles of Mckenzie profits question") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+
+\subsection{profitresponse}
+\textbf{Question}: code profit_response = 1 if monthlyprofits is not -888 or -777, code profit_response = 2 if monthlyprofits is either -888 or -777 and periodprofits_ans is 1, code profit_response = 3 if monthlyprofits is either -888 or -777, periodprofits_ans is 0, and monthlyprofits_guess   is not -777 or -888, code profit_response = 4 if monthlyprofits is either -888 or -777, periodprofits_ans is 0, and monthlyprofits_guess is either -777 or -888
+```{r profit_response, echo = FALSE, warning = FALSE, message = FALSE, out.width="50%"}
+profit_response <- survey %>% 
+  select(monthlyprofits, periodprofits_ans, monthlyprofits_guess) %>%
+  mutate(profit_response = case_when(
+    monthlyprofits != -888 & monthlyprofits != -777 ~ 1, 
+    ((monthlyprofits == -888 | monthlyprofits == -777) & periodprofits_ans == 1) ~ 2, 
+    ((monthlyprofits == -888 | monthlyprofits == -777) & periodprofits_ans == 0 & !(monthlyprofits_guess == -777 | monthlyprofits_guess == -888)) ~ 3, 
+    ((monthlyprofits == -888 | monthlyprofits == -777) & periodprofits_ans == 0 & (monthlyprofits == -777 | monthlyprofits == -888)) ~ 4
+  )) %>% 
+  count(profit_response)
+profit_response %>%
+  filter(!is.na(profit_response)) %>%
+  ggplot(aes(x = profit_response, y = n)) + 
+  geom_col() + 
+  set_theme() + 
+  geom_text(label = paste("N = ", sum(profit_response$n[profit_response$profit_response != 4], na.rm = T )), 
+            x = 1, y = 30)
+```
+
+
+\section{Ranking Length of Questions}
+Here we look at the questions that took the longest. Previously, we had been looking at the duration, where we converted anything that took longer than 120 seconds to 120 seconds in order to visualize the time distribution. Here, we look at both. 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+survey_long %>% 
+  filter(!is.na(label) & !is.na(value)) %>% 
+  group_by(field_name, label) %>%
+  summarise(average_time = mean(duration, na.rm = T), 
+            n = n()) %>% 
+  arrange(desc(average_time)) %>% 
+  head(5) %>% 
+  pander::pander(caption = "Longest Questions (w 120 second cap)", justify = "left") 
+  
+#knitr::kable(caption = "Top 10 Longest Questions (Capped Duration)", booktabs = T) %>% 
+  #kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+survey_long %>% 
+  filter(!is.na(label) & !is.na(value)) %>% 
+  group_by(field_name, label) %>%
+  summarise(average_time = mean(duration_original, na.rm = T), 
+            n = n()) %>% 
+  arrange(desc(average_time)) %>% 
+  head(5) %>% 
+  pander::pander(caption = "Longest Questions (w/out 120 second cap)", justify = "left") 
+
+ # knitr::kable(caption = "Top 10 Longest Questions (Uncapped Duration)", booktabs = T) %>% 
+ # kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+
+
+\newpage
+\section{Questions Split by Anticipated Reminder vs Unanticipated Reminder}
+
+
+\subsection{why-activate-firstday}
+\textbf{Question}:  Our records show that you activated the offer on September 29, even though your deadline to activate the offer was not until October 6. Why did you activate the offer on September 29? 
+```{r why_activate_firstday_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+why_activate_firstday_split <- results %>% 
+  filter(field_name == "why_activate_firstday") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Estaba preocupado de que lo olvidaría si esperaba",
+    response1 == "2"	~ "La oferta era demasiado buena para demorar la activación",
+    response1 == "3" ~ "Tuve tiempo ese día",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Estaba preocupado de que lo olvidaría si esperaba",
+    response2 == "2"	~ "La oferta era demasiado buena para demorar la activación",
+    response2 == "3" ~ "Tuve tiempo ese día",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Estaba preocupado de que lo olvidaría si esperaba",
+    response3 == "2"	~ "La oferta era demasiado buena para demorar la activación",
+    response3 == "3" ~ "Tuve tiempo ese día",
+    response3 == "-666"	~ "Otro",
+    response3 == "-777"	~ "No sabe",
+    response3 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name,rem_type, label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value)) %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n)) 
+
+ why_activate_firstday_split %>%
+  ggplot(aes(x = value, y = perc, group = rem_type)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  set_theme(x_text_size = 8)  +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share")  +
+   geom_text(data = why_activate_firstday_split %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = -Inf, y = .45, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+
+
+
+```
+
+\subsection{why-activate-firstday-other}
+\textbf{Question}: If you put other, please specify: 
+```{r why_activate_firstday_other_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>% 
+  filter(field_name == "why_activate_firstday_other" & !is.na(value) & value != "") %>%
+  filter(anticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for activating first day - Anticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "why_activate_firstday_other" & !is.na(value) & value != "") %>%
+  filter(unanticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for activating first day - Unanticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+\subsection{\textcolor{magenta}{why-activate-later}}
+\textbf{Question}:  We sent you the emails and SMS to let you know about this offer on September 29, but we see that you filled the form on {activation_date}. Why did you wait until {days_to_accept} day(s) later? 
+```{r why_activate_later_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+why_activate_firstday_other <- results %>% 
+  filter(field_name == "why_activate_later") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Estaba demasiado ocupado cuando recibí inicialmente la oferta para activarla.",
+    response1 == "2"	~ "Tuve que discutir la oferta con otra persona antes de aceptarla.",
+    response1 == "3" ~ "Lo estaba posponiendo",
+    response1 == "4" ~ "Sabía que recibiría un recordatorio",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Estaba demasiado ocupado cuando recibí inicialmente la oferta para activarla.",
+    response2 == "2"	~ "Tuve que discutir la oferta con otra persona antes de aceptarla.",
+    response2 == "3" ~ "Lo estaba posponiendo",
+    response2 == "4" ~ "Sabía que recibiría un recordatorio",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Estaba demasiado ocupado cuando recibí inicialmente la oferta para activarla.",
+    response3 == "2"	~ "Tuve que discutir la oferta con otra persona antes de aceptarla.",
+    response3 == "3" ~ "Lo estaba posponiendo",
+    response3 == "4" ~ "Sabía que recibiría un recordatorio",
+    response3 == "-666"	~ "Otro",
+    response3 == "-777"	~ "No sabe",
+    response3 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name,rem_type, label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value))  %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n))
+  
+why_activate_firstday_other %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+    set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = why_activate_firstday_other %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = 4.5, y = .45, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+
+
+
+
+```
+
+\subsection{\textcolor{magenta}{why-activate-later-other}}
+\textbf{Question}: Si puso otro, por favor especifique:
+```{r why_activate_later_other_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>% 
+  filter(field_name == "why_activate_later_other" & !is.na(value) & value != "") %>%
+  filter(anticipated_reminder == 1) %>% 
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for activating later - Anticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "why_activate_later_other" & !is.na(value) & value != "") %>%
+  filter(unanticipated_reminder == 1) %>% 
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for activating later - Unanticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+
+```
+
+\subsection{reminder-recall}
+\textbf{Question}: Our records show that you received a reminder email and reminder SMS text messages. Do you remember receiving a reminder email or reminder SMS message about the offer?
+```{r reminder_recall_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+reminder_recall <- results %>% 
+  filter(field_name == "reminder_recall") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n))
+
+reminder_recall %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+    set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = reminder_recall %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = 0, y = .55, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+
+```
+
+\subsection{open-reminder-recall}
+\textbf{Question}: Do you remember reading the reminder? 
+```{r open_reminder_recall_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+open_reminder_recall <- results %>% 
+  filter(field_name == "open_reminder_recall") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n))
+open_reminder_recall %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+    set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = open_reminder_recall %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = 0, y = .55, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+
+
+
+
+```
+
+\subsection{why-reminder}
+\textbf{Question}: Why do you think iZettle sent you a reminder? 
+```{r why_reminder_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+why_reminder <- results %>% 
+  filter(field_name == "why_reminder") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ") %>%
+  mutate(response1 = case_when(
+    response1 == "1" ~ "Práctica comercial habitual",
+    response1 == "2"	~ "Sabían que lo olvidaría",
+    response1 == "3" ~ "Asegurare de que no deje pasar una oferta valiosa",
+    response1 == "4" ~ "Tratando de hacerme caer en una estafa o un anuncio engañoso",
+    response1 == "5" ~ "Tratando de que me inscriba en algo que aumenten sus ganacias",
+    response1 == "-666"	~ "Otro",
+    response1 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    )  %>%
+  mutate(response2 = case_when(
+    response2 == "1" ~ "Práctica comercial habitual",
+    response2 == "2"	~ "Sabían que lo olvidaría",
+    response2 == "3" ~ "Asegurare de que no deje pasar una oferta valiosa",
+    response2 == "4" ~ "Tratando de hacerme caer en una estafa o un anuncio engañoso",
+    response2 == "5" ~ "Tratando de que me inscriba en algo que aumenten sus ganacias",
+    response2 == "-666"	~ "Otro",
+    response2 == "-777"	~ "No sabe",
+    response2 == "-888"	~ "No quiso responder"
+    )
+    )  %>%
+  mutate(response3 = case_when(
+    response3 == "1" ~ "Práctica comercial habitual",
+    response3 == "2"	~ "Sabían que lo olvidaría",
+    response3 == "3" ~ "Asegurare de que no deje pasar una oferta valiosa",
+    response3 == "4" ~ "Tratando de hacerme caer en una estafa o un anuncio engañoso",
+    response3 == "5" ~ "Tratando de que me inscriba en algo que aumenten sus ganacias",
+    response3 == "-666"	~ "Otro",
+    response3 == "-777"	~ "No sabe",
+    response1 == "-888"	~ "No quiso responder"
+    )
+    ) %>%
+  select(field_name, rem_type, label, response1, response2, response3) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value))  %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n)) 
+why_reminder %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+    set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = open_reminder_recall %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = 4, y = .4, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+
+  
+
+
+
+
+```
+
+\subsection{why-reminder-other}
+\textbf{Question}: If you put other, please specify: 
+```{r why_reminder_other_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>% 
+  filter(field_name == "why_reminder_other" & !is.na(value) & value != "") %>%
+  filter(anticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for sending a reminder - Anticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "why_reminder_other" & !is.na(value) & value != "") %>%
+  filter(unanticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Other reasons for sending a reminder - Unanticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{offer-value-change}
+\textbf{Question}: Did the reminder change your perception of the offer’s value? 
+```{r offer_value_change_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%", error=FALSE}
+offer_value_change <- results %>% 
+  filter(field_name == "offer_value_change") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n))
+offer_value_change_plot_split <- offer_value_change %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+  set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = offer_value_change %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = 0, y = .55, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+offer_value_change_plot_split
+ggsave(offer_value_change_plot_split, 
+       filename = here("results", "figures", "offer_value_change_antrem_unantrem.png"), 
+       width = 5, 
+       height = 5)
+```
+
+\subsection{offer-value-change split by accepted}
+\textbf{Question}: Did the reminder change your perception of the offer’s value? 
+```{r offer_value_change_accepted_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%", error=FALSE}
+offer_value_change_accepted <- results %>%
+  mutate(accept = ifelse(accept_fee_late == 1, "Accepted", "Not Accepted")) %>%
+  filter(field_name == "offer_value_change") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  group_by(rem_type, accept) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n)) %>%
+  mutate(group = paste0(rem_type, " and ", accept))
+
+
+offer_value_change_accepted %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~group) + 
+  xlab("Response") +   
+  set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = offer_value_change_accepted %>% group_by(group) %>% summarise(n = sum(n))%>% mutate(label = group), 
+    mapping = aes(x = 0, y = .55, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+```
+
+\subsection{offer-value regression}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+dat_10 <- results %>% 
+  filter(field_name == "offer_value_change") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  left_join(izettle_fee %>% select(uuid = organization_uuid, strata_fe)) %>%
+  filter(value == 0 | value == 1) %>%
+  mutate(profit_respond = as.numeric(value))
+
+dat_10regs <- list(
+  fixest::feols(data = dat_10, 
+      fml = profit_respond ~ anticipated_reminder | strata_fe, 
+      cluster = "uuid"),  
+  fixest::feols(data = dat_10, 
+      fml = profit_respond ~ anticipated_reminder + accept_fee_late + anticipated_reminder:accept_fee_late | strata_fe, 
+      cluster = "uuid"))
+
+dat_10regs_SE <- lapply(dat_10regs, function(x){
+  vcov(x, "white")
+})
+
+msummary(dat_10regs, 
+         vcov = dat_10regs_SE,
+         stars = T, 
+         coef_map = c("anticipated_reminder" = "Anticipated Reminder", 
+                      "accept_fee_late" = "Accept Fee", 
+                      "anticipated_reminder:accept_fee_late" = "Anticipated Reminder * Accept Fee"), 
+          output = "kableExtra", 
+         gof_omit = "Log|AIC|BIC|F|Std|r2.within|pseudo.r.squared|within.r.squared|r.squared.within", 
+         add_rows = data.frame(cbind("Strata FE", "Yes", "Yes"))) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+# Latex version for working paper 
+names(dat_10regs) <- rep("Yes",2)
+msummary(dat_10regs, 
+         title = "Reminder changed perception value of the offer",
+         stars = T, 
+         coef_map = c("anticipated_reminder" = "Anticipated Reminder", 
+                      "accept_fee_late" = "Accept Fee", 
+                      "anticipated_reminder:accept_fee_late" = "Anticipated Reminder * Accept Fee"), 
+         output = "latex", 
+         gof_omit = "Log|AIC|BIC|F|Std|r2.within|pseudo.r.squared|within.r.squared|r.squared.within", 
+         add_rows = data.frame(cbind("Strata FE", "Yes", "Yes"))) %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position")) %>% 
+  kableExtra::save_kable(file = here("results", "tables", "offer_value_change_antrem_unantrem_reg.tex"))
+
+```
+
+\subsection{offer-value-change-spec}
+\textbf{Question}: Why?
+```{r offer_value_change_spec_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>% 
+  filter(field_name == "offer_value_change_spec" & !is.na(value) & value != "") %>%
+  filter(anticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Why did reminder change your perception of value - Anticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>% 
+  filter(field_name == "offer_value_change_spec" & !is.na(value) & value != "") %>%
+  filter(unanticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(caption = "Why did reminder change your perception of value - Unanticipated Reminder", booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+\subsection{\textcolor{magenta}{reminder-feel}}
+\textbf{Question}: How did you feel about receiving a reminder?
+```{r reminder_feel_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>%
+  filter(field_name == "reminder_feel" & !is.na(value) & value != "") %>%
+  filter(anticipated_reminder == 1) %>% 
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder feelings - Anticipated Reminder ") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>%
+  filter(field_name == "reminder_feel" & !is.na(value) & value != "") %>%
+  filter(unanticipated_reminder == 1) %>% 
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder feelings - Unanticipated Reminder ") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+
+```
+
+\subsection{reminder-feel-cat}
+\textbf{Question}: How did you feel about receiving a reminder (categorical response)?
+```{r reminder_feel_cat_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+reminder_feel_cat_dat <- results %>% 
+  filter(field_name == "reminder_feel_cat"  & !is.na(value) & value != "") %>%
+  filter(!is.na(value)) %>%
+  separate(value, into = c("response1", "response2", "response3"), sep = " ")  %>%
+   mutate(response1 = case_when(
+    response1 == "1"~     "Makes me feel important as a client",
+    response1 == "2"~     "Indiferent, without much interest or importance",
+    response1 == "3"~     "Motivated to not pass up on the offer",
+    response1 == "4"~     "Would have forgotten the offer",
+    response1 == "-6"  ~	" Other",
+    response1 == "-7"  ~	" Does not know",
+    response1 == "-8"  ~	" Refuses to answer",
+    response1 == "-10"  ~ "Other"
+    )
+    ) %>%
+  mutate(response2 = case_when(
+    response2 == "1"~     "Makes me feel important as a client",
+    response2 == "2"~     "Indiferent, without much interest or importance",
+    response2 == "3"~     "Motivated to not pass up on the offer",
+    response2 == "4"~     "Would have forgotten the offer",
+    response2 == "-6"  ~	"Other",
+    response2 == "-7"  ~	"Does not know",
+    response2 == "-8"  ~	"Refuses to answer",
+    response2 == "-10"  ~ "Other"
+    )
+    ) %>%
+  mutate(response3 = case_when(
+    response3 == "1"~     "Makes me feel important as a client",
+    response3 == "2"~     "Indiferent, without much interest or importance",
+    response3 == "3"~     "Motivated to not pass up on the offer",
+    response3 == "4"~     "Would have forgotten the offer",
+    response3 == "-6"  ~	" Other",
+    response3 == "-7"  ~	" Does not know",
+    response3 == "-8"  ~	" Refuses to answer",
+    response3 == "-10"  ~ "Other"
+    )
+    ) %>%
+  select(field_name,label, response1, response2, response3, anticipated_reminder, unanticipated_reminder) %>%
+  pivot_longer(cols = c("response1", "response2", "response3")) %>%
+  filter(!is.na(value)) %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  group_by(rem_type) %>%
+  count(value) %>%
+  group_by(rem_type) %>%
+  mutate(perc = n/sum(n)) 
+
+
+
+reminder_feel_cat_dat %>%
+  ggplot(aes(x = value, y = perc)) + 
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+  set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+  geom_text(label = paste0(100*round(reminder_feel_cat_dat$perc, 3), "%"), vjust = -0.2)
+
+
+
+
+```
+
+
+
+\subsection{a-reminder-takeup}
+
+\textbf{Note: This question should only be asked for anticipated reminder firms. They are coded correctly as unanticipated reminder firms, so I am not sure why this question was being asked. These surveys are from Nov 30/Dec 1, so it could be a survey CTO error that has been resolved?}
+
+\textbf{Question:}We see that you received an anticipated notice in the first email and SMS of the offer, that you would receive a reminder about the offer a week after if you had not yet activated it. Did you of anything between receiving the initial email and receiving the reminder so that you would know whether to take up the offer when you received the reminder?
+```{r a_reminder_takeup_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+a_reminder_takeup <- results %>%
+  filter(field_name == "a_reminder_takeup") %>%
+  filter(anticipated_reminder == 1 | unanticipated_reminder == 1) %>%
+  mutate(rem_type = ifelse(anticipated_reminder == 1, "Anticipated Reminder", "Unanticipated Reminder")) %>%
+  mutate(value = case_when(
+    value == 1 ~ "Yes", 
+    value == 0 ~ "No", 
+    value == -7 ~ "Doesn't know", 
+    value == -8 ~ "Refuse to respond"
+    )) %>% 
+  group_by(rem_type) %>%
+  count(value) %>%
+  mutate(perc = n/sum(n)) 
+a_reminder_takeup %>%
+  ggplot(aes(x = value, y = perc)) +  
+  geom_col() + 
+  theme_bw() + 
+  facet_wrap(~rem_type) + 
+  xlab("Response") +   
+    set_theme(x_text_size = 8) +    
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))  + 
+  ylab("Share") + 
+    geom_text(data = a_reminder_takeup %>% group_by(rem_type) %>% summarise(n = sum(n))%>% mutate(label = rem_type), 
+    mapping = aes(x = 0, y = .55, label = paste("N = ", n)), 
+    hjust   = -0.1,
+    vjust   = -1)
+
+
+```
+
+
+\subsection{a-reminder-takeup-spec}
+\textbf{Question}: What action?  
+
+```{r a_reminder_takeup_spec_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>%
+  filter(field_name == "a_reminder_takeup_spec") %>%
+  filter(anticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  filter(!is.na(value)) %>% 
+  knitr::kable(booktabs = T, caption = "a-reminder-takeup-spec: What action? - Anticipated Reminder") %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>%
+  filter(field_name == "a_reminder_takeup_spec") %>%
+  filter(unanticipated_reminder == 1) %>%
+  filter(!is.na(value)) %>%
+  select(field_name, value) %>%
+  filter(!is.na(value)) %>% 
+  knitr::kable(booktabs = T, caption = "a-reminder-takeup-spec: What action? - Unanticipated Reminder") %>% 
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+```
+
+\subsection{reminder-criteria}
+\textbf{Question}: What criteria did you use to activate the promotion after receiving the reminder? 
+```{r reminder_criteria_split, echo= FALSE, warning = FALSE, message = FALSE,fig.show="hold", out.width="100%"}
+results %>%
+  filter(field_name == "reminder_criteria" & !is.na(value) & value != "") %>%
+  filter(anticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder criteria - Anticipated Reminder") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+
+results %>%
+  filter(field_name == "reminder_criteria" & !is.na(value) & value != "") %>%
+  filter(unanticipated_reminder == 1) %>%
+  select(field_name, value) %>%
+  knitr::kable(booktabs = T, caption = "Reminder criteria - Unanticipated Reminder") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+
+\newpage
+\section{Profit Response and Firm Characteristics}    
+ Now we’d like to test whether the probability of responding to the profit questions (define a dummy = 1 if they responded something other than “don’t know” or “refuse to respond” to any of the 3 profits questions) is correlated with other observables in the data:
+ - Log sales from admin data
+ - Number of employees
+ - Business practice questions
+ - Any other characteristics that you see in the survey or admin data that you think might predict whether they respond to the profit questions
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+profits_dat <- results %>%
+  filter(field_name %in% c("monthlyprofits", "monthlyprofits_guess", "periodprofits", "periodprofits_when", "periodprofits_ans")) %>%
+  select(field_name, value, TA_filename)   %>%
+  pivot_wider(names_from = "field_name", values_from = "value") %>%
+  mutate(monthlyprofits = as.numeric(monthlyprofits), 
+         periodprofits_when = as.numeric(periodprofits_when), 
+         monthlyprofits_guess =as.numeric(monthlyprofits_guess), 
+         periodprofits = as.numeric(periodprofits))   %>%
+  mutate(periodprofits = case_when(
+    periodprofits_when == 1 ~ as.numeric(periodprofits)*365/12, 
+    periodprofits_when == 2 ~ as.numeric(periodprofits)*52/12, 
+    periodprofits_when == 3 ~ as.numeric(periodprofits)*26/12, 
+    periodprofits_when == 4 ~ as.numeric(periodprofits)*1/12, 
+  )) %>%
+  # create new variable called mckenzieprofits, by default has the values of monthlyprofits
+  mutate(mckenzieprofits = monthlyprofits) %>%
+  # recode monthly version of periodprofits to mckenzieprofits if is.na(monthlyprofits)
+  mutate(mckenzieprofits = ifelse(monthlyprofits < 0 & !is.na(periodprofits), periodprofits, mckenzieprofits))  %>%
+  mutate(mckenzieprofits = case_when(
+    mckenzieprofits >= 0 ~ mckenzieprofits, 
+    mckenzieprofits < 0 & (monthlyprofits_guess <= 0|is.na(monthlyprofits_guess))   ~ mckenzieprofits, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 1  ~  2500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 2  ~  7500, 
+    mckenzieprofits < 0 & monthlyprofits_guess == 3  ~  12500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 4  ~  17500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 5  ~  22500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 6  ~  27500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 7  ~  32500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 8  ~  37500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 9  ~  42500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 10 ~  47500,
+    mckenzieprofits < 0 & monthlyprofits_guess == 11 ~  55000
+  ))
+
+izettle_fee_weekly <- qs::qread(here("proc", "izettle_fee_weekly.qs"))
+
+izettle_fee_weekly <- setDT(izettle_fee_weekly)
+izettle_fee_weekly <- izettle_fee_weekly[timestamp_week >= "2020-09-28"]
+weekly_sales <- izettle_fee_weekly[, keyby = .(organization_uuid), 
+                   .(average_weekly_sales = mean(valid_volume))]
+
+total_sales <-  izettle_fee_weekly[, keyby = .(organization_uuid), 
+                   .(log_total_sales_since_experiment = log(sum(valid_volume + 1)))]
+
+
+profits_dat %<>%
+  transmute(TA_filename = paste0("media/TA_", TA_filename, ".csv"), mckenzieprofits) %>% 
+  left_join(survey %>% transmute(TA_filename = text_audit, uuid)) %>%
+  transmute(organization_uuid = uuid, profit_respond = as.numeric(mckenzieprofits >= 0))  %>% 
+  left_join(survey %>% select(organization_uuid = uuid, nb_employees, confidence_scale1, confidence_scale2, 
+                              reciprocity_scale, procrastination_scale,memory_scale1, memory_scale2, attention_scale)) %>%
+  left_join(izettle_fee %>% transmute(organization_uuid, log_baseline_sales = sales + 1)) %>%
+  left_join(weekly_sales %>% transmute(organization_uuid, avg_log_sales_since_experiment = log(average_weekly_sales + 1))) %>%
+  left_join(total_sales)
+
+profits_regressions <- list(
+  lm(profit_respond ~ nb_employees, data = profits_dat), 
+  lm(profit_respond ~ confidence_scale1, data = profits_dat),
+  lm(profit_respond ~ confidence_scale2, data = profits_dat),
+  lm(profit_respond ~ reciprocity_scale, data = profits_dat),
+  lm(profit_respond ~ procrastination_scale, data = profits_dat),
+  lm(profit_respond ~ memory_scale1, data = profits_dat),
+  lm(profit_respond ~ memory_scale2, data = profits_dat),
+  lm(profit_respond ~ attention_scale, data = profits_dat),
+  lm(profit_respond ~ log_baseline_sales, data = profits_dat),
+  lm(profit_respond ~ avg_log_sales_since_experiment, data = profits_dat), 
+  lm(profit_respond ~ log_total_sales_since_experiment, data = profits_dat), 
+  lm(profit_respond ~ nb_employees + confidence_scale1 + reciprocity_scale + procrastination_scale + memory_scale1 + memory_scale2 + attention_scale +log_baseline_sales + avg_log_sales_since_experiment, data = profits_dat)
+)
+
+
+modelsummary::msummary(profits_regressions, 
+                       stars = T, 
+                       output = "kableExtra", 
+                       gof_omit = "Log|AIC|BIC|F", 
+                       title = "Responding to profits questions and firm characteristics", 
+                       notes = "Dependent variable in each regression is  a binary indicator for if we have an estimate of the firms profits based on whether they answered any of the three profit questions.") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position", "scale_down"))
+
+
+
+```
+
+The coefficient on log baseline sales in Model 9 is `r profits_regressions[[9]]$coefficients[[2]]`. 
+The coefficient on average log weekly sales since the experiment in Model 10 is `r profits_regressions[[10]]$coefficients[[2]]`. 
+The coefficient on log total sales since experiment in Model 11 is `r profits_regressions[[11]]$coefficients[[2]]`. 
+
+
+
+
+
+\newpage
+\section{Graphs and Regressions}
+
+\subsection{Procrastination and Deadline/No Deadline}
+```{r Procrastination/Deadline Graph, echo = FALSE, message = FALSE}
+survey <- read_csv(here("proc", "30_survey_results.csv"))
+
+# Get relevant variables and cumulative take up indicators
+pd_dataset <- survey %>%
+  select(!c(deadline)) %>%
+  left_join(izettle_fee %>% 
+              select(uuid = organization_uuid, accept_fee, accept_fee_late, deadline, no_deadline, 
+                     accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+                     accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+                     accept_fee_cum2020_10_05, accept_fee_cum2020_10_06, 
+                     accept_fee_2020_09_29, accept_fee_2020_09_30, accept_fee_2020_10_01, 
+                              accept_fee_2020_10_02, accept_fee_2020_10_03, accept_fee_2020_10_04, 
+                     accept_fee_2020_10_05, accept_fee_2020_10_06), by = "uuid") %>%
+  filter(procrastination_scale > 0 & procrastination_scale < 6) %>%
+  select(procrastination_scale, deadline, uuid, 
+         accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+         accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+         accept_fee_cum2020_10_05, accept_fee_cum2020_10_06, 
+         accept_fee_2020_09_29, accept_fee_2020_09_30, accept_fee_2020_10_01, 
+         accept_fee_2020_10_02, accept_fee_2020_10_03, accept_fee_2020_10_04, 
+         accept_fee_2020_10_05, accept_fee_2020_10_06) %>%
+  mutate(procrastination_group = ifelse(procrastination_scale  >= 4, "High Procrastination", "Low Procrastination")) %>%
+  mutate(deadline_group = ifelse(deadline == 1, "DL", "No DL")) %>%
+  mutate(group = paste(procrastination_group, deadline_group)) 
+  
+# Create graph for cumulative takeup by day
+pd_dataset %>%
+  pivot_longer(cols = c(accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+         accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+         accept_fee_cum2020_10_05, accept_fee_cum2020_10_06)) %>%
+  mutate(cumulative_date = ymd(gsub("accept_fee_cum|_", "", name))) %>%
+  select(uuid, group, cumulative_date, accept = value) %>%
+  group_by(group, cumulative_date) %>%
+  summarise(n_accept = sum(accept)) %>%
+  left_join(pd_dataset %>% count(group), by = "group") %>%
+  mutate(cumulative_takeup = n_accept/n) %>%
+  ggplot(aes(x = cumulative_date, y = cumulative_takeup, color = group)) + 
+  geom_point() + 
+  geom_line() +
+  set_theme(legend_position = "bottom") + 
+   scale_color_manual(values =cbPalette) + 
+  scale_fill_manual(values =cbPalette)  + 
+  scale_x_date(date_breaks = "1 day", 
+               date_labels = paste(seq(1,8,1))) + 
+  xlab("Day") + 
+  guides(color=guide_legend(nrow=2), byrow =  T) + 
+  guides(linetype=guide_legend(nrow = 2), byrow = T) +
+  guides(shape=guide_legend(nrow=2), byrow =  T)
+
+
+```
+
+```{r Procrastination/Deadline Regression, echo = FALSE}
+outcomes = c("accept_fee_cum2020_09_29", "accept_fee_cum2020_10_06")
+clean_outcomes = c("Day 1", "Day 8")
+pd_dataset %<>%
+  mutate(deadline = as.numeric(deadline_group == "DL"), 
+         high_procrastination = as.numeric(procrastination_group == "High Procrastination"))
+
+pd_regs <- lapply(outcomes, function(x){
+  model = paste(x, " ~ deadline + high_procrastination + deadline:high_procrastination")
+  reg = fixest::feols(fml = as.formula(model), 
+                      data = pd_dataset, 
+                      cluster = "uuid")
+})
+names(pd_regs) = clean_outcomes
+
+msummary(pd_regs, 
+         stars = T, 
+         gof_omit = "IC|Log|Imp|Pseudo|Within|AIC|BIC|Log|FE", 
+         notes = "The observations consist of those firms who responded to the procrastination scale question in the survey. high_procrastination is an indicator variable for whether the firm responded 4 or 5 to the procrastination scale question. Deadline is an indicator for if the firm received the deadline. The outcomes are cumulative takeup for the day listed in the column. Standard errors are clustered at the firm level and can be found in parentheses.", 
+         output = "kableExtra") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+\subsection{Memory Scale 1 and Unanticipated Reminder/No Reminder}
+```{r MS1/Reminder Graph, echo = FALSE, message = FALSE}
+# Get relevant variables and cumulative take up indicators
+m1r_dataset <- survey %>%
+  select(!reminder) %>%
+  left_join(izettle_fee %>% 
+              select(uuid = organization_uuid, accept_fee, accept_fee_late, reminder, no_reminder, 
+                     accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+                     accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+                     accept_fee_cum2020_10_05, accept_fee_cum2020_10_06, 
+                     accept_fee_2020_09_29, accept_fee_2020_09_30, accept_fee_2020_10_01, 
+                              accept_fee_2020_10_02, accept_fee_2020_10_03, accept_fee_2020_10_04, 
+                     accept_fee_2020_10_05, accept_fee_2020_10_06), by = "uuid") %>%
+  filter(memory_scale1 > 0 & memory_scale1 < 6) %>%
+  select(memory_scale1, unanticipated_reminder, no_reminder, uuid, 
+         accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+         accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+         accept_fee_cum2020_10_05, accept_fee_cum2020_10_06, 
+         accept_fee_2020_09_29, accept_fee_2020_09_30, accept_fee_2020_10_01, 
+         accept_fee_2020_10_02, accept_fee_2020_10_03, accept_fee_2020_10_04, 
+         accept_fee_2020_10_05, accept_fee_2020_10_06) %>%
+  filter(unanticipated_reminder == 1 | no_reminder == 1) %>%
+  mutate(memory_scale1_group = ifelse(memory_scale1  >= 4, "High Memory", "Low Memory")) %>%
+  mutate(reminder_group = ifelse(unanticipated_reminder == 1, "Unant. Rem.", "No Rem.")) %>%
+  mutate(group = paste(memory_scale1_group, reminder_group)) 
+  
+# Create graph for cumulative takeup by day
+m1r_dataset %>%
+  pivot_longer(cols = c(accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+         accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+         accept_fee_cum2020_10_05, accept_fee_cum2020_10_06)) %>%
+  mutate(cumulative_date = ymd(gsub("accept_fee_cum|_", "", name))) %>%
+  select(uuid, group, cumulative_date, accept = value) %>%
+  group_by(group, cumulative_date) %>%
+  summarise(n_accept = sum(accept)) %>%
+  left_join(m1r_dataset %>% count(group), by = "group") %>%
+  mutate(cumulative_takeup = n_accept/n) %>%
+  ggplot(aes(x = cumulative_date, y = cumulative_takeup, color = group)) + 
+  geom_point() + 
+  geom_line() +
+  set_theme(legend_position = "bottom") + 
+   scale_color_manual(values =cbPalette) + 
+  scale_fill_manual(values =cbPalette)  + 
+  scale_x_date(date_breaks = "1 day", 
+               date_labels = paste(seq(1,8,1))) + 
+  xlab("Day") + 
+  guides(color=guide_legend(nrow=2), byrow =  T) + 
+  guides(linetype=guide_legend(nrow = 2), byrow = T) +
+  guides(shape=guide_legend(nrow=2), byrow =  T)
+
+
+```
+
+```{r MS1/Reminder Regression, echo = FALSE}
+
+m1r_dataset %<>%
+  mutate(unanticipated_reminder = as.numeric(reminder_group == "Unant. Rem."), 
+         high_memory = as.numeric(memory_scale1_group == "High Memory"))
+
+m1r_regs <- lapply(outcomes, function(x){
+  model = paste(x, " ~ unanticipated_reminder + high_memory + unanticipated_reminder:high_memory")
+  reg = fixest::feols(fml = as.formula(model), 
+                      data = m1r_dataset, 
+                      cluster = "uuid")
+})
+names(m1r_regs) = clean_outcomes
+
+msummary(m1r_regs, 
+         stars = T, 
+         gof_omit = "IC|Log|Imp|Pseudo|Within|AIC|BIC|Log|FE", 
+         notes = "The observations consist of those firms who responded to the memory scale 1 question in the survey. high_memory is an indicator variable for whether the firm responded 4 or 5 to the memory scale 1 question. Reminder is  indicator for if the firm received any type of reminder The outcomes are cumulative takeup for the day listed in the column. Standard errors are clustered at the firm level and can be found in parentheses.", 
+         output = "kableExtra") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+\subsection{Memory Scale 2 and Anticipated Reminder/Unanticipated Reminder/No Reminder}
+```{r MS2/Reminder Graph , echo = FALSE}
+# Get relevant variables and cumulative take up indicators
+m2r_dataset <- survey %>%
+  select(!c(anticipated_reminder,unanticipated_reminder, reminder)) %>%
+  left_join(izettle_fee %>% 
+              select(uuid = organization_uuid, accept_fee, accept_fee_late, anticipated_reminder,unanticipated_reminder, reminder, 
+                     accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+                     accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+                     accept_fee_cum2020_10_05, accept_fee_cum2020_10_06, 
+                     accept_fee_2020_09_29, accept_fee_2020_09_30, accept_fee_2020_10_01, 
+                              accept_fee_2020_10_02, accept_fee_2020_10_03, accept_fee_2020_10_04, 
+                     accept_fee_2020_10_05, accept_fee_2020_10_06), by = "uuid") %>%
+  filter(memory_scale2 > 0 & memory_scale2 < 6) %>%
+  select(memory_scale2, anticipated_reminder, unanticipated_reminder, reminder, uuid, 
+         accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+         accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+         accept_fee_cum2020_10_05, accept_fee_cum2020_10_06, 
+         accept_fee_2020_09_29, accept_fee_2020_09_30, accept_fee_2020_10_01, 
+         accept_fee_2020_10_02, accept_fee_2020_10_03, accept_fee_2020_10_04, 
+         accept_fee_2020_10_05, accept_fee_2020_10_06) %>%
+  mutate(memory_scale2_group = ifelse(memory_scale2  >= 4, "High Mem.", "Low Mem.")) %>%
+  mutate(reminder_group = case_when(anticipated_reminder == 1 ~ "Ant. Rem.", 
+                                    unanticipated_reminder == 1 ~ "Unant. Rem.", 
+                                    reminder == 0 ~ "No Rem.")) %>%
+  mutate(group = paste(memory_scale2_group, reminder_group)) 
+  
+# Create graph for cumulative takeup by day
+m2r_dataset %>%
+  pivot_longer(cols = c(accept_fee_cum2020_09_29, accept_fee_cum2020_09_30, accept_fee_cum2020_10_01, 
+         accept_fee_cum2020_10_02, accept_fee_cum2020_10_03, accept_fee_cum2020_10_04, 
+         accept_fee_cum2020_10_05, accept_fee_cum2020_10_06)) %>%
+  mutate(cumulative_date = ymd(gsub("accept_fee_cum|_", "", name))) %>%
+  select(uuid, group, cumulative_date, accept = value) %>%
+  group_by(group, cumulative_date) %>%
+  summarise(n_accept = sum(accept)) %>%
+  left_join(m2r_dataset %>% count(group), by = "group") %>%
+  mutate(cumulative_takeup = n_accept/n) %>%
+  ggplot(aes(x = cumulative_date, y = cumulative_takeup, color = group)) + 
+  geom_point() + 
+  geom_line() +
+  set_theme(legend_position = "bottom") + 
+   scale_color_manual(values =cbPalette) + 
+  scale_fill_manual(values =cbPalette)  + 
+  scale_x_date(date_breaks = "1 day", 
+               date_labels = paste(seq(1,8,1))) + 
+  xlab("Day") + 
+  guides(color=guide_legend(nrow=3), byrow =  T) + 
+  guides(linetype=guide_legend(nrow =3), byrow = T) +
+  guides(shape=guide_legend(nrow=3), byrow =  T)
+
+
+```
+
+
+```{r MS2/Reminder Regression, echo = FALSE}
+
+m2r_dataset %<>%
+  mutate(ant_reminder = as.numeric(reminder_group == "Ant. Rem."), 
+         unant_reminder = as.numeric(reminder_group == "Unant. Rem."),
+         no_reminder = as.numeric(reminder_group == "No Rem."),
+         high_memory = as.numeric(memory_scale2_group == "High Mem."))
+
+m2r_regs <- lapply(outcomes, function(x){
+  model = paste(x, " ~ ant_reminder + unant_reminder + high_memory + ant_reminder:high_memory +  unant_reminder:high_memory")
+  reg = fixest::feols(fml = as.formula(model), 
+                      data = m2r_dataset, 
+                      cluster = "uuid")
+})
+names(m2r_regs) = clean_outcomes
+
+msummary(m2r_regs, 
+         stars = T, 
+         gof_omit = "IC|Log|Imp|Pseudo|Within|AIC|BIC|Log|FE", 
+         notes = "The observations consist of those firms who responded to the memory scale 1 question in the survey. high_memory is an indicator variable for whether the firm responded 4 or 5 to the memory scale 1 question. ant_reminder and unant_reminder are indicators for if the firm received an anticipated reminder or unanticipated reminder, respectively. The outcomes are cumulative takeup for the day listed in the column. Standard errors are clustered at the firm level and can be found in parentheses.", 
+         output = "kableExtra") %>%
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
+```
+
+
+
+
+
+
