@@ -911,13 +911,32 @@ Broadly, HFCs should check your data for:
 
 It is strongly encouraged that RAs use the IPA package as it is complete and provides outputs to easily check responses and/or entire surveys, connecting directly to the SurveyCTO server. If no Stata license is available for RAs, other options for R and Python users should be scoped out. HFCs should **always** be conducted for any data collection effort.
 
-**Open-ended and multiple-choice with** _ **other** _ **option questions**
+#### **Open-ended and multiple-choice with** **_other_** **option questions**
 
-Adding relevant answer choices promptly could significantly reduce fieldwork and data cleaning efforts. HFCs provide an easy way to observe responses to these types of questions. All you need to do is run them. You should monitor these responses periodically (at least weekly) and count the number of times they are repeated to propose new answer choices if eligible.
 
-For these responses to be eligible as new answer choices, these should appear in (at least) a set percentage of the sample size. The principal investigator must approve the minimum percentage and new options.
+HFCs produce an output file that gathers open-ended and other responses. The objective of this file is to make easier to review all responses aiming to make the most of the information we are collecting. 
 
-Example for a minimum percentage of 5% and a sample size of 1000 surveys: to propose a repeated response as a new answer choice, it should have been observed in at least 50 surveys.
+**(1) Multiple-choice with _other_ option:**
+
+
+We have identified two reasons why surveyors do not identify respondents' responses in existing categorizations:
+- There is no category to which the response belongs 
+- The category exists but it was not taken into account during the survey
+
+
+It is important to supervise periodically, ***at least weekly***, these responses to:
+1. Identify if responses belong to any existing category. If so, you have to replace these in the data with the correspondending choice.
+2. Identify who are the surveyors that are incurring in the error mentioned before (1.) to give promptly feedback and reduce cleaning efforts.
+3. Count how many times responses that don't belong to any existent category are repeating a simmilar topic. If you observe that are repeated at least five times, you have to propose a new category to include it in the survey. Each category has to be approved by the Principal Investigator.   
+
+
+**(2) Open-ended:**
+
+
+This kind of questions ask respondents to answer in their own words without any prior categorization. These responses are highly valuable as they may contain information we are not aware of. On a ***weekly basis*** you have to:
+1. Identify the topics that are being repeated.
+2. Count how many times are being repeated.
+3. Propose categorizations for those who are repeated at least five times. Each category has to be approved by the Principal Investigator.  
 
 ### X. Survey Report
 
