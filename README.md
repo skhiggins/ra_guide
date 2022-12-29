@@ -914,14 +914,14 @@ It is strongly encouraged that RAs use the IPA package as it is complete and pro
 #### **Open-ended and multiple-choice with** **_other_** **option questions**
 
 
-HFCs produce an output file that gathers open-ended and other responses. The objective of this file is to make easier to review all responses aiming to make the most of the information we are collecting. 
+HFCs produce an output file that gathers open-ended and _other_ responses. The objective of this file is to make easier to review all responses aiming to categorize them to facilitate data analysis.
 
 **(1) Multiple-choice with _other_ option:**
 
 
-We have identified two reasons why surveyors do not identify respondents' responses in existing categorizations:
+We have identified two reasons why surveyors do not identify respondents' responses in existing choices or categorizations:
 - There is no category to which the response belongs 
-- The category exists but it was not taken into account during the survey
+- The category exists but it is difficult to determine whether the answer given corresponds to one of them at the time of the survey
 
 
 It is important to supervise periodically, ***at least weekly***, these responses to:
