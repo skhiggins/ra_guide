@@ -913,8 +913,7 @@ It is strongly encouraged that RAs use the IPA package as it is complete and pro
 
 #### **Open-ended and multiple-choice with** **_other_** **option questions**
 
-
-HFCs produce an output file that gathers open-ended and _other_ responses. The objective of this file is to make easier to review all responses aiming to categorize them to facilitate data analysis.
+HFCs produce an output file that gathers open-ended and _other_ responses but you are encouraged to create your own versions. The objective of these files are to make easier to review all responses aiming to categorize them facilitating data analysis.
 
 **(1) Multiple-choice with _other_ option:**
 
@@ -925,18 +924,26 @@ We have identified two reasons why surveyors do not identify respondents' respon
 
 
 It is important to supervise periodically, ***at least weekly***, these responses to:
-1. Identify if responses belong to any existing category. If so, you have to replace these in the data with the correspondending choice.
+1. Identify if responses belong to any existing category. If so, you have to categorize these responses in the correspondending choice.
 2. Identify who are the surveyors that are incurring in the error mentioned before (1.) to give promptly feedback and reduce cleaning efforts.
-3. Count how many times responses that don't belong to any existent category are repeating a simmilar topic. If you observe that are repeated at least five times, you have to propose a new category to include it in the survey. Each category has to be approved by the Principal Investigator.   
+3. Count how many times responses that don't belong to any existent category are repeating a simmilar topic. If you observe that are repeated at least five times, you have to propose a new category to include it in the survey. 
+Each categorization and new category has to be approved by the Principal Investigator.   
 
+ Here is an example of a [script that gathers other option responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_other_gathering.R), it is recommended to create your own version as you can customize the output according to your needs. The output of this script is an excel file in which you should: (1) add columns indicating the number and label to which each response belongs, and (2) highlight responses that are repeating topics five times or more, for each topic you should use a different color. You will share this file to the PI for approval. 
+ To replace the above categorizations in the data, you can either use the replacements file produced by the HFC or replace it directly creating a script.  
 
 **(2) Open-ended:**
 
 
-This kind of questions ask respondents to answer in their own words without any prior categorization. These responses are highly valuable as they may contain information we are not aware of. On a ***weekly basis*** you have to:
+When starting data collection this type of questions have no prior categorization. They can be addressed in two different ways: 
+1. Identify the recurring topics mentioned along data collection and propose categories ***on a weekly basis***. For this option the open-ended question would turn into a multiple-choice with _other_ option question.
+2. Identify topics and categorize all responses post-fieldwork
+
+For any of two previous options you have to: 
 1. Identify the topics that are being repeated.
 2. Count how many times are being repeated.
 3. Propose categorizations for those who are repeated at least five times. Each category has to be approved by the Principal Investigator.  
+Here is an example of a [script that recodes the open-ended responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_openended_recoding.R).
 
 ### X. Survey Report
 
