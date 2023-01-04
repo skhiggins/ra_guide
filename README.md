@@ -945,7 +945,7 @@ When starting data collection this type of questions have no prior categorizatio
 They can be addressed in two different ways:
 1. If it is still early in the fieldwork, this question can turn into a multiple-choice with other option question. 
 2. If you are in the late stage of the fieldwork, the responses will be categorized post-fieldwork. In this case, answers will be recoded using non-PII data.
-In either case, you must merge these new categories with the original data collection, so that you have the original question and the new version of the question in the same dataset. Here is an example of a script that recodes the open-ended responses. Here is an example of a [script that recodes the open-ended responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_openended_recoding.R).
+In either case, you must merge these new categories with the original data collection, so that you have the original question and the new version of the question in the same dataset. Here is an example of a [script that recodes open-ended responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_openended_recoding.R).
 
 ### X. Survey Report
 
@@ -971,7 +971,7 @@ Data cleaning is essential to produce the report. This step implies manipulating
 2. Text Audit data cleaning: Text Audit data is a group of .csv files created by SurveyCTO that include a list of the questions of the survey and a timestamp that indicates the second that have passed since the beginning of the survey until the question's first appereance. This data is helpful to measure duration and if there are any questions that people are slow to answer. In the second case, it could be a red flag.
 3. Reshaping data: To make easier the production of tables and figures, it is often helpful to reshape data.
 
-Here is an example of the [script that cleans data from a survey](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_cleaning.R)
+Here is an example of the [script that cleans data from a survey](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_cleaning.R).
 
 Once the cleaning step is complete, the survey report can be produced. It can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors. Here is an example of a [script that produces a survey report using markdown](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report_markdown.R) and a [script that produces figures and tables for a survey report](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report.R).
 The survey report must include the following:
