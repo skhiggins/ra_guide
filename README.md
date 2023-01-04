@@ -929,8 +929,7 @@ It is important to supervise periodically, ***at least weekly***, these response
 3. Count how many times responses that don't belong to any existent category are repeating a simmilar topic. If you observe that are repeated at least five times, you have to propose a new category to include it in the survey. 
 Each categorization and new category has to be approved by the Principal Investigator.   
 
-Here is an example of a [script that gathers other option responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_other_gathering.R), it is recommended to create your own version as you can customize the output according to your needs. The output of this script is an excel file in which you should (1) add columns indicating the number and label to which each response belongs, and (2) indicate the responses that repeat topics five times or more. You will share this file to the PI for approval. [Here](https://github.com/skhiggins/ra_guide/blob/main/docs/other_responses_file.xlsx) is an example. 
-To replace the above categorizations in the data, you can either use the replacements file produced by the HFC or replace it directly creating a script.  
+Here is an example of a [script that gathers other option responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_other_gathering.R), it is recommended to create your own version as you can customize the output according to your needs. The output of this script is an [excel file](https://github.com/skhiggins/ra_guide/blob/main/docs/other_responses_file.xlsx) in which you should (1) add columns indicating the number and label to which each response belongs, and (2) indicate the responses that repeat topics five times or more. You will share a similar file with the PI for approval. To replace the above categorizations in the data, you can either use the replacements file produced by the HFC or replace it directly creating a script.  
 
 **(2) Open-ended:**
 
