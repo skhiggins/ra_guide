@@ -929,21 +929,23 @@ It is important to supervise periodically, ***at least weekly***, these response
 3. Count how many times responses that don't belong to any existent category are repeating a simmilar topic. If you observe that are repeated at least five times, you have to propose a new category to include it in the survey. 
 Each categorization and new category has to be approved by the Principal Investigator.   
 
- Here is an example of a [script that gathers other option responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_other_gathering.R), it is recommended to create your own version as you can customize the output according to your needs. The output of this script is an excel file in which you should: (1) add columns indicating the number and label to which each response belongs, and (2) highlight responses that are repeating topics five times or more, for each topic you should use a different color. You will share this file to the PI for approval. 
+ Here is an example of a [script that gathers other option responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_other_gathering.R), it is recommended to create your own version as you can customize the output according to your needs. The output of this script is an excel file in which you should: (1) add columns indicating the number and label to which each response belongs, and (2) highlight responses that are repeating topics five times or more, for each topic you should use a different color. You will share this file to the PI for approval. [Here](https://github.com/skhiggins/ra_guide/blob/main/docs/other_responses_file.xlsx) is an example. 
  To replace the above categorizations in the data, you can either use the replacements file produced by the HFC or replace it directly creating a script.  
 
 **(2) Open-ended:**
 
 
-When starting data collection this type of questions have no prior categorization. They can be addressed in two different ways: 
-1. Identify the recurring topics mentioned along data collection and propose categories ***on a weekly basis***. For this option the open-ended question would turn into a multiple-choice with _other_ option question.
-2. Identify topics and categorize all responses post-fieldwork
+WWhen starting data collection this type of questions have no prior categorization. Sometimes, it is common for participants to give similar answers to a certain question. To see if this happens, you must identify recurring topics mentioned along data collection and propose categories at least ***on a weekly basis***. To do that, you must:
+1. Write a [script](https://github.com/skhiggins/ra_guide/blob/main/scripts/01a_open_responses.R) that produces a list of all these questions and their answers. [Here](https://github.com/skhiggins/ra_guide/blob/main/scripts/01b_open_responses_historical.R) is an example of two scripts that produce a list of those questions. The first one produces periodical lists and the second appends those lists.
+2. Identify the topics that are being repeated within each question.
+3. Count how many times topics are being repeated.
+4. Propose categorizations for those who are repeated at least five times. Each category must be approved by the Principal Investigator. [Here](https://github.com/skhiggins/ra_guide/blob/main/docs/open_responses_categorized_for_Sean.xlsx) is an example of a categorized list. Note that the file has two sheets, one for the answers and one for the proposed categories.
 
-For any of two previous options you have to: 
-1. Identify the topics that are being repeated.
-2. Count how many times are being repeated.
-3. Propose categorizations for those who are repeated at least five times. Each category has to be approved by the Principal Investigator.  
-Here is an example of a [script that recodes the open-ended responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_openended_recoding.R).
+
+They can be addressed in two different ways:
+1.	If it is still early in the fieldwork, this question can turn into a multiple-choice with other option question. 
+2.	If you are in the late stage of the fieldwork, the responses will be categorized post-fieldwork. In this case, answers will be recoded using non-PII data.
+In either case, you must merge these new categories with the original data collection, so that you have the original question and the new version of the question in the same dataset. Here is an example of a script that recodes the open-ended responses. Here is an example of a [script that recodes the open-ended responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_openended_recoding.R).
 
 ### X. Survey Report
 
