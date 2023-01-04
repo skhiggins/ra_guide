@@ -913,7 +913,7 @@ It is strongly encouraged that RAs use the IPA package as it is complete and pro
 
 #### **Open-ended and multiple-choice with** **_other_** **option questions**
 
-HFCs produce an output file that gathers open-ended and _other_ responses but you are encouraged to create your own versions. The objective of these files are to make easier to review all responses aiming to categorize them facilitating data analysis.
+HFCs produce an output file that gathers open-ended and _other_ responses but you are encouraged to create your own versions. The objective of these files are to make easier to review all responses aiming to categorize them facilitating data analysis. Note that you must review ***all*** the responses.
 
 **(1) Multiple-choice with _other_ option:**
 
@@ -936,7 +936,7 @@ To replace the above categorizations in the data, you can either use the replace
 
 
 When starting data collection this type of questions have no prior categorization. Sometimes, it is common for participants to give similar answers to a certain question. To see if this happens, you must identify recurring topics mentioned along data collection and propose categories at least ***on a weekly basis***. To do that, you must:
-1. Write a [script](https://github.com/skhiggins/ra_guide/blob/main/scripts/01a_open_responses.R) that produces a list of all these questions and their answers. [Here](https://github.com/skhiggins/ra_guide/blob/main/scripts/01b_open_responses_historical.R) is an example of two scripts that produce a list of those questions. The first one produces periodical lists and the second appends those lists.
+1. Write a script that produces a list of all these questions and their answers. Here is an example of two scripts that produce a list of those questions. The [first one](https://github.com/skhiggins/ra_guide/blob/main/scripts/01a_open_responses.R) produces periodical lists and the [second](https://github.com/skhiggins/ra_guide/blob/main/scripts/01b_open_responses_historical.R) appends those lists.
 2. Identify the topics that are being repeated within each question.
 3. Count how many times topics are being repeated.
 4. Propose categorizations for those who are repeated at least five times. Each category must be approved by the Principal Investigator. [Here](https://github.com/skhiggins/ra_guide/blob/main/docs/open_responses_categorized_for_Sean.xlsx) is an example of a categorized list. Note that the file has two sheets, one for the answers and one for the proposed categories.
