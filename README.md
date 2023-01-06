@@ -911,13 +911,40 @@ Broadly, HFCs should check your data for:
 
 It is strongly encouraged that RAs use the IPA package as it is complete and provides outputs to easily check responses and/or entire surveys, connecting directly to the SurveyCTO server. If no Stata license is available for RAs, other options for R and Python users should be scoped out. HFCs should **always** be conducted for any data collection effort.
 
-**Open-ended and multiple-choice with** _ **other** _ **option questions**
+#### **Open-ended and multiple-choice with** **_other_** **option questions**
 
-Adding relevant answer choices promptly could significantly reduce fieldwork and data cleaning efforts. HFCs provide an easy way to observe responses to these types of questions. All you need to do is run them. You should monitor these responses periodically (at least weekly) and count the number of times they are repeated to propose new answer choices if eligible.
+HFCs produce an output file that gathers open-ended and _other_ responses but you are encouraged to create your own versions. The objective of these files are to make easier to review all responses aiming to categorize them facilitating data analysis. Note that you must review ***all*** the responses.
 
-For these responses to be eligible as new answer choices, these should appear in (at least) a set percentage of the sample size. The principal investigator must approve the minimum percentage and new options.
+**(1) Multiple-choice with _other_ option:**
 
-Example for a minimum percentage of 5% and a sample size of 1000 surveys: to propose a repeated response as a new answer choice, it should have been observed in at least 50 surveys.
+
+We have identified two reasons why surveyors do not identify respondents' responses in existing choices or categorizations:
+- There is no category to which the response belongs 
+- The category exists but it is difficult to determine whether the answer given corresponds to one of them at the time of the survey
+
+
+It is important to supervise periodically, ***at least weekly***, these responses to:
+1. Identify if responses belong to any existing category. If so, you have to categorize these responses in the correspondending choice.
+2. Identify who are the surveyors that are incurring in the error mentioned before (1.) to give promptly feedback and reduce cleaning efforts.
+3. Count how many times responses that don't belong to any existent category are repeating a simmilar topic. If you observe that are repeated at least five times, you have to propose a new category to include it in the survey. 
+Each categorization and new category has to be approved by the Principal Investigator.   
+
+Here is an example of a [script that gathers other option responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_other_gathering.R), it is recommended to create your own version as you can customize the output according to your needs. The output of this script is an [excel file](https://github.com/skhiggins/ra_guide/blob/main/docs/other_responses_file.xlsx) in which you should (1) add columns indicating the number and label to which each response belongs, and (2) indicate the responses that repeat topics five times or more. You will share a similar file with the PI for approval. To replace the above categorizations in the data, you can either use the replacements file produced by the HFC or replace it directly creating a script.  
+
+**(2) Open-ended:**
+
+
+When starting data collection this type of questions have no prior categorization. Sometimes, it is common for participants to give similar answers to a certain question. To see if this happens, you must identify recurring topics mentioned along data collection and propose categories at least ***on a weekly basis***. To do that, you must:
+1. Write a script that produces a list of all these questions and their answers. Here is an example of two scripts that produce a list of those questions. The [first one](https://github.com/skhiggins/ra_guide/blob/main/scripts/01a_open_responses.R) produces periodical lists and the [second](https://github.com/skhiggins/ra_guide/blob/main/scripts/01b_open_responses_historical.R) appends those lists.
+2. Identify the topics that are being repeated within each question.
+3. Count how many times topics are being repeated.
+4. Propose categorizations for those who are repeated at least five times. Each category must be approved by the Principal Investigator. [Here](https://github.com/skhiggins/ra_guide/blob/main/docs/open_responses_categorized_for_Sean.xlsx) is an example of a categorized list. Note that the file has two sheets, one for the answers and one for the proposed categories.
+
+
+They can be addressed in two different ways:
+1. If it is still early in the fieldwork, this question can turn into a multiple-choice with other option question. 
+2. If you are in the late stage of the fieldwork, the responses will be categorized post-fieldwork. In this case, answers will be recoded using non-PII data.
+In either case, you must merge these new categories with the original data collection, so that you have the original question and the new version of the question in the same dataset. Here is an example of a [script that recodes open-ended responses](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_openended_recoding.R).
 
 ### X. Survey Report
 
@@ -943,7 +970,7 @@ Data cleaning is essential to produce the report. This step implies manipulating
 2. Text Audit data cleaning: Text Audit data is a group of .csv files created by SurveyCTO that include a list of the questions of the survey and a timestamp that indicates the second that have passed since the beginning of the survey until the question's first appereance. This data is helpful to measure duration and if there are any questions that people are slow to answer. In the second case, it could be a red flag.
 3. Reshaping data: To make easier the production of tables and figures, it is often helpful to reshape data.
 
-Here is an example of the [script that cleans data from a survey](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_cleaning.R)
+Here is an example of the [script that cleans data from a survey](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_cleaning.R).
 
 Once the cleaning step is complete, the survey report can be produced. It can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors. Here is an example of a [script that produces a survey report using markdown](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report_markdown.R) and a [script that produces figures and tables for a survey report](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report.R).
 The survey report must include the following:
