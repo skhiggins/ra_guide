@@ -1,7 +1,7 @@
 # *Guidelines for Research Assistants*
 
 Contents:
-1. Administrative tasks
+1. [Administrative tasks](#1-administrative-tasks)
     1. [Managing project tasks with Asana](#i-managing-project-tasks-with-asana). Setting up Asana, keeping track of work, defining meeting agendas.
         1. [Setting up new projects](#setting-up-new-projects)
         2. [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
@@ -18,7 +18,7 @@ Contents:
     6. [Partner data requests](#vi-partner-data-requests). Following up with partners on meetings and data requests.
     8. [Holidays & time off](#vii-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
 
-2. Keeping files organized
+2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization). Overview of how you should use Dropbox, Github and Overleaf for academic projects.
     2. [Working with GitHub](#ii-working-with-github). Setting up and using GitHub locally and in the server.
         1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
@@ -31,11 +31,11 @@ Contents:
         3. [Running scripts](#running-scripts)
     5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Update Github and Dropbox with one simple terminal command.
 
-3. Generating content for papers and presentations
+3. [Coding best practices](#3-coding-best-practices)
     1. [Working with EPS figures](#i-working-with-eps-figures)
     2. [Generating different presentation versions](#ii-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
 
-4. Conducting Surveys
+4. [Conducting Surveys](#4-conducting-surveys)
 	1. [Pre-fieldwork](#i-pre-fieldwork)
 	2. [During fieldwork](#ii-during-fieldwork)
 	3. [Post-fieldwork](#iii-post-fieldwork)
