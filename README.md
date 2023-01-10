@@ -208,7 +208,7 @@ All research assistants fill out a weekly timesheet. This is helpful for plannin
 There are two options for filling out timesheets: filling out the timesheet directly or using [Clockify](https://clockify.me/).
 
 #### 1. Filling out Excel timesheet directly
-One option is to keep the Excel open and fill it in when you start and stop working on a task. You can use a couple of shortcuts to make filling out the timesheet easier: `Ctrl+` to enter the current date in a cell and `Ctrl+Shift+` to enter the current time. 
+One option is to keep the Excel open and fill it in when you start and stop working on a task. You can use a couple of shortcuts to make filling out the timesheet easier: `Ctrl+;` to enter the current date in a cell and `Ctrl+Shift+;` to enter the current time. 
 
 #### 2. Using Clockify 
 [Clockify](https://clockify.me/) is a time tracking app for Mac OS X, Windows, and web browsers. With Clockify, you can register individual entries as parts of tasks and projects, which makes this app easily compatible with the format of timesheets: 
