@@ -684,6 +684,50 @@ When presenting papers at academic conferences, we will have to generate multipl
 
 **Note**: The person updating the master presentation should also run the presentation versions script and push to GitHub, to ensure all presentations are kept up to date.
 
+5. **Extra: generating and compiling all presentation versions with a shell shotcut**. 
+    1. Open a new terminal window and edit the bash profile:
+        ```sh
+        vi ~/.zprofile
+        ``` 
+    2. Insert at the bottom of the bash profile the following lines:
+		```sh
+		compile_pres () {
+		    echo "********Update presentations with latest content********"
+		    Rscript $(pwd)/presentations/presentation_versions.R
+		    echo "********Compile presentations********"
+		    # Change directory to presentations folder
+		    cd presentations
+
+		    # Define extensions to delete
+		    extensions=(aux bak bbl bcf blg brf dvi fls log nav out snm thm toc xml)
+
+		    # Loop over .tex files in current directory
+		    for file in *.tex; do
+			# First run
+			pdflatex "$file"
+
+			# Run biber
+			biber "${file%.*}"
+
+			# Second run
+			pdflatex "$file"
+
+			# Delete additional files in current directory
+			for ext in "${extensions[@]}"; do
+			    find . -maxdepth 1 -name "*.$ext" -delete
+			done
+		    done
+
+		    # Go back to main directory
+		    cd ../
+		}
+		``` 
+		The first part of the function runs the presentation versions script and updates all presentation .tex files. The second part compiles all the presentations and deletes redundant files that were required for compilation. 
+
+    3. Save the bash profile (press Escape, type :wq, and hit Enter)
+
+    4. You can use the shorcut simply by opening a new terminal, switching to the project directory and typing the following commmand: `compile_pres`.
+
 # 4. Conducting Surveys
 
 Some of the projects involve conducting surveys. This section aims to outline the general process of conducting surveys. The most important thing to keep in mind is that **each survey is unique**. This means that while there is a general process, each step should be analyzed and evaluated within the context of each survey. To make it easier to identify parts of the process, you can divide it into three main parts: pre-fieldwork, during fieldwork and post-fieldwork.
