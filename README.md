@@ -583,9 +583,9 @@ do scripts/myscript.do
     2. Insert at the bottom of the bash profile the following lines:
 		```sh
 		function logupdate () {
-		    echo "********Pull from repo"********"
+		    echo "********Pull from repo********"
 		    git pull
-		    echo "********Push recent changes to repo"********"
+		    echo "********Push recent changes to repo********"
 		    git push
 		    echo "********Export commit to log********"
 		    echo "Generating log..."
