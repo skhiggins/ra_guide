@@ -1,44 +1,71 @@
 # *Guidelines for Research Assistants*
 
 Contents:
-1. [Administrative tasks](#1-administrative-tasks)
-    1. [Managing project tasks with Asana](#i-managing-project-tasks-with-asana). Setting up Asana, keeping track of work, defining meeting agendas.
-        1. [Setting up new projects](#setting-up-new-projects)
-        2. [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
-        3. [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
-        4. [Following up on presentation comments](#following-up-on-presentation-comments)
-    2. [Managing meetings](#ii-managing-meetings). Preparing agendas before meetings, sending meeting recaps and keeping a record of previous meetings.
-    3. [Weekly timesheets and recaps](#iii-weekly-timesheets-and-recaps). Preparing weekly timesheets and recaps.
-    	1. [Weekly timesheets](#timesheets)
-    	2. [Weekly recaps](#weekly-recaps)
-    4. [Professional development meetings](#iv-professional-development-meetings). Regular calls to provide feedback, discuss areas to improve and review graduate school applications.
-    5. [Tracking conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines). Using [remindR](https://github.com/clandinq/remindr) to keep track of deadlines, mantaining a conference calendar.
-    	1. [remindR system](#reminder-system)
-        2. [Conference calendar](#calendar-with-conference-dates)
-    6. [Partner data requests](#vi-partner-data-requests). Following up with partners on meetings and data requests.
-    8. [Holidays & time off](#vii-holidays-and-time-off). Official university holidays, paid time off, and process for scheduling days off.
-
-2. [Keeping files organized](#2-keeping-files-organized)
-    1. [General project organization](#i-general-project-organization). Overview of how you should use Dropbox, Github and Overleaf for academic projects.
-    2. [Working with GitHub](#ii-working-with-github). Setting up and using GitHub locally and in the server.
-        1. [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
-        2. [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
-        3. [Updating the GitHub repo](#updating-the-github-repo)
-    3. [Working with Dropbox](#iii-working-with-dropbox). Keep a backup of project files and data on Dropbox.
-    4. [Working with KLC](#iv-working-with-the-kellogg-linux-cluster-klc-server). Setting up the server and keeping project updated with GitHub.
-        1. [Transferring files with FileZilla](#transferring-files-via-filezilla)
-        2. [Accessing KLC](#accessing-klc)
-        3. [Running scripts](#running-scripts)
-    5. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated). Update Github and Dropbox with one simple terminal command.
-
-3. [Coding best practices](#3-coding-best-practices)
-    1. [Working with EPS figures](#i-working-with-eps-figures)
-    2. [Generating different presentation versions](#ii-generating-different-presentation-versions). Simplify generation of multiple presentation versions and presentation updating.
-
-4. [Conducting Surveys](#4-conducting-surveys)
-	1. [Pre-fieldwork](#i-pre-fieldwork)
-	2. [During fieldwork](#ii-during-fieldwork)
-	3. [Post-fieldwork](#iii-post-fieldwork)
+- [*Guidelines for Research Assistants*](#guidelines-for-research-assistants)
+- [1. Administrative tasks](#1-administrative-tasks)
+  - [i. Managing project tasks with Asana](#i-managing-project-tasks-with-asana)
+    - [Setting up new Projects](#setting-up-new-projects)
+    - [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
+      - [Sections](#sections)
+      - [Columns](#columns)
+      - [Tasks and subtasks](#tasks-and-subtasks)
+    - [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
+    - [Keeping track of agenda contents](#keeping-track-of-agenda-contents)
+    - [Following up on presentation comments](#following-up-on-presentation-comments)
+  - [ii. Managing meetings](#ii-managing-meetings)
+  - [iii. Weekly timesheets and recaps](#iii-weekly-timesheets-and-recaps)
+  - [Timesheets](#timesheets)
+    - [Filling out timesheets](#filling-out-timesheets)
+      - [1. Filling out Excel/Google timesheet directly](#1-filling-out-excelgoogle-timesheet-directly)
+      - [2. Using Clockify](#2-using-clockify)
+  - [Weekly recaps](#weekly-recaps)
+    - [RA working for 1 professor on 1 project](#ra-working-for-1-professor-on-1-project)
+    - [RA working for 1 professor on multiple projects](#ra-working-for-1-professor-on-multiple-projects)
+    - [RA working separately for multiple professors](#ra-working-separately-for-multiple-professors)
+  - [iv. Professional development meetings](#iv-professional-development-meetings)
+  - [v. Keeping track of conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines)
+    - [Reminder system](#reminder-system)
+    - [Calendar with conference dates](#calendar-with-conference-dates)
+  - [vi. Partner data requests](#vi-partner-data-requests)
+  - [vii. Holidays and time off](#vii-holidays-and-time-off)
+    - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
+    - [Process for taking time off](#process-for-taking-time-off)
+- [2. Keeping files organized](#2-keeping-files-organized)
+  - [i. General project organization](#i-general-project-organization)
+  - [ii. Working with GitHub](#ii-working-with-github)
+    - [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
+    - [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
+      - [If there is already a folder set up on the server or computer and that be linked to the GitHub project repo](#if-there-is-already-a-folder-set-up-on-the-server-or-computer-and-that-be-linked-to-the-github-project-repo)
+      - [If there is no folder set up on the server/computer:](#if-there-is-no-folder-set-up-on-the-servercomputer)
+    - [Updating the GitHub repo](#updating-the-github-repo)
+    - [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
+  - [iii. Working with Dropbox](#iii-working-with-dropbox)
+  - [iv. Working with the Kellogg Linux Cluster (KLC) server](#iv-working-with-the-kellogg-linux-cluster-klc-server)
+    - [Transferring files via FileZilla](#transferring-files-via-filezilla)
+    - [Accessing KLC](#accessing-klc)
+    - [Running scripts](#running-scripts)
+      - [Running files with a 00\_run script and no visible output](#running-files-with-a-00_run-script-and-no-visible-output)
+      - [Running do files (Stata) with visible output](#running-do-files-stata-with-visible-output)
+  - [v. Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated)
+    - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)
+- [3. Coding best practices](#3-coding-best-practices)
+  - [i. Working with eps figures](#i-working-with-eps-figures)
+  - [ii. Generating different presentation versions](#ii-generating-different-presentation-versions)
+- [4. Conducting Surveys](#4-conducting-surveys)
+  - [i. Pre-fieldwork](#i-pre-fieldwork)
+    - [I. Designing the survey](#i-designing-the-survey)
+    - [II. Programming the survey in SurveyCTO](#ii-programming-the-survey-in-surveycto)
+    - [III. IRB](#iii-irb)
+    - [IV. Piloting the survey](#iv-piloting-the-survey)
+    - [V. Hiring of field team](#v-hiring-of-field-team)
+  - [ii. During fieldwork](#ii-during-fieldwork)
+    - [VI. Data collection team composition](#vi-data-collection-team-composition)
+    - [VII. Quality checks](#vii-quality-checks)
+    - [VIII. Documenting mistakes](#viii-documenting-mistakes)
+    - [IX. High Frequency Checks (HFC)](#ix-high-frequency-checks-hfc)
+      - [**Open-ended and multiple-choice with** **_other_** **option questions**](#open-ended-and-multiple-choice-with-other-option-questions)
+    - [X. Survey Report](#x-survey-report)
+  - [iii. Post-fieldwork](#iii-post-fieldwork)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
@@ -202,13 +229,13 @@ PIs receive valuable comments from conferences where they present their academic
 ## iii. Weekly timesheets and recaps
 
 ## Timesheets
-All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. You can start by using the [timesheet template](https://github.com/skhiggins/ra_guide/blob/main/docs/Timesheet_template_individual.xlsx).
+All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. You can start by using the [Excel timesheet template](https://github.com/skhiggins/ra_guide/blob/main/docs/Timesheet_template_individual.xlsx) or the [Google Sheet timesheet template](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
 
 ### Filling out timesheets
 There are two options for filling out timesheets: filling out the timesheet directly or using [Clockify](https://clockify.me/).
 
-#### 1. Filling out Excel timesheet directly
-One option is to keep the Excel open and fill it in when you start and stop working on a task. You can use a couple of shortcuts to make filling out the timesheet easier: `Ctrl+;` to enter the current date in a cell and `Ctrl+Shift+;` to enter the current time. 
+#### 1. Filling out Excel/Google timesheet directly
+One option is to keep the Excel/Google Sheet open and fill it in when you start and stop working on a task. You can use a couple of shortcuts to make filling out the timesheet easier: `Ctrl+;` to enter the current date in a cell and `Ctrl+Shift+;` to enter the current time. 
 
 #### 2. Using Clockify 
 [Clockify](https://clockify.me/) is a time tracking app for Mac OS X, Windows, and web browsers. With Clockify, you can register individual entries as parts of tasks and projects, which makes this app easily compatible with the format of timesheets: 
