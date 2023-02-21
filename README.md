@@ -1,7 +1,6 @@
-# *Guidelines for Research Assistants*
+# *Guidelines for Research Assistants* <!-- omit from toc --> 
 
 Contents:
-- [*Guidelines for Research Assistants*](#guidelines-for-research-assistants)
 - [1. Administrative tasks](#1-administrative-tasks)
   - [i. Managing project tasks with Asana](#i-managing-project-tasks-with-asana)
     - [Setting up new Projects](#setting-up-new-projects)
