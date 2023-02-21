@@ -265,7 +265,10 @@ The benefit of using Clockify is that you can easily track time for your other p
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_5.png" align="center" height="60%" width="60%">
 
 ## Weekly recaps
-You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). Below are a few example emails from other RAs:
+You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). When hours are abnormal for any reason (e.g., taking 2 days of vacation) include the reason next to the hours.
+
+Below are a few example emails from other RAs:
+
 ### RA working for 1 professor on 1 project
 Last week:
 1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
