@@ -1042,7 +1042,7 @@ Data cleaning is essential to produce the report. This step implies manipulating
 
 Here is an example of the [script that cleans data from a survey](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_cleaning.R).
 
-Once the cleaning step is complete, the survey report can be produced. It can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors. Here is an example of a [script that produces a survey report using markdown](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report_markdown.R) and a [script that produces figures and tables for a survey report](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report.R).
+Once the cleaning step is complete, the survey report can be produced. It can be produced in R using markdown or producing the figures and tables, and then building a TeX file. To produce figures and tables, you should first clean data, so that you ensure that you do not have potential errors. Here is an example of a [script that produces a survey report using markdown](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report_markdown.Rmd) and a [script that produces figures and tables for a survey report](https://github.com/skhiggins/ra_guide/blob/main/scripts/survey_report.R).
 The survey report must include the following:
 
 1. Text Audit Data: This section includes a table for average time in successful surveys, to measure duration of successful surveys and a table for average time in successful surveys per enumerator. Other tables of duration per section can be added.
