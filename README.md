@@ -231,7 +231,7 @@ These are useful tools for the PIs to keep track of the RAs' progress on each pr
 Our recommendation is to save all the timesheets and recaps in a separate **Google Drive folder**. Specifically, we suggest
 
 - Create a Google Sheet *each week* to write the timesheets. You can check our template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
-- Create a Google Doc to save *all* the weekly recaps. See examples [below](#examples-for-the-weekly-recaps).
+- Create a Google Doc to save *all* the weekly recaps. See examples [below](#examples-of-the-weekly-recaps).
 
 > Tips on Google Sheet shortcuts: Click `Ctrl+;` to enter the current date, and `Ctrl+Shift+;` to enter the current time.
 
