@@ -252,8 +252,11 @@ Our recommendation is to save all the timesheets and recaps in a separate **Goog
 > ...
 
 ### Examples of the weekly recaps
-You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). Below are a few example emails from other RAs:
+
+Below are a few example emails from other RAs:
+
 #### RA working for 1 professor on 1 project
+
 Last week:
 1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
 2. Reviewed survey incentives documentation.
