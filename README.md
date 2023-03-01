@@ -222,12 +222,14 @@ PIs receive valuable comments from conferences where they present their academic
 
 ## iii. Weekly timesheets, recaps, and emails
 
-These are useful tools for the PIs to keep track of the RAs progress on each project and task. In our practice, we have our RAs sending a weekly email every Monday morning that include
+These are useful tools for the PIs to keep track of the RAs' progress on each project and task. In our practice, we have our RAs sending a weekly email every Monday morning that include
+
     - The timesheet for the last week,
     - A recap of tasks done during the last week,
     - A summary list of priorities to be done in the current week.
 
 Our recommendation is to save all the timesheets and recaps in a separate **Google Drive folder**. Specifically, we suggest
+
     - Create a Google Sheet *each week* to write the timesheets. You can check our template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
     - Create a Google Doc to save *all* the Weekly Recaps. See examples [below](#examples-for-the-weekly-recaps).
 
@@ -236,11 +238,17 @@ Our recommendation is to save all the timesheets and recaps in a separate **Goog
 ### An example of the weekly email
 
 > Subject: Weekly email - [Name] (X hours)
+> 
 > ...
-> This is my timesheet for the last week: [link to last week's timesheet]
-> This is my timesheet for this week: [link to this week's timesheet]
-> And this is a summary of completed work last week and my priorities this week, which you can also check here: [link to the recap doc]
-> [Copy the recap and the priorities in the email body to save one click for the PIs]
+> 
+> This is my timesheet for the last week: [link-to-last-week's-timesheet]
+> 
+> This is my timesheet for this week: [link-to-this-week's-timesheet]
+> 
+> And this is a summary of completed work last week and my priorities this week, which you can also check here: [link-to-the-recap-doc]
+> 
+> *[Copy the recap and the priorities in the email body to save one click for the PIs]*
+> 
 > ...
 
 ### Examples for the weekly recaps
