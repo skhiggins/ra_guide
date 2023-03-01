@@ -1,70 +1,65 @@
 # *Guidelines for Research Assistants* <!-- omit from toc --> 
 
 Contents:
-- [1. Administrative tasks](#1-administrative-tasks)
-  - [i. Managing project tasks with Asana](#i-managing-project-tasks-with-asana)
-    - [Setting up new Projects](#setting-up-new-projects)
-    - [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
-      - [Sections](#sections)
-      - [Columns](#columns)
-      - [Tasks and subtasks](#tasks-and-subtasks)
-    - [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
-    - [Keeping track of agenda contents](#keeping-track-of-agenda-contents)
-    - [Following up on presentation comments](#following-up-on-presentation-comments)
-  - [ii. Managing meetings](#ii-managing-meetings)
-  - [iii. Weekly timesheets and recaps](#iii-weekly-timesheets-and-recaps)
-  - [Timesheets](#timesheets)
-    - [Filling out timesheets](#filling-out-timesheets)
-      - [1. Filling out Excel/Google timesheet directly](#1-filling-out-excelgoogle-timesheet-directly)
-      - [2. Using Clockify](#2-using-clockify)
-  - [Weekly recaps](#weekly-recaps)
-    - [RA working for 1 professor on 1 project](#ra-working-for-1-professor-on-1-project)
-    - [RA working for 1 professor on multiple projects](#ra-working-for-1-professor-on-multiple-projects)
-    - [RA working separately for multiple professors](#ra-working-separately-for-multiple-professors)
-  - [iv. Professional development meetings](#iv-professional-development-meetings)
-  - [v. Keeping track of conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines)
-    - [Reminder system](#reminder-system)
-    - [Calendar with conference dates](#calendar-with-conference-dates)
-  - [vi. Partner data requests](#vi-partner-data-requests)
-  - [vii. Holidays and time off](#vii-holidays-and-time-off)
-    - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
-    - [Process for taking time off](#process-for-taking-time-off)
-- [2. Keeping files organized](#2-keeping-files-organized)
-  - [i. General project organization](#i-general-project-organization)
-  - [ii. Working with GitHub](#ii-working-with-github)
-    - [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
-    - [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
-      - [If there is already a folder set up on the server or computer and that be linked to the GitHub project repo](#if-there-is-already-a-folder-set-up-on-the-server-or-computer-and-that-be-linked-to-the-github-project-repo)
-      - [If there is no folder set up on the server/computer:](#if-there-is-no-folder-set-up-on-the-servercomputer)
-    - [Updating the GitHub repo](#updating-the-github-repo)
-    - [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
-  - [iii. Working with Dropbox](#iii-working-with-dropbox)
-  - [iv. Working with the Kellogg Linux Cluster (KLC) server](#iv-working-with-the-kellogg-linux-cluster-klc-server)
-    - [Transferring files via FileZilla](#transferring-files-via-filezilla)
-    - [Accessing KLC](#accessing-klc)
-    - [Running scripts](#running-scripts)
-      - [Running files with a 00\_run script and no visible output](#running-files-with-a-00_run-script-and-no-visible-output)
-      - [Running do files (Stata) with visible output](#running-do-files-stata-with-visible-output)
-  - [v. Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated)
-    - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)
-- [3. Coding best practices](#3-coding-best-practices)
-  - [i. Working with eps figures](#i-working-with-eps-figures)
-  - [ii. Generating different presentation versions](#ii-generating-different-presentation-versions)
-- [4. Conducting Surveys](#4-conducting-surveys)
-  - [i. Pre-fieldwork](#i-pre-fieldwork)
-    - [I. Designing the survey](#i-designing-the-survey)
-    - [II. Programming the survey in SurveyCTO](#ii-programming-the-survey-in-surveycto)
-    - [III. IRB](#iii-irb)
-    - [IV. Piloting the survey](#iv-piloting-the-survey)
-    - [V. Hiring of field team](#v-hiring-of-field-team)
-  - [ii. During fieldwork](#ii-during-fieldwork)
-    - [VI. Data collection team composition](#vi-data-collection-team-composition)
-    - [VII. Quality checks](#vii-quality-checks)
-    - [VIII. Documenting mistakes](#viii-documenting-mistakes)
-    - [IX. High Frequency Checks (HFC)](#ix-high-frequency-checks-hfc)
-      - [**Open-ended and multiple-choice with** **_other_** **option questions**](#open-ended-and-multiple-choice-with-other-option-questions)
-    - [X. Survey Report](#x-survey-report)
-  - [iii. Post-fieldwork](#iii-post-fieldwork)
+
+1. [Administrative tasks](#1-administrative-tasks)
+    1. [Managing project tasks with Asana](#i-managing-project-tasks-with-asana)
+        - [Setting up new Projects](#setting-up-new-projects)
+        - [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
+        - [Sections](#sections)
+        - [Columns](#columns)
+        - [Tasks and subtasks](#tasks-and-subtasks)
+        - [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
+        - [Keeping track of agenda contents](#keeping-track-of-agenda-contents)
+        - [Following up on presentation comments](#following-up-on-presentation-comments)
+    1. [Managing meetings](#ii-managing-meetings)
+    1. [Weekly timesheets, recaps, and emails](#iii-weekly-timesheets-recaps-and-emails)
+        - [An example of the weekly email](#an-example-of-the-weekly-email)
+        - [Examples for the weekly recaps](#examples-for-the-weekly-recaps)
+    1. [Professional development meetings](#iv-professional-development-meetings)
+    1. [Keeping track of conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines)
+        - [Reminder system](#reminder-system)
+        - [Calendar with conference dates](#calendar-with-conference-dates)
+    1. [Partner data requests](#vi-partner-data-requests)
+    1. [Holidays and time off](#vii-holidays-and-time-off)
+        - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
+        - [Process for taking time off](#process-for-taking-time-off)
+2. [Keeping files organized](#2-keeping-files-organized)
+    1. [General project organization](#i-general-project-organization)
+    1. [Working with GitHub](#ii-working-with-github)
+        - [Setting up a new repo on GitHub and cloning locally](#setting-up-a-new-repo-on-github-and-cloning-locally)
+        - [Setting up an existing repo on the server or a new computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer)
+        - [If there is already a folder set up on the server or computer and that be linked to the GitHub project repo](#if-there-is-already-a-folder-set-up-on-the-server-or-computer-and-that-be-linked-to-the-github-project-repo)
+        - [If there is no folder set up on the server/computer:](#if-there-is-no-folder-set-up-on-the-servercomputer)
+        - [Updating the GitHub repo](#updating-the-github-repo)
+        - [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
+    1. [Working with Dropbox](#iii-working-with-dropbox)
+    1. [Working with the Kellogg Linux Cluster (KLC) server](#iv-working-with-the-kellogg-linux-cluster-klc-server)
+        - [Transferring files via FileZilla](#transferring-files-via-filezilla)
+        - [Accessing KLC](#accessing-klc)
+        - [Running scripts](#running-scripts)
+        - [Running files with a 00\_run script and no visible output](#running-files-with-a-00_run-script-and-no-visible-output)
+        - [Running do files (Stata) with visible output](#running-do-files-stata-with-visible-output)
+    1. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated)
+        - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)
+3. [Coding best practices](#3-coding-best-practices)
+    1. [Working with eps figures](#i-working-with-eps-figures)
+    1. [Generating different presentation versions](#ii-generating-different-presentation-versions)
+4. [Conducting Surveys](#4-conducting-surveys)
+    1. [Pre-fieldwork](#i-pre-fieldwork)
+        1. [Designing the survey](#i-designing-the-survey)
+        1. [Programming the survey in SurveyCTO](#ii-programming-the-survey-in-surveycto)
+        1. [IRB](#iii-irb)
+        1. [Piloting the survey](#iv-piloting-the-survey)
+        1. [Hiring of field team](#v-hiring-of-field-team)
+    1. [During fieldwork](#ii-during-fieldwork)
+        1. [Data collection team composition](#vi-data-collection-team-composition)
+        1. [Quality checks](#vii-quality-checks)
+        1. [Documenting mistakes](#viii-documenting-mistakes)
+        1. [High Frequency Checks (HFC)](#ix-high-frequency-checks-hfc)
+            - [**Open-ended and multiple-choice with** ***other*** **option questions**](#open-ended-and-multiple-choice-with-other-option-questions)
+        1. [Survey Report](#x-survey-report)
+    1. [Post-fieldwork](#iii-post-fieldwork)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
@@ -225,51 +220,43 @@ PIs receive valuable comments from conferences where they present their academic
         2. Immediately add items from tasks section to Asana.
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
 
-## iii. Weekly timesheets and recaps
+## iii. Weekly timesheets, recaps, and emails
 
-## Timesheets
-All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. You can start by using the [Excel timesheet template](https://github.com/skhiggins/ra_guide/blob/main/docs/Timesheet_template_individual.xlsx) or the [Google Sheet timesheet template](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
+These are useful tools for the PIs to keep track of the RAs' progress on each project and task. In our practice, we have our RAs sending a email every Monday morning that include
 
-### Filling out timesheets
-There are two options for filling out timesheets: filling out the timesheet directly or using [Clockify](https://clockify.me/).
+- The timesheet for the last week,
+- A recap of tasks done during the last week,
+- A summary list of priorities to be done in the current week.
 
-#### 1. Filling out Excel/Google timesheet directly
-One option is to keep the Excel/Google Sheet open and fill it in when you start and stop working on a task. You can use a couple of shortcuts to make filling out the timesheet easier: `Ctrl+;` to enter the current date in a cell and `Ctrl+Shift+;` to enter the current time. 
+Our recommendation is to save all the timesheets and recaps in a separate **Google Drive folder**. Specifically, we suggest
 
-#### 2. Using Clockify 
-[Clockify](https://clockify.me/) is a time tracking app for Mac OS X, Windows, and web browsers. With Clockify, you can register individual entries as parts of tasks and projects, which makes this app easily compatible with the format of timesheets: 
-- **Projects**: This field is useful when you want to track your time beyond RA work (for example, to keep yourself accountable when studying for the GRE or working on graduate school applications). You can make a project titled *RA work* and then only keep these entries for the timesheet.
-- **Tasks**: This field can be used for project names if you're working on multiple projects (or for multiple PIs), or for individual tasks that group several subtasks if you only work for one PI.
-- **Description**: Here, you should provide a short but useful description of the current task you're working on.
+- Create a Google Sheet *each week* to write the timesheets. You can check our template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
+- Create a Google Doc to save *all* the weekly recaps. See examples [below](#examples-of-the-weekly-recaps).
 
-	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_1.png" align="center" height="40%" width="40%">
-	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_2.png" align="center" height="25%" width="25%"> 
+> Tips on Google Sheet shortcuts: Click `Ctrl+;` to enter the current date, and `Ctrl+Shift+;` to enter the current time.
 
-To download your Clockify entries for last week:
-1. First, open https://app.clockify.me/reports/detailed. 
-2. Then, select the entries for last week and filter by project or client.
- 
-	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_3.png" align="center" height="35%" width="35%">
+### An example of the weekly email
 
-3. Afterward, click on **Export** and **Save as CSV**. 
+> Subject: Weekly email - [Name] (X hours)
+> 
+> ...
+> 
+> This is my timesheet for the last week: [link-to-last-week's-timesheet]
+> 
+> This is my timesheet for this week: [link-to-this-week's-timesheet]
+> 
+> And this is a summary of completed work last week and my priorities this week, which you can also check here: [link-to-the-recap-doc]
+> 
+> *[Copy the recap and the priorities in the email body to save one click for the PIs]*
+> 
+> ...
 
-	<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_4.png" align="center" height="30%" width="30%">
-
-4. Download the [Clockify processing script](https://github.com/skhiggins/ra_guide/blob/main/scripts/prepare_timesheet.R) and update the location of the Downloads folder. 
-5. Once you run the script, you can copy and paste the output directly into the timesheet. 
-
-By default, Clockify keeps the filters you used in your last session, so it is easier to download data after doing the initial set-up.
-
-The benefit of using Clockify is that you can easily track time for your other personal projects, whether taking a class or preparing applications. Additionally, you can analyze how you're spending your time, which can help you make necessary changes to your workday.
-
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/clockify/clock_5.png" align="center" height="60%" width="60%">
-
-## Weekly recaps
-You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). When hours are abnormal for any reason (e.g., taking 2 days of vacation) include the reason next to the hours.
+### Examples of the weekly recaps
 
 Below are a few example emails from other RAs:
 
-### RA working for 1 professor on 1 project
+#### RA working for 1 professor on 1 project
+
 Last week:
 1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
 2. Reviewed survey incentives documentation.
@@ -283,7 +270,7 @@ This week:
 3. Pilot the follow-up survey.
 4. Finish all the pending tasks for the prize analysis (review my writing and update scripts).
 
-### RA working for 1 professor on multiple projects
+#### RA working for 1 professor on multiple projects
 Last week:
 1. Project A:
 	1. Worked on updating non-adoption calculations (top priority for tomorrow’s meeting)
@@ -302,23 +289,23 @@ This week:
 2. Project B:
 	1. Finish replication
 
-### RA working separately for multiple professors
+#### RA working separately for multiple professors
 Last week:
-1. Sean:
+1. Professor 1:
 	1. Updated survey with profits note and num of employees questions
 	2. Tested new way to ask for banks/firms of POS in survey
 	3. Updated manual of surveyor
 	4. Summarized EMEC scripts
-2. Jacopo:
+2. Professor 2:
 	1. Analyzed the case of dscrgrp variable from ESS
 	2. Produced correlation tables (ESS, Gallup)
 	3. Produced new graphs about dscr variables
 
 This week:
-1. Sean:
+1. Professor 1:
 	1. Figure out what is going on with the NAs
 	2. Add pre-survey questions about finding the owner of the retail
-2. Jacopo:
+2. Professor 2:
 	1. Figure out what is going on with some countries and number of respondents in ESS
 
 ## iv. Professional development meetings
