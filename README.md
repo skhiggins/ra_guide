@@ -3,7 +3,7 @@
 Contents:
 
 1. [Administrative tasks](#1-administrative-tasks)
-    i. [Managing project tasks with Asana](#i-managing-project-tasks-with-asana)
+    i [Managing project tasks with Asana](#i-managing-project-tasks-with-asana)
         - [Setting up new Projects](#setting-up-new-projects)
         - [Using sections, columns, tasks and subtasks to keep track of work](#using-sections-columns-tasks-and-subtasks-to-keep-track-of-work)
         - [Sections](#sections)
