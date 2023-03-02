@@ -222,18 +222,18 @@ PIs receive valuable comments from conferences where they present their academic
 
 ## iii. Weekly timesheets, recaps, and emails
 
-These are useful tools for the PIs to keep track of the RAs' progress on each project and task. In our practice, we have our RAs sending a email every Monday morning that include
+These are important tools for the PIs to keep track of your progress on each project and task. The weekly email should be sent every Monday morning and include the following content:
 
 - The timesheet for the last week,
 - A recap of tasks done during the last week,
 - A summary list of priorities to be done in the current week.
 
-Our recommendation is to save all the timesheets and recaps in a separate **Google Drive folder**. Specifically, we suggest
+The timesheets and recaps should be saved in a separate **Google Drive folder**. Specifically,
 
-- Create a Google Sheet *each week* to write the timesheets. You can check our template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
+- Create a Google Sheet *each week* to write the timesheet. You can find a template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
 - Create a Google Doc to save *all* the weekly recaps. See examples [below](#examples-of-the-weekly-recaps).
 
-> Tips on Google Sheet shortcuts: Click `Ctrl+;` to enter the current date, and `Ctrl+Shift+;` to enter the current time.
+> **Tips on Google Sheet shortcuts:** Click `Ctrl+;` to enter the current date, and `Ctrl+Shift+;` to enter the current time.
 
 ### An example of the weekly email
 
@@ -252,58 +252,65 @@ Our recommendation is to save all the timesheets and recaps in a separate **Goog
 > ...
 
 ### Examples of the weekly recaps
-You should include timesheets in a weekly email sent every Monday morning recapping what the main things you accomplished during the last week were and your main priorities for the upcoming week in bullet points. Include as the subject of the email: [Name] Weekly email (X hours). Below are a few example emails from other RAs:
-#### RA working for 1 professor on 1 project
-Last week:
-1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
-2. Reviewed survey incentives documentation.
-3. Updated the tool data.
-4. Implemented, tested, and published the set of new questions in Qualtrics. I also updated the English and Spanish versions of the questionnaires.
-5. Minor tasks: Assigned tasks to Vicente, asked Nico about Google Ads consultation and posted his answer in Asana, emails with J-PAL, reviewed old budget documentation to switch to the research account after depleting TFI funds, and updated our master budget.
 
-This week:
-1. Work on NBER IRB submission.
-2. Review the last version of the follow-up survey.
-3. Pilot the follow-up survey.
-4. Finish all the pending tasks for the prize analysis (review my writing and update scripts).
+ Below are a few example emails from other RAs:
+
+#### RA working for 1 professor on 1 project
+
+> Last week:
+> 1. Worked on grant deliverable: updated prize analyses scripts and wrote the section in Overleaf.
+> 2. Reviewed survey incentives documentation.
+> 3. Updated the tool data.
+> 4. Implemented, tested, and published the set of new questions in Qualtrics. I also updated the English and Spanish versions of the questionnaires.
+> 5. Minor tasks: Assigned tasks to Vicente, asked Nico about Google Ads consultation and posted his answer in Asana, emails with J-PAL, reviewed old budget documentation to switch to the research account after depleting TFI funds, and updated our master budget.
+> 
+> This week:
+> 1. Work on NBER IRB submission.
+> 2. Review the last version of the follow-up survey.
+> 3. Pilot the follow-up survey.
+> 4. Finish all the pending tasks for the prize analysis (review my writing and update scripts).
+> 
 
 #### RA working for 1 professor on multiple projects
-Last week:
-1. Project A:
-	1. Worked on updating non-adoption calculations (top priority for tomorrow’s meeting)
-	2. Worked on updating survey weights
-	3. Generated output directories, updated previous tables and scripts
-2. Project B:
-	1. Set up new git locally in server,
-	2. Started replication (currently about 50% through).
 
-This week:
-1. Project A:
-	1. Update survey weights
-	2. Finish updating non-adoption calculations
-	3. Finish updating above-below median number of workers heterogeneity
-	4. Finish updating Asana with all previous comments
-2. Project B:
-	1. Finish replication
+> Last week:
+> 1. Project A:
+>     1. Worked on updating non-adoption calculations (top priority for tomorrow’s meeting)
+>     2. Worked on updating survey weights
+>     3. Generated output directories, updated previous tables and scripts
+> 2. Project B:
+>     1. Set up new git locally in server,
+>     2. Started replication (currently about 50% through).
+> 
+> This week:
+> 1. Project A:
+>     1. Update survey weights
+>     2. Finish updating non-adoption calculations
+>     3. Finish updating above-below median number of workers heterogeneity
+>     4. Finish updating Asana with all previous comments
+> 2. Project B:
+>     1. Finish replication
+> 
 
 #### RA working separately for multiple professors
-Last week:
-1. Professor 1:
-	1. Updated survey with profits note and num of employees questions
-	2. Tested new way to ask for banks/firms of POS in survey
-	3. Updated manual of surveyor
-	4. Summarized EMEC scripts
-2. Professor 2:
-	1. Analyzed the case of dscrgrp variable from ESS
-	2. Produced correlation tables (ESS, Gallup)
-	3. Produced new graphs about dscr variables
 
-This week:
-1. Professor 1:
-	1. Figure out what is going on with the NAs
-	2. Add pre-survey questions about finding the owner of the retail
-2. Professor 2:
-	1. Figure out what is going on with some countries and number of respondents in ESS
+> Last week:
+> 1. Professor 1:
+> 	 1. Updated survey with profits note and num of employees questions
+> 	 2. Tested new way to ask for banks/firms of POS in survey
+> 	 3. Updated manual of surveyor
+> 	 4. Summarized EMEC scripts
+> 2. Professor 2:
+> 	 1. Analyzed the case of dscrgrp variable from ESS
+> 	 2. Produced correlation tables (ESS, Gallup)
+> 	 3. Produced new graphs about dscr variables
+>
+> This week:
+> 1. Professor 1:
+> 	 1. Figure out what is going on with the NAs
+> 	 2. Add pre-survey questions about finding the owner of the retail
+> 2. Professor 2:
+> 	 1. Figure out what is going on with some countries and number of respondents in ESS
 
 ## iv. Professional development meetings
 We will have regularly scheduled (monthly or quarterly) professional development meetings to provide feedback to each other, help pinpoint strengths I can highlight in a letter of recommendation, discuss areas to improve (which will be a mandatory point in each meeting, so don’t interpret feedback on areas to improve as a bad sign), and check in on the status of your preparation for grad school applications.
@@ -321,13 +328,13 @@ In general, we can discuss the following things in the meeting:
 
 By 5pm the night before the meeting, please e-mail me with:
 
-1. Graduate school preparation:
-    - An outline of how your graduate school preparation is going (if applicable)
-2. RA work:
-    1. A brief summary of what you've accomplished in the last month.
-    2. Describe areas you can improve.
-    3. Discuss things you'd like to grow into.
-3. An outline of other issues you'd like to discuss
+> 1. Graduate school preparation:
+>     - An outline of how your graduate school preparation is going (if applicable)
+> 2. RA work:
+>     1. A brief summary of what you've accomplished in the last month.
+>     2. Describe areas you can improve.
+>     3. Discuss things you'd like to grow into.
+> 3. An outline of other issues you'd like to discuss
 
 At the end each meeting, remember to schedule next month's/quarter's meeting. You can set up a repeating Google Calendar event with an email reminder a few weeks before to confirm the date and time.
 
