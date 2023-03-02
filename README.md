@@ -253,6 +253,9 @@ The timesheets and recaps should be saved in a separate **Google Drive folder**.
 
 ### Examples of the weekly recaps
 
+Below are a few example emails from other RAs:
+
+
  Below are a few example emails from other RAs:
 
 #### RA working for 1 professor on 1 project
