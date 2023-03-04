@@ -222,7 +222,7 @@ PIs receive valuable comments from conferences where they present their academic
 
 ## iii. Weekly timesheets, recaps, and emails
 
-These are important tools for the PIs to keep track of your progress on each project and task. The weekly email should be sent every Monday morning and include the following content:
+All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. In addition, the weekly recaps help the PIs to keep track of your progress on each project and task. The timesheets and recaps should be sent to the PIs every Monday morning. Specifically, the weekly emails include the following content:
 
 - The timesheet for the last week,
 - A recap of tasks done during the last week,
