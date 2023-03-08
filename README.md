@@ -224,9 +224,11 @@ PIs receive valuable comments from conferences where they present their academic
 
 All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. In addition, the weekly recaps help the PIs to keep track of your progress on each project and task. The timesheets and recaps should be sent to the PIs every Monday morning. Specifically, the weekly emails include the following content:
 
-- The timesheet for the last week,
+- The number of hours worked last week in the header,
+	- If the hours worked are significantly lower than 40, include a sentence at the beginning of the email stating why (e.g., "I registered 32 hours last week because Monday was a holiday", or "Recorded 24 hours last week because I took 2 days of vacation off"),
 - A recap of tasks done during the last week,
-- A summary list of priorities to be done in the current week.
+- A summary list of priorities to be done in the current week,
+- The timesheet for the last week.
 
 The timesheets and recaps should be saved in a separate **Google Drive folder**. Specifically,
 
@@ -379,11 +381,10 @@ Many of our projects will have partners who help us implement the project. It is
 - **Paid university holidays**. You can view the university holiday calendar [here](https://www.northwestern.edu/hr/benefits/leaves-holidays/university-scheduled-holidays.html). In cases when you have to work on an official holiday, you can make up by taking an alternate workday off. For example, in your timesheet, you would register the working hours during that day and add a note in the “Time off” sheet that says you have an extra vacation day.
 - **Vacation time**. During your first year, you will have 2 weeks of vacation time. After you have completed one year, you will have 3 weeks of vacation time per year. Any week where you want to take a vacation day would have 8 fewer hours of expected work. You can view more details [here](https://www.northwestern.edu/hr/benefits/leaves-holidays/vacation-time.html).
 - **Personal floating holidays**. [Personal floating holidays](https://www.northwestern.edu/hr/benefits/leaves-holidays/personal-floating-holidays.html) are available for personal use and may be used as an extension of vacation time. The number of personal floating days available depend on the hire date. Hires from September 1 to November 30 (as it is the case with most RAs) will have 3 personal floating holidays available during the fiscal year (September 1 to August 31). Personal floating holidays unused at the end of the fiscal year are forfeited.
-- **Vacation payouts**. Staff members will be paid out their accrued and unused vacation time and personal floating holidays at the termination of their contract. You can find more information about the process [here](https://www.northwestern.edu/hr/benefits/leaves-holidays/vacation-time.html).
 - **Sick days**. 15 [sick days](https://www.northwestern.edu/hr/benefits/leaves-holidays/sick-time/incidental-sick-time.html) available per year.
 
 ### Process for taking time off
-1. Ask for permission to supervisors.
+1. Ask for permission to supervisors. Include in this email the current number of vacation days available and the number of vacation days requested.
 2. Add days off to [WFS](https://www.northwestern.edu/hr/essentials/hr-systems/timekeeping/instructions.html).
 3. Forward approval to department manager.
 4. Send supervisors a calendar invite for an all-day event titled “RA *name* day off” for the days you will be out.
