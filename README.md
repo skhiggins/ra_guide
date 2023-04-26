@@ -349,7 +349,7 @@ One important aspect of RA work is keeping track of deadlines related to present
 - Applications to dozens of conferences over the course of a single year to present their current work
 - Sending paper drafts to discussants on time
 - Preparing slides for presentations
-- Submitting grand deliverables
+- Submitting grant deliverables
 
 Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
 1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
