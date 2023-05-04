@@ -35,11 +35,6 @@ Contents:
         - [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
     1. [Working with Dropbox](#iii-working-with-dropbox)
     1. [Working with the Kellogg Linux Cluster (KLC) server](#iv-working-with-the-kellogg-linux-cluster-klc-server)
-        - [Transferring files via FileZilla](#transferring-files-via-filezilla)
-        - [Accessing KLC](#accessing-klc)
-        - [Running scripts](#running-scripts)
-        - [Running files with a 00\_run script and no visible output](#running-files-with-a-00_run-script-and-no-visible-output)
-        - [Running do files (Stata) with visible output](#running-do-files-stata-with-visible-output)
     1. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated)
         - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)
 3. [Coding best practices](#3-coding-best-practices)
@@ -546,47 +541,8 @@ To make changes in repos where you are not the collaborator, you need to fork (c
 - For large project folders you will need a Dropbox Plus account. The easiest way to get it is to buy it (choose the “billed yearly” option for the price discount – it costs about $100) and then send the receipt to [Adam Troutman](adam.troutman@kellogg.northwestern.edu) and you will receive reimbursement into the bank account where you are paid by Northwestern. 
 
 ## iv. Working with the Kellogg Linux Cluster (KLC) server
-Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
-1. Write scripts locally and push to GitHub.
-2. Upload raw files with FileZilla to KLC, update server with scripts using GitHub.
-3. Update results produced in server with GitHub.
+Processing of large datasets (dataset size approximating RAM size) should be done on KLC. You can find a comprehensive guide for using KLC [here](https://github.com/skhiggins/KLC_Guide)
 
-### Transferring files via FileZilla
-You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
-- **Host**: klc.ci.northwestern.edu
-- **Username**: Your NetID
-- **Password**: Password for your NetID
-- **Port**: 22
-To upload files, drag to the selected folder on the right pane. To download files, right click download.
-
-### Accessing KLC
-1.	If you’re not connected to a network at Northwestern, use [GlobalProtect](https://kb.northwestern.edu/page.php?id=94726) to connect via VPN.
-2.	If you have a Mac, open the terminal. If you have Windows, first install Cygwin so that you can use Linux commands from the command line, then you can open the command line with Windows+R, type cmd, Enter.
-3.	In the terminal or command line, type:
-    ```sh
-    ssh <netID>@klc.ci.northwestern.edu
-    ```
-4.	Enter the password you created for your netID.
-5.	Now you should be connected to KLC. 
-
-### Running scripts
-Once you have (1) set up GitHub to work with the KLC folder, (2) uploaded necessary data files, and (3) updated scripts using GitHub, there are two ways to run scripts on the server:
-#### Running files with a 00_run script and no visible output
-This first version will generate logs and return the command line for other work.
-```sh
-cd path_of_project_folder
-module load stata/17 # or module load R/4.0.3 [or latest; check what’s available with module avail R]
-nohup R CMD BATCH --vanilla -q scripts/00_run.do logs/00_run.log & # Nohup is so that if you get logged out the script keeps running.
-```
-#### Running do files (Stata) with visible output
-The second option will display the output on the terminal.
-```sh
-cd path_of_project_folder
-module load stata/17
-stata-mp
-# Set base directory and relative file paths
-do scripts/myscript.do
-```
 ## v. Keeping Github and Dropbox updated 
 - We use Dropbox as a backup folder and to easily share files with PIs. Since copying files manually to update the Dropbox is a tedious task, and we are interested in mantaining the folder up to date, we developed a shortcut that substitutes multiple git commands and copies the data to Dropbox. This reduces the time necessary to update the git (making it easier to make multiple commits and keep the git up to date), and makes it much easier to keep Dropbox in sync with the git (instead of having to manually copy files every time you make a commit).
 - Files we only want in Dropbox and not in the git (for example, admin files) will not be modified by this system, as they are never involved in a commit.
