@@ -215,26 +215,27 @@ PIs receive valuable comments from conferences where they present their academic
         2. Immediately add items from tasks section to Asana.
     2. Upload summaries to a Google Docs document, and include this link in all recap emails.
 
-## iii. Weekly timesheets, recaps, and emails
+## iii. Weekly emails with timesheet and recap
 
-All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. In addition, the weekly recaps help the PIs to keep track of your progress on each project and task. The timesheets and recaps should be sent to the PIs every Monday morning. Specifically, the weekly emails include the following content:
+All research assistants send a weekly email summarizing the tasks they've worked on last week and their priorities for the upcoming week. fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. In addition, the weekly recaps help the PIs to keep track of your progress on each project and task. The timesheets and recaps should be sent to the PIs every Monday morning. Specifically, the weekly emails include the following content:
 
-- The number of hours worked last week in the header,
-	- If the hours worked are significantly lower than 40, include a sentence at the beginning of the email stating why (e.g., "I registered 32 hours last week because Monday was a holiday", or "Recorded 24 hours last week because I took 2 days of vacation off"),
-- A recap of tasks done during the last week,
-- A summary list of priorities to be done in the current week,
-- The timesheet for the last week.
+- The subject line of the email should include the date and the number of hours worked the past week. 
+- Research assistants are expected to work an average of 40 hours per week, with the exception of holidays or vacation or sick days. If the hours worked are significantly lower than 40, include a sentence at the beginning of the email stating why (e.g., "I worked 32 hours last week because Monday was a holiday" or "I worked 24 hours last week because I took 2 days of vacation off").
+- A recap of tasks done during the last week.
+- A summary list of priorities to be done in the current week.
+- Links to the timesheet for the last week and the current week.
 
-The timesheets and recaps should be saved in a separate **Google Drive folder**. Specifically,
+The timesheets and recaps should be saved in a separate **Google Drive folder**. Specifically:
 
 - Create a Google Sheet *each week* to write the timesheet. You can find a template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
 - Create a Google Doc to save *all* the weekly recaps. See examples [below](#examples-of-the-weekly-recaps).
+- Create a folder in Google Drive that contains the 
 
 > **Tips on Google Sheet shortcuts:** Click `Ctrl+;` to enter the current date, and `Ctrl+Shift+;` to enter the current time.
 
 ### An example of the weekly email
 
-> Subject: Weekly email - [Name] (X hours)
+> Subject: Weekly email - [Name] [Date] (X hours)
 > 
 > ...
 > 
@@ -251,9 +252,6 @@ The timesheets and recaps should be saved in a separate **Google Drive folder**.
 ### Examples of the weekly recaps
 
 Below are a few example emails from other RAs:
-
-
- Below are a few example emails from other RAs:
 
 #### RA working for 1 professor on 1 project
 
