@@ -13,7 +13,7 @@ Contents:
         - [Keeping track of agenda contents](#keeping-track-of-agenda-contents)
         - [Following up on presentation comments](#following-up-on-presentation-comments)
     1. [Managing meetings](#ii-managing-meetings)
-    1. [Weekly timesheets, recaps, and emails](#iii-weekly-timesheets-recaps-and-emails)
+    1. [Weekly emails with timesheet and recap](#iii-weekly-emails-with-timesheet-and-recap)
         - [An example of the weekly email](#an-example-of-the-weekly-email)
         - [Examples for the weekly recaps](#examples-for-the-weekly-recaps)
     1. [Professional development meetings](#iv-professional-development-meetings)
