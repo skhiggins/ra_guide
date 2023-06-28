@@ -389,7 +389,7 @@ The process for days off if you are going to make up the hours and not take a va
 In academic projects, it's essential to keep files synchronized between multiple computers and backed-up over time. This allows to easily share scripts and results with PIs, keep raw and processed data backed up, maintain a record of changes in different files, and permit other RAs and PIs to work on the same papers, presentations and scripts. We accomplish all of these tasks with the help of Dropbox, Github and Overleaf: Dropbox mainly for backing-up data, GitHub to track the history of file changes and update files, and Overleaf to allow PIs to easily modify papers without having to use a Latex processor. This system also integrates with the KLC server for processing large datasets.
 
 Our system works the following way:
-1. **Local folder set-up and structure**. For existing projects, you should [clone the repo in your computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer). If this is a new project, start by setting up a local project folder with the following structure:
+1. **Local folder set-up and structure**. For existing projects, you should [clone the GitHub repo in your computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer). If this is a new project, start by setting up a local project folder with the following structure:
     - **admin**: This folder should contain administrative files, for example agreements, contracts, and grant proposals.
     - **data**: Only raw data go in this folder.
     - **documentation**: Documentation about the data goes in this folder.
@@ -410,9 +410,11 @@ Our system works the following way:
     - Git is an open-source version control system that helps track file changes across time. GitHub is a company that hosts Git repositories (project folders), including the full history of each file. For example, for any given script that is constantly synchronized with GitHub, you can access the different versions of the script you had backed up over time. You can learn more about Git and GitHub [here](https://docs.github.com/en/get-started/using-git/about-git). 
     - If you set up a new project folder from scratch, follow the [instructions](#setting-up-a-new-repo-on-github-and-cloning-locally) to set up a new GitHub repo.
     - Every time you are done making important changes to a file, want to back-up your work or share it with another project member, you should [push your changes to GitHub](#updating-the-github-repo). At the same time, during this process you will import the changes made (pushed) by other users to the repository (repo).
+    - GitHub is used to track changes to all files and folders except those in the folders `data` and `proc`. Since these folders are usually too large to sync, we omit them from the repo by including them in the `.gitignore` file.
     
 3. **Back up data with Dropbox**
     - Dropbox is mainly used for backing-up raw datasets. This can help reduce disk usage when working with large datasets, as you can delete the raw dataset from your local `data` folder and still be able to access it on Dropbox. We also use Dropbox for keeping constant backups of results and scripts that can easily be shared with PIs.
+    - Additionally, Dropbox can store processed datasets in `proc` that are too large to store locally.
 
 4. **Working on papers using Overleaf**
     - Some PIs prefer to work on papers using Overleaf, and it can also be useful to access and edit papers and presentations from any computer. To sync with GitHub, the users who want to make changes on Overleaf must have a Premium Overleaf subscription, either the Standard or Professional plan. Project members that don't need to make changes on Overleaf do not need to have a Premium subscription.
@@ -428,7 +430,8 @@ The system is summarized in the following chart:
 ## ii. Working with GitHub
 GitHub is used to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ### Setting up a new repo on GitHub and cloning locally
-1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
+1. Create new repo on GitHub, including a template `.gitignore` file (use corresponding Python, R or Stata template). The `.gitignore` file determines which files and folders will be ignored in every update. You should include the folders `data` and `proc` in the `.gitignore`. Additionally, there might be some file types you want to ignore (for example, auxiliary LaTeX files). The set of files to ignore will change depending on the project. 
+
 2. Type the following commands in terminal:
     1. Change to directory where repo will be cloned 
         ```sh
