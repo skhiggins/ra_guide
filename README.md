@@ -633,7 +633,7 @@ Additionally, there are [Zotero Connectors](https://www.zotero.org/download/conn
 
 Keep your references organized by includiong them in **collections**. You can create a new collection by clicking on **File** -\> **New Collection**. Then, simply drag and drop existing references to the desired collection, or add new references directly into the collection. New references added directly to a collection will also show up in My Library.
 
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_4.png" align="center" height="45%" width="45%">   
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_4.png" align="center" height="35%" width="35%">   
 
 ### Sharing a collection with Zotero Groups
 
@@ -668,11 +668,11 @@ Follow these steps to install Better BibTeX:
 1.  Download the [latest Better BibTeX release](https://github.com/retorquere/zotero-better-bibtex/releases/latest) (the .xpi file).
 2.  Click on **Tools** -\> **Add-ons**, then click the **Settings** button (gear icon), and then choose **Install Add-on From File**. Select the .xpi file you downloaded.
 
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_8.png" align="center" height="35%" width="35%">   
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_8.png" align="center" height="25%" width="25%">   
 
 Once you have Better BibTex installed, you can right-click the group collection and select **Export Collection**, choose the **Better BibLaTeX** format, and tick **Keep updated** and **Background export**.
 
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_9.png" align="center" height="45%" width="45%">   
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_9.png" align="center" height="35%" width="35%">   
 
 	    
 # 3. Coding best practices
