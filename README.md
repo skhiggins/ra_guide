@@ -194,6 +194,12 @@ Follow these steps to add tasks to the agenda:
 
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_5.png" align="center" height="25%" width="25%"> 
 
+### Email notifications
+You should modify the settings in Asana to activate email notifications for activity updates and mentions (see below). Make sure that spam filters on your emails are not sending Asana emails to spam. Additionally, it’s useful to activate email notifications for daily summaries, which will report new tasks and tasks which have upcoming deadlines. 
+
+  <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_emails.png" align="center" height="50%" width="50%"> 
+
+
 ### Following up on presentation comments
 PIs receive valuable comments from conferences where they present their academic projects. Asana can help convert these comments to actionable tasks, and by grouping comments by topic, prioritize which should be worked on first.
 
