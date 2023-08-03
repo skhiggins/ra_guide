@@ -11,6 +11,7 @@ Contents:
         - [Tasks and subtasks](#tasks-and-subtasks)
         - [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
         - [Keeping track of agenda contents](#keeping-track-of-agenda-contents)
+        - [Email notifications](#email-notifications)
         - [Following up on presentation comments](#following-up-on-presentation-comments)
     1. [Managing meetings](#ii-managing-meetings)
     1. [Weekly emails with timesheet and recap](#iii-weekly-emails-with-timesheet-and-recap)
