@@ -1,5 +1,9 @@
 # *Guidelines for Research Assistants* <!-- omit from toc --> 
 
+Welcome to the guidelines for research assistants and research managers. This document will help you understand the expectations and responsibilities of your role, as well as some tips and best practices to make your work more efficient and effective. This includes guidelines on organization and dealing with regular administrative tasks, keeping files organized, coding best practices, and conducting surveys. This is not a programming guide. If you need help with coding, programming, or data analysis, please refer to my [R Guide](https://github.com/skhiggins/R_guide), [Stata Guide](https://github.com/skhiggins/Stata_guide), and [Python Guide](https://github.com/skhiggins/Python_guide). Additionally, you can refer to [R for Economists](https://clandinq.github.io/recon/), which includes some specific tips and functions for generating figures and tables.
+
+One of the most important things to keep in mind when working with professors is that they are extremely busy. They have many competing demands on their time and attention, such as teaching, traveling, meeting, applying, managing, advising, overseeing, recruiting, reading, writing, and more. These activities require a lot of time, energy, and focus. They also involve a lot of coordination, communication, and collaboration with other people. Follow this guide as closely as possible to help create a smooth workflow in the project, and always remember to be proactive with research tasks and communication.
+
 Contents:
 
 1. [Administrative tasks](#1-administrative-tasks)
