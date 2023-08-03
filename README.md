@@ -94,9 +94,9 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="30%" width="30%">
         
-    5. By default, the project will have three columns: To do, In progress, and Complete. Add a fourth column called "Archive".
+    5. By default, the project will have three columns: To do, In progress, and Complete. Add a fourth column called "Reviewing", and put this column between "In progress" and "Complete".
         
-        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_8_alt.png" align="center" height="60%" width="60%">
         
     6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project, since most tasks will fall into the Analysis category, Agenda is used for meetings, and Admin will contain administrative tasks. More details are explained in the [following part of the guide](https://github.com/skhiggins/ra_guide/#using-sections-to-keep-track-of-different-types-of-tasks).
 
@@ -135,10 +135,10 @@ Feel free to set up new sections if necessary.
 Most sections should have the following columns:
 - **To do**: Tasks that have not been started yet.
 - **In progress**: Tasks you are currently working on.
-- **Complete**: Recently completed tasks.
-- **Archive**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
+- **Reviewing**: Recently completed tasks awaiting review.
+- **Complete**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
 
-When completing a task, move it to the **Complete** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs (principal investigators). If it's a minor task that does not to be discussed in a meeting, you can assign a subtask to a PI so that they review what you've done, or alternatively, tag them in a comment. Once the task has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Archive**.
+When completing a task, move it to the **Reviewing** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs (principal investigators). If it's a minor task that does not to be discussed in a meeting, you can assign a subtask to a PI so that they review what you've done, or alternatively, tag them in a comment. Once the task has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Complete**.
 
 #### Tasks and subtasks
 All the work you do can be added as tasks and subtasks. The following is an example of a couple of tasks in Asana:
@@ -201,11 +201,11 @@ PIs receive valuable comments from conferences where they present their academic
 
 3. Add comments to the **Comments** section on Asana. Group comments by topic, and make sure to assign actionable comments to the **Analysis** section.
 
-    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_2.png" align="center" height="50%" width="45%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_2_alt.png" align="center" height="50%" width="45%"> 
     <br/><br/>
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_3.png" align="center" height="40%" width="40%"> 
     
-4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Complete** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Archive** column.
+4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Reviewing** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Complete** column.
 
 ## ii. Managing meetings
 1. **Send meeting agendas before meetings.** 
