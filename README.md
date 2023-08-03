@@ -208,15 +208,28 @@ PIs receive valuable comments from conferences where they present their academic
 4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Complete** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Archive** column.
 
 ## ii. Managing meetings
-1.	Send a meeting agenda **at least an hour before each meeting** with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
-    1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
-    2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
-    3. When tasks are complete, mark as complete and move to a section titled “Complete”.
-2.	Send a meeting recap after each meeting with detailed notes about what was discussed in each meeting.
-    1. Each item should have a discussion and tasks section.
-        1. In the discussion section, write comments when possible as problem + potential solution.
-        2. Immediately add items from tasks section to Asana.
-    2. Upload summaries to a Google Docs document, and include this link in all recap emails.
+1. **Send meeting agendas before meetings.** 
+    - Send a meeting agenda **between one and two hours before each meeting** with detailed items to discuss in the meeting and attaching all content relevant to the meeting. This timing works well for PIs to be reminded about the call and have enough time to look at the agenda.
+    - An easy way to remember to send meeting agendas is to set a calendar event with an email reminder for the agenda a couple of hours before each regular meeting.
+    - You can keep track of content for each meeting in Asana by adding tasks that need to be discussed to a project titled “Agenda”. You can then set separate sections for each recurring meeting.
+
+2. **Send meeting recaps after meetings.**
+
+    These recaps should have (1) detailed notes, with (2) actionable tasks, (3) tasks and conclusions posted in Asana and (4) be backed up in a Google Docs:
+    1. **Detailed notes**. Send a meeting recap after each meeting with detailed notes about what was discussed in each meeting. You can take notes during meetings and record more complicated or important meetings that you might want to review afterwards. Send this recap as soon as possible after the meeting.
+    2. **Organizing recaps**. Each item should have a discussion and tasks section. In the discussion section, write comments when possible as problem + potential solution. Here is an example of a recent recap:
+    
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/meetings/meeting_1.png" align="center" height="60%" width="60%">
+
+    4. **Adding tasks and conclusions to Asana**. Immediately add items from the tasks section of each item as Asana tasks or subtasks, and post the discussion under the relevant Asana task. Here is an example of this:
+    
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/meetings/meeting_2.png" align="center" height="55%" width="55%">
+
+    5. **Back up to Google Docs**. Upload summaries to a Google Docs document, and include this link in all recap emails.
+
+    If you use Apple Mail, you can create email templates for meeting agendas and recaps that are easy to fill out. You can find a guide for this [here](https://www.ericleeclark.com/create-email-templates-in-apple-mail-mojave/) and an example below:
+
+   <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/meetings/meeting_3.png" align="center" height="40%" width="40%">
 
 ## iii. Weekly emails with timesheet and recap
 
