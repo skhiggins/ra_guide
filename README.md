@@ -110,7 +110,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="25%" width="25%">        
         
-    9. Once all projects have been set up, invite all researchers and RAs as collaborators to the team. Once they have accepted your invitation, you can (and should) invite them to join the rest of the projects.  Ask collaborators (by assigning them a first task) to input their full name and a picture so that it's easy to identify task ownership. You can invite new members to a maximum of three projects. You can see who is a member of each project on the left of the search bar: 
+    9. Once all projects have been set up, invite all researchers and RAs (research assistants) as collaborators to the team. Once they have accepted your invitation, you can (and should) invite them to join the rest of the projects.  Ask collaborators (by assigning them a first task) to input their full name and a picture so that it's easy to identify task ownership. You can invite new members to a maximum of three projects. You can see who is a member of each project on the left of the search bar: 
     
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/colab_1.png" align="center" height="40%" width="40%">        
         
@@ -138,7 +138,7 @@ Most sections should have the following columns:
 - **Complete**: Recently completed tasks.
 - **Archive**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
 
-When completing a task, move it to the **Complete** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs. If it's a minor task that does not to be discussed in a meeting, you can assign a subtask to a PI so that they review what you've done, or alternatively, tag them in a comment. Once the task has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Archive**.
+When completing a task, move it to the **Complete** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs (principal investigators). If it's a minor task that does not to be discussed in a meeting, you can assign a subtask to a PI so that they review what you've done, or alternatively, tag them in a comment. Once the task has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Archive**.
 
 #### Tasks and subtasks
 All the work you do can be added as tasks and subtasks. The following is an example of a couple of tasks in Asana:
@@ -441,7 +441,7 @@ Our system works the following way:
 
 The system is summarized in the following chart:
 
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
+   <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
 
 ## ii. Working with GitHub
 GitHub is used to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
