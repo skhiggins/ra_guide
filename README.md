@@ -47,7 +47,7 @@ Contents:
 3. [Coding best practices](#3-coding-best-practices)
     1. [Working with eps figures](#i-working-with-eps-figures)
     1. [Generating different presentation versions](#ii-generating-different-presentation-versions)
-4. [Conducting Surveys](#4-conducting-surveys)
+4. [Conducting surveys](#4-conducting-surveys)
     1. [Pre-fieldwork](#i-pre-fieldwork)
         1. [Designing the survey](#i-designing-the-survey)
         1. [Programming the survey in SurveyCTO](#ii-programming-the-survey-in-surveycto)
@@ -62,6 +62,7 @@ Contents:
             - [**Open-ended and multiple-choice with** ***other*** **option questions**](#open-ended-and-multiple-choice-with-other-option-questions)
         1. [Survey Report](#x-survey-report)
     1. [Post-fieldwork](#iii-post-fieldwork)
+5. [New research assistant onboarding](#5-new-research-assistant-onboarding)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
