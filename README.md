@@ -1119,3 +1119,15 @@ Here is an example of the [survey report](https://github.com/skhiggins/ra_guide/
 ## iii. Post-fieldwork
 
 Work in progress.
+
+# 5. New research assistant onboarding
+Once you have read this guide, activated your work email, received your new computer, and signed up for Dropbox Plus if necessary, these are the steps you should take to set up a project on your computer.
+1. Install Dropbox and download the project’s Dropbox folder.
+    - You can make large files or folders available online only, and then download when you have to use them. To do this, right-click on a file or folder and select **Make online only**.
+3. [Set up a local copy of the GitHub repository](https://github.com/skhiggins/ra_guide/tree/main#if-there-is-no-folder-set-up-on-the-servercomputer).
+    - For this, you will need to receive access from the GitHub repo administrator (usually the PI) and [generate a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to log in.
+    - It's recommended to keep the local copy of the GitHub repository's folder closer to the root directory of your computer. This ensures that the path is shorter, making it more convenient when changing directories to pull and push to the repository. For example, you can have `C:\Users\User\Work\Project` in Windows and `/Users/User/Work/Project` in Mac.
+4. Copy the `data` and `proc` folders from Dropbox into the local copy of the GitHub repo.
+    - Once you have copied these folders, you can make the Dropbox versions online-only to save space.
+
+Now you should be ready to run any script in your own computer.
