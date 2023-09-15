@@ -1132,3 +1132,6 @@ Once you have read this guide, activated your work email, received your new comp
     - Once you have copied these folders, you can make the Dropbox versions online-only to save space.
 
 Now you should be ready to run any script in your own computer.
+
+# 6. Acknowledgement
+This guide has benefitted from contributions from several current and former RAs, including [César Landín](https://github.com/clandinq), [Qiuyu Li](https://github.com/Qiuyu-Li), [Anahí Reyes](https://github.com/AnahiRM), [Erick Molina](https://github.com/ErickFMolina). 
