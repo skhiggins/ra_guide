@@ -1,8 +1,10 @@
 # *Guidelines for Research Assistants* <!-- omit from toc --> 
 
-Welcome to the guidelines for research assistants and research managers. This document will help you understand the expectations and responsibilities of your role, as well as some tips and best practices to make your work more efficient and effective. This includes guidelines on organization and dealing with regular administrative tasks, keeping files organized, coding best practices, and conducting surveys. This is not a programming guide. If you need help with coding, programming, or data analysis, please refer to my [R Guide](https://github.com/skhiggins/R_guide), [Stata Guide](https://github.com/skhiggins/Stata_guide), and [Python Guide](https://github.com/skhiggins/Python_guide). Additionally, you can refer to [R for Economists](https://clandinq.github.io/recon/), which includes some specific tips and functions for generating figures and tables.
+Welcome to the guidelines for research assistants and research managers. This document will help you understand the expectations and responsibilities of your role, as well as some tips and best practices to make your work more efficient and effective. This includes guidelines on organization and dealing with regular administrative tasks, keeping files organized, coding best practices, and conducting surveys. 
 
-One of the most important things to keep in mind when working with professors is that they are extremely busy. They have many competing demands on their time and attention, such as teaching, traveling, meeting, applying, managing, advising, overseeing, recruiting, reading, writing, and more. These activities require a lot of time, energy, and focus. They also involve a lot of coordination, communication, and collaboration with other people. Follow this guide as closely as possible to help create a smooth workflow in the project, and always remember to be proactive with research tasks and communication.
+This is not a programming guide. If you need help with coding, programming, or data analysis, please refer to my [R Guide](https://github.com/skhiggins/R_guide), [Stata Guide](https://github.com/skhiggins/Stata_guide), and [Python Guide](https://github.com/skhiggins/Python_guide). Additionally, you can refer to [R for Economists](https://clandinq.github.io/recon/), which includes some specific tips and functions for generating figures and tables with R.
+
+One of the most important things to keep in mind when working with professors is that they are extremely busy. They have many competing demands on their time and attention, such as teaching, traveling, presenting at seminars and conferences, meeting, applying for grants, managing research and teaching assistants, advising, overseeing projects, recruiting, reviewing, serving as discussant, writing papers, and more. These activities require a lot of time, energy, and focus. They also involve a lot of coordination, communication, and collaboration with other people. Follow this guide as closely as possible to help create a smooth workflow in the project, and always remember to be proactive with research tasks and communication.
 
 Contents:
 
@@ -63,6 +65,7 @@ Contents:
         1. [Survey Report](#x-survey-report)
     1. [Post-fieldwork](#iii-post-fieldwork)
 5. [New research assistant onboarding](#5-new-research-assistant-onboarding)
+6. [Acknowledgments](#6-acknowledgments)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
@@ -1127,11 +1130,11 @@ Once you have read this guide, activated your work email, received your new comp
     - You can make large files or folders available online only, and then download when you have to use them. To do this, right-click on a file or folder and select **Make online only**.
 3. [Set up a local copy of the GitHub repository](https://github.com/skhiggins/ra_guide/tree/main#if-there-is-no-folder-set-up-on-the-servercomputer).
     - For this, you will need to receive access from the GitHub repo administrator (usually the PI) and [generate a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to log in.
-    - It's recommended to keep the local copy of the GitHub repository's folder closer to the root directory of your computer. This ensures that the path is shorter, making it more convenient when changing directories to pull and push to the repository. For example, you can have `C:\Users\User\Work\Project` in Windows and `/Users/User/Work/Project` in Mac.
+    - It's recommended to keep the local copy of the GitHub repository's folder closer to the root directory of your computer. This ensures that the path is shorter, making it more convenient when changing directories to pull and push to the repository. For example, you can create `C:\GitHub\` in Windows and clone each GitHub repo to that parent directory. <!-- what would the equivalent be in Mac?  and `/Users/User/Work/Project` in Mac. -->
 4. Copy the `data` and `proc` folders from Dropbox into the local copy of the GitHub repo.
     - Once you have copied these folders, you can make the Dropbox versions online-only to save space.
 
 Now you should be ready to run any script in your own computer.
 
-# 6. Acknowledgement
+# 6. Acknowledgments
 This guide has benefitted from contributions from several current and former RAs, including [César Landín](https://github.com/clandinq), [Qiuyu Li](https://github.com/Qiuyu-Li), [Anahí Reyes](https://github.com/AnahiRM), [Erick Molina](https://github.com/ErickFMolina). 
