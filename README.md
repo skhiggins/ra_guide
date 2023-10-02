@@ -31,6 +31,9 @@ Contents:
     1. [Holidays and time off](#vii-holidays-and-time-off)
         - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
         - [Process for taking time off](#process-for-taking-time-off)
+    1. [Applying for Grants](#viii-applying-for-grants)
+        - [Protocol](#protocol)
+        - [Relevant information](#relevant-information)
 2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization)
     1. [Working with GitHub](#ii-working-with-github)
@@ -417,6 +420,19 @@ Many of our projects will have partners who help us implement the project. It is
 4. Send supervisors a calendar invite for an all-day event titled “RA *name* day off” for the days you will be out.
 
 The process for days off if you are going to make up the hours and not take a vacation day are steps 1 and 3 above.
+
+## viii. Applying for grants
+
+### Protocol 
+When the PI shares a potential grant opportunity you should follow this steps. 
+1. Check eligibility based on both country and topic
+2. Prepare a summary of the grant details for the PIs
+3. Create Asana tasks with internal deadlines 
+
+### Relevant information
+1. Internal deadlines are 1 month before the grant due date for ones submitted by a university (send a draft of the budget, proposal narrative, and budget narrative to the grants officer by then).
+2. Grants application require inputs from RAs, Fieldwork team, PIs, and administrative staff. You need to be aware of the status of every part of the application to remain on time with the internal deadlines. 
+3. Verify that the numbers in the grant application are consistent. Budget, Sample Size, Number of participants, Costs, etc. 
 
 # 2. Keeping files organized
 ## i. General project organization
