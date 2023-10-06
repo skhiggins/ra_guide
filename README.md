@@ -34,6 +34,9 @@ Contents:
     1. [Applying for Grants](#viii-applying-for-grants)
         - [Protocol](#protocol)
         - [Relevant information](#relevant-information)
+    1. [Backup of relevant files](#ix-backup-of-relevant-files)
+        - [Files to backup](#files-to-backup)
+        - [Protocol](#protocol)
 2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization)
     1. [Working with GitHub](#ii-working-with-github)
@@ -433,6 +436,21 @@ When the PI shares a potential grant opportunity you should follow this steps.
 1. Internal deadlines are 1 month before the grant due date for ones submitted by a university (send a draft of the budget, proposal narrative, and budget narrative to the grants officer by then).
 2. Grants application require inputs from RAs, Fieldwork team, PIs, and administrative staff. You need to be aware of the status of every part of the application to remain on time with the internal deadlines. 
 3. Verify that the numbers in the grant application are consistent. Budget, Sample Size, Number of participants, Costs, etc. 
+
+## ix. Backup of relevant files
+
+### Relevant files
+Relevant files includes any information/documentation that is extremely valuable for the project, e.g, 
+1. Administrative/confidential data
+2. Running meetings agendas (as it includes discussions and relevant decisions)
+3. Documentation/Questionnaires
+4. Any other relevant information for the particular project
+
+### Protocol
+The best practice is to do the backups in a systematic manner. Usually every month on a fixed date is the best. 
+1. Create the backups and save them in Dropbox
+2. Save the information on an external hard drive
+3. Repeat this process every month
 
 # 2. Keeping files organized
 ## i. General project organization
