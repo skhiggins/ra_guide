@@ -37,6 +37,9 @@ Contents:
     1. [Backup of relevant files](#ix-backup-of-relevant-files)
         - [Files to backup](#files-to-backup)
         - [Protocol](#protocol)
+        - [Backup of Survey data](#backup-of-survey-data)
+
+
 2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization)
     1. [Working with GitHub](#ii-working-with-github)
@@ -439,18 +442,24 @@ When the PI shares a potential grant opportunity you should follow this steps.
 
 ## ix. Backup of relevant files
 
-### Relevant files
+### Files to backup
 Relevant files includes any information/documentation that is extremely valuable for the project, e.g, 
 1. Administrative/confidential data
-2. Running meetings agendas (as it includes discussions and relevant decisions)
-3. Documentation/Questionnaires
-4. Any other relevant information for the particular project
+2. Raw Survey Data
+3. Running meetings agendas (as it includes discussions and relevant decisions)
+4. Documentation/Questionnaires
+5. Any other relevant information for the particular project
 
 ### Protocol
 The best practice is to do the backups in a systematic manner. Usually every month on a fixed date is the best. 
 1. Create the backups and save them in Dropbox
 2. Save the information on an external hard drive
-3. Repeat this process every month
+3. Repeat this process every monthter
+
+### Backup of Survey Data
+Raw survey data collected by the project team should also be backup. Nevertheless, this raw survey data usually contains Personally Identifiable Information (PII). To deal with PII we use encrypted files via software such as Boxcryptor or Cryptomator. 
+To backup the data on our external hard drive, we should first create a copy of the raw survey data only removing any variable that contains PII, and then you can create a backup on the external hard drive. 
+
 
 # 2. Keeping files organized
 ## i. General project organization
