@@ -433,7 +433,14 @@ The process for days off if you are going to make up the hours and not take a va
 When the PI shares a potential grant opportunity you should follow this steps. 
 1. Check eligibility based on both country and topic
 2. Prepare a summary of the grant details for the PIs
+    a. Budget amount and the limitations on the usage of funding
+    b. How much involved the application and budget is? 
+    c. What are the requirements to start an application? This can range from filling a form to submitting a full proposal
+    d. Any other application requirement
+    e. Project requirements: Final expected product, dissemination, etc.
+    f. What do the grant fund? Is the project a good fit?
 3. Create Asana tasks with internal deadlines 
+4. Prepare a draft with the most relevant parts that you can fill
 
 ### Relevant information
 1. Internal deadlines are 1 month before the grant due date for ones submitted by a university (send a draft of the budget, proposal narrative, and budget narrative to the grants officer by then).
