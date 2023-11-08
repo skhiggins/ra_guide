@@ -31,6 +31,22 @@ Contents:
     1. [Holidays and time off](#vii-holidays-and-time-off)
         - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
         - [Process for taking time off](#process-for-taking-time-off)
+    1. [Applying for Grants](#viii-applying-for-grants)
+        - [Protocol](#protocol)
+        - [Relevant information](#relevant-information)
+    1. [Backup of relevant files](#ix-backup-of-relevant-files)
+        - [Files to backup](#files-to-backup)
+        - [Protocol](#protocol)
+        - [Backup of Survey data](#backup-of-survey-data)
+    1. [Presenting results to PIs](#presenting-results-to-pis)
+        - [Comments in Asana](#comments-in-asana)
+        - [Reports](#reports)
+        - [Tables and figures](#tables-and-figures)
+    1. [Preparing figures and tables for presentation slides and paper](#preparing-figures-and-tables-for-presentation-slides-and-paper)
+        - [Presentation slides](#presentation-slides)
+        - [Paper draft](#paper-draft)
+
+
 2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization)
     1. [Working with GitHub](#ii-working-with-github)
@@ -417,6 +433,78 @@ Many of our projects will have partners who help us implement the project. It is
 4. Send supervisors a calendar invite for an all-day event titled “RA *name* day off” for the days you will be out.
 
 The process for days off if you are going to make up the hours and not take a vacation day are steps 1 and 3 above.
+
+## viii. Applying for grants
+
+### Protocol 
+When the PI shares a potential grant opportunity you should follow this steps. 
+1. Check eligibility based on both country and topic
+2. Prepare a summary of the grant details for the PIs
+    a. Budget amount and the limitations on the usage of funding
+    b. How much involved the application and budget is? 
+    c. What are the requirements to start an application? This can range from filling a form to submitting a full proposal
+    d. Any other application requirement
+    e. Project requirements: Final expected product, dissemination, etc.
+    f. What do the grant fund? Is the project a good fit?
+3. Create Asana tasks with internal deadlines 
+4. Prepare a draft with the most relevant parts that you can fill
+
+### Relevant information
+1. Internal deadlines are 1 month before the grant due date for ones submitted by a university (send a draft of the budget, proposal narrative, and budget narrative to the grants officer by then).
+2. Grants application require inputs from RAs, Fieldwork team, PIs, and administrative staff. You need to be aware of the status of every part of the application to remain on time with the internal deadlines. 
+3. Verify that the numbers in the grant application are consistent. Budget, Sample Size, Number of participants, Costs, etc. 
+
+## ix. Backup of relevant files
+
+### Files to backup
+Relevant files includes any information/documentation that is extremely valuable for the project, e.g, 
+1. Administrative/confidential data
+2. Raw Survey Data
+3. Running meetings agendas (as it includes discussions and relevant decisions)
+4. Documentation/Questionnaires
+5. Any other relevant information for the particular project
+
+### Protocol
+The best practice is to do the backups in a systematic manner. Usually every month on a fixed date is the best. 
+1. Create the backups and save them in Dropbox
+2. Save the information on an external hard drive
+3. Repeat this process every monthter
+
+### Backup of Survey Data
+Raw survey data collected by the project team should also be backup. Nevertheless, this raw survey data usually contains Personally Identifiable Information (PII). To deal with PII we use encrypted files via software such as Boxcryptor or Cryptomator. 
+To backup the data on our external hard drive, we should first create a copy of the raw survey data only removing any variable that contains PII, and then you can create a backup on the external hard drive. 
+
+## x. Presenting results to PIs
+
+### Comments in Asana
+1. Give context – what was the last decision made on how to do the task? What specific functions did you accomplish?
+2. Be concise, but offer sufficient detail to understand both the problem and the solution.
+    a. If there is detailed documentation that you want your PI to look at, link it in your comment.
+3. Always propose potential solutions (ideally, more than one). Include enough information about the solutions for someone who hasn’t done the research to understand pros/cons, trade-offs and make a decision.
+4. Avoid open-ended questions. Try to always be as specific as possible when making a question.
+5. It is OK to follow-up if this is important and you have not received an answer.
+6. When posting results you should describe the main findings. 
+
+### Reports
+1. When creating a report that include regressions, plots of the questions, descriptive statistics, etc, make sure that every variable is labeled correctly. A variable named q2_58 is not descriptive enough. You should provide the meaning of that variable, and if any clarification is necessary you should include it as a footnote. 
+2. Make the information easily available. You can include hyperlinks to the sections or to each result. 
+3. Any additional information that the PI's should know relevant to the report should be included in it. 
+
+### Tables and figures
+1. Your tables and figures should be correctly labeled. You should include descriptive names, relevant footnotes, labeled axes, etc.
+2. Before presenting your results, you should always review your results to catch any error. You should check the number of observations, the size of the coefficients, etc. In general, think about it as your research. Do not only produce what you are told to, try to understand if your results make sense. 
+3. Check for outliers and understand the sample that is being used in each regression table/figure.
+
+## Preparing figures and tables for presentation slides and paper
+
+### Presentation slides
+1. The tables and figures must be included with relative paths and not full paths.
+2. All of the results in the slides should be created by scripts. 
+3. Before every presentation the results must be updated to consider the last available data.
+
+### Paper Draft
+1. The numbers, tables, and figures must be included with relative paths and not full paths.
+2. All of the results in the paper should be created by scripts (This include all the numbers in the paper) 
 
 # 2. Keeping files organized
 ## i. General project organization
