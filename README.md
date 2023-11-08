@@ -38,6 +38,13 @@ Contents:
         - [Files to backup](#files-to-backup)
         - [Protocol](#protocol)
         - [Backup of Survey data](#backup-of-survey-data)
+    1. [Presenting results to PIs](#presenting-results-to-pis)
+        - [Comments in Asana](#comments-in-asana)
+        - [Reports](#reports)
+        - [Tables and figures](#tables-and-figures)
+    1. [Preparing figures and tables for presentation slides and paper](#preparing-figures-and-tables-for-presentation-slides-and-paper)
+        - [Presentation slides](#presentation-slides)
+        - [Paper draft](#paper-draft)
 
 
 2. [Keeping files organized](#2-keeping-files-organized)
@@ -467,6 +474,37 @@ The best practice is to do the backups in a systematic manner. Usually every mon
 Raw survey data collected by the project team should also be backup. Nevertheless, this raw survey data usually contains Personally Identifiable Information (PII). To deal with PII we use encrypted files via software such as Boxcryptor or Cryptomator. 
 To backup the data on our external hard drive, we should first create a copy of the raw survey data only removing any variable that contains PII, and then you can create a backup on the external hard drive. 
 
+## x. Presenting results to PIs
+
+### Comments in Asana
+1. Give context – what was the last decision made on how to do the task? What specific functions did you accomplish?
+2. Be concise, but offer sufficient detail to understand both the problem and the solution.
+    a. If there is detailed documentation that you want your PI to look at, link it in your comment.
+3. Always propose potential solutions (ideally, more than one). Include enough information about the solutions for someone who hasn’t done the research to understand pros/cons, trade-offs and make a decision.
+4. Avoid open-ended questions. Try to always be as specific as possible when making a question.
+5. It is OK to follow-up if this is important and you have not received an answer.
+6. When posting results you should describe the main findings. 
+
+### Reports
+1. When creating a report that include regressions, plots of the questions, descriptive statistics, etc, make sure that every variable is labeled correctly. A variable named q2_58 is not descriptive enough. You should provide the meaning of that variable, and if any clarification is necessary you should include it as a footnote. 
+2. Make the information easily available. You can include hyperlinks to the sections or to each result. 
+3. Any additional information that the PI's should know relevant to the report should be included in it. 
+
+### Tables and figures
+1. Your tables and figures should be correctly labeled. You should include descriptive names, relevant footnotes, labeled axes, etc.
+2. Before presenting your results, you should always review your results to catch any error. You should check the number of observations, the size of the coefficients, etc. In general, think about it as your research. Do not only produce what you are told to, try to understand if your results make sense. 
+3. Check for outliers and understand the sample that is being used in each regression table/figure.
+
+## Preparing figures and tables for presentation slides and paper
+
+### Presentation slides
+1. The tables and figures must be included with relative paths and not full paths.
+2. All of the results in the slides should be created by scripts. 
+3. Before every presentation the results must be updated to consider the last available data.
+
+### Paper Draft
+1. The numbers, tables, and figures must be included with relative paths and not full paths.
+2. All of the results in the paper should be created by scripts (This include all the numbers in the paper) 
 
 # 2. Keeping files organized
 ## i. General project organization
