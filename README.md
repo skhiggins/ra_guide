@@ -703,6 +703,13 @@ Once you have Better BibTex installed, you can right-click the group collection 
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_9.png" align="center" height="35%" width="35%">   
 
+Note: The default citation key must be updated to [zotero] as there is a possibility of it being different when Better BibTex is installed. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_10.png" align="center" height="35%" width="35%">
+
+and change Citation key formula to [zotero] if not previous done.
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
 	    
 # 3. Coding best practices
 ## i. Working with eps figures
@@ -896,9 +903,10 @@ Some of the projects involve conducting surveys. This section aims to outline th
   - Structure the draft as follows:
     + Introductory speech: It should include the purpose of the survey and why we are interested in surveying that person.
     + Informed consent: It should include the information that IRB boards ask every study to tell to their participants. It also includes their authorization or agreement to participate in the study. Also, it may include their authorization to record them for quality check purposes.
-    + Questions: There are several types of questions, the best way to ask a question depends on the answer you want to get.
+    + Questions: There are several types of questions, the best way to ask a question depends on the answer you want to get.   
     + Concluding comments: After all the questions have been asked, there should be a concluding section acknowledging the person's participation in the study and, if applicable, about delivering the compensation for having participated.
   - All sections and questions should be numbered, this makes referencing questions easier, e.g., A.1., B.2., C.3.
+  - Mention the exact skip pattern for each question that necessitates one, e.g., answering "No" and "Don't Know" to any question A.1 leads the respondent to question A.3 instead of continuing with question A.2.
   - Note that the wording of questions may change and new questions may be added even when data is already being collected.
 - Conduct bench tests: One common practice is to conduct bench tests, which consist of surveying other RAs or people you know to check if the proposed questions in the draft 1) make sense, 2) are efficiently worded, 3) actually ask what you want to ask and 4) are sorted correctly. At this point of the process, a bench test will serve as a preliminary test.
 
