@@ -705,11 +705,11 @@ Once you have Better BibTex installed, you can right-click the group collection 
 
 Note: The default citation key must be updated to [zotero] as there is a possibility of it being different when Better BibTex is installed. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
 
-<img src="https://github.com/skhiggins/ra_guide/pictures/zotero/zotero_10.png" align="center" height="35%" width="35%">
+<img src="https://github.com/skhiggins/ra_guide/tree/main/pictures/zotero/zotero_10.png" align="center" height="35%" width="35%">
 
 and change Citation key formula to [zotero] if not previously done.
 
-<img src="https://github.com/skhiggins/ra_guide/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
+<img src="https://github.com/skhiggins/ra_guide/tree/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
 	    
 # 3. Coding best practices
 ## i. Working with eps figures
