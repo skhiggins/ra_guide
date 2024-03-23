@@ -1,5 +1,11 @@
 # *Guidelines for Research Assistants* <!-- omit from toc --> 
 
+Welcome to the guidelines for research assistants and research managers. This document will help you understand the expectations and responsibilities of your role, as well as some tips and best practices to make your work more efficient and effective. This includes guidelines on organization and dealing with regular administrative tasks, keeping files organized, coding best practices, and conducting surveys. 
+
+This is not a programming guide. If you need help with coding, programming, or data analysis, please refer to my [R Guide](https://github.com/skhiggins/R_guide), [Stata Guide](https://github.com/skhiggins/Stata_guide), and [Python Guide](https://github.com/skhiggins/Python_guide). Additionally, you can refer to [R for Economists](https://clandinq.github.io/recon/), which includes some specific tips and functions for generating figures and tables with R.
+
+One of the most important things to keep in mind when working with professors is that they are extremely busy. They have many competing demands on their time and attention, such as teaching, traveling, presenting at seminars and conferences, meeting, applying for grants, managing research and teaching assistants, advising, overseeing projects, recruiting, reviewing, serving as discussant, writing papers, and more. These activities require a lot of time, energy, and focus. They also involve a lot of coordination, communication, and collaboration with other people. Follow this guide as closely as possible to help create a smooth workflow in the project, and always remember to be proactive with research tasks and communication.
+
 Contents:
 
 1. [Administrative tasks](#1-administrative-tasks)
@@ -11,9 +17,10 @@ Contents:
         - [Tasks and subtasks](#tasks-and-subtasks)
         - [Tracking priorities in the admin section](#tracking-priorities-in-the-admin-section)
         - [Keeping track of agenda contents](#keeping-track-of-agenda-contents)
+        - [Email notifications](#email-notifications)
         - [Following up on presentation comments](#following-up-on-presentation-comments)
     1. [Managing meetings](#ii-managing-meetings)
-    1. [Weekly timesheets, recaps, and emails](#iii-weekly-timesheets-recaps-and-emails)
+    1. [Weekly emails with timesheet and recap](#iii-weekly-emails-with-timesheet-and-recap)
         - [An example of the weekly email](#an-example-of-the-weekly-email)
         - [Examples for the weekly recaps](#examples-for-the-weekly-recaps)
     1. [Professional development meetings](#iv-professional-development-meetings)
@@ -24,6 +31,22 @@ Contents:
     1. [Holidays and time off](#vii-holidays-and-time-off)
         - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
         - [Process for taking time off](#process-for-taking-time-off)
+    1. [Applying for Grants](#viii-applying-for-grants)
+        - [Protocol](#protocol)
+        - [Relevant information](#relevant-information)
+    1. [Backup of relevant files](#ix-backup-of-relevant-files)
+        - [Files to backup](#files-to-backup)
+        - [Protocol](#protocol)
+        - [Backup of Survey data](#backup-of-survey-data)
+    1. [Presenting results to PIs](#presenting-results-to-pis)
+        - [Comments in Asana](#comments-in-asana)
+        - [Reports](#reports)
+        - [Tables and figures](#tables-and-figures)
+    1. [Preparing figures and tables for presentation slides and paper](#preparing-figures-and-tables-for-presentation-slides-and-paper)
+        - [Presentation slides](#presentation-slides)
+        - [Paper draft](#paper-draft)
+
+
 2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization)
     1. [Working with GitHub](#ii-working-with-github)
@@ -35,17 +58,14 @@ Contents:
         - [Creating a fork of a repo and making a pull request](#creating-a-fork-of-a-repo-and-making-a-pull-request)
     1. [Working with Dropbox](#iii-working-with-dropbox)
     1. [Working with the Kellogg Linux Cluster (KLC) server](#iv-working-with-the-kellogg-linux-cluster-klc-server)
-        - [Transferring files via FileZilla](#transferring-files-via-filezilla)
-        - [Accessing KLC](#accessing-klc)
-        - [Running scripts](#running-scripts)
-        - [Running files with a 00\_run script and no visible output](#running-files-with-a-00_run-script-and-no-visible-output)
-        - [Running do files (Stata) with visible output](#running-do-files-stata-with-visible-output)
     1. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated)
-        - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)
+        - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)\
+    1. [Organizing references with Zotero](#vi-organizing-references-with-zotero)
+
 3. [Coding best practices](#3-coding-best-practices)
     1. [Working with eps figures](#i-working-with-eps-figures)
     1. [Generating different presentation versions](#ii-generating-different-presentation-versions)
-4. [Conducting Surveys](#4-conducting-surveys)
+4. [Conducting surveys](#4-conducting-surveys)
     1. [Pre-fieldwork](#i-pre-fieldwork)
         1. [Designing the survey](#i-designing-the-survey)
         1. [Programming the survey in SurveyCTO](#ii-programming-the-survey-in-surveycto)
@@ -60,15 +80,20 @@ Contents:
             - [**Open-ended and multiple-choice with** ***other*** **option questions**](#open-ended-and-multiple-choice-with-other-option-questions)
         1. [Survey Report](#x-survey-report)
     1. [Post-fieldwork](#iii-post-fieldwork)
+5. [New research assistant onboarding](#5-new-research-assistant-onboarding)
+6. [Acknowledgments](#6-acknowledgments)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
-We use [Asana](https://asana.com/) to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. As a very brief introduction, Asana has five levels of organization:
+[Asana](https://asana.com/) is a software for work management we use to keep track of project tasks, provide updates and follow up on meetings. Before setting up Asana, read the [product guide](https://asana.com/guide/help) and [common questions](https://asana.com/guide/help/faq/common-questions) to understand how Asana works. As a very brief introduction, Asana has five levels of organization:
+
 1. **Organizations**. Your user will be part of the Northwestern Kellogg organization. This is defined by the email address you use, so it is important that you register with your @kellog.northwestern.edu email address.
 2. **Teams**. Teams are comprised of groups/sections of tasks (what asana calls "projects") and team members. We will have one team per academic project.
 3. **Projects**. Projects are groupings of tasks in similar categories.  For example, we will always have an Admin and Analysis section in our Projects, and these sections are what Asana defines as projects. In the rest of this guide, I will refer to academic projects as *Projects*, and the subcomponents/sections of Asana teams and workspaces as *projects*.
 4. **Tasks**. Tasks are individual components of projects that contain deadlines, descriptions and opportunities to comment and upload content. Tasks can be assigned to multiple projects.
 5. **Subtasks**. Tasks are subdivisions of tasks that function in the same way, allowing you to set deadlines and update content.
+
+All information regarding research tasks should be communicated through Asana. You can send an email for meeting agendas, recaps, and administrative issues. For urgent tasks, you can send a message through WhatsApp.
 
 ### Setting up new Projects
 1. First, download and install [Asana](https://asana.com/). For Asana to function correctly, you must register with your Kellogg email, which will grant you access to the Kellogg organization on Asana. 
@@ -97,9 +122,9 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_7.png" align="center" height="30%" width="30%">
         
-    5. By default, the project will have three columns: To do, In progress, and Complete. Add a fourth column called "Archive".
+    5. By default, the project will have three columns: To do, In progress, and Complete. Add a fourth column called "Reviewing", and put this column between "In progress" and "Complete".
         
-        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_8.png" align="center" height="50%" width="50%">
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_8_alt.png" align="center" height="60%" width="60%">
         
     6. Once you have set up an initial project, click on the three dots next to the project name and select **Duplicate Project**. Duplicate the project to generate a section called Admin, a second one called Agenda, and a third one called Analysis. These three sections will be the base of the Project, since most tasks will fall into the Analysis category, Agenda is used for meetings, and Admin will contain administrative tasks. More details are explained in the [following part of the guide](https://github.com/skhiggins/ra_guide/#using-sections-to-keep-track-of-different-types-of-tasks).
 
@@ -113,7 +138,7 @@ We use [Asana](https://asana.com/) to keep track of project tasks, provide updat
         
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_setup_12.png" align="center" height="25%" width="25%">        
         
-    9. Once all projects have been set up, invite all researchers and RAs as collaborators to the team. Once they have accepted your invitation, you can (and should) invite them to join the rest of the projects.  Ask collaborators (by assigning them a first task) to input their full name and a picture so that it's easy to identify task ownership. You can invite new members to a maximum of three projects. You can see who is a member of each project on the left of the search bar: 
+    9. Once all projects have been set up, invite all researchers and RAs (research assistants) as collaborators to the team. Once they have accepted your invitation, you can (and should) invite them to join the rest of the projects.  Ask collaborators (by assigning them a first task) to input their full name and a picture so that it's easy to identify task ownership. You can invite new members to a maximum of three projects. You can see who is a member of each project on the left of the search bar: 
     
         <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/colab_1.png" align="center" height="40%" width="40%">        
         
@@ -138,10 +163,10 @@ Feel free to set up new sections if necessary.
 Most sections should have the following columns:
 - **To do**: Tasks that have not been started yet.
 - **In progress**: Tasks you are currently working on.
-- **Complete**: Recently completed tasks.
-- **Archive**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
+- **Reviewing**: Recently completed tasks awaiting review.
+- **Complete**: Completed tasks that have been discussed with researchers and whose output has been acknowledged. 
 
-When completing a task, move it to the **Complete** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs. If it's a minor task that does not to be discussed in a meeting, you can assign a subtask to a PI so that they review what you've done, or alternatively, tag them in a comment. Once the task has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Archive**.
+When completing a task, move it to the **Reviewing** column and add the task to the **Agenda** section to ensure it gets discussed in the next meeting with PIs (principal investigators). If it's a minor task that does not to be discussed in a meeting, you can assign a subtask to a PI so that they review what you've done, or alternatively, tag them in a comment. Once the task has been acknowledged, and if there are no more follow-up tasks that will be assigned to the same item, you can mark it as complete by clicking the check mark button and moving it to **Complete**.
 
 #### Tasks and subtasks
 All the work you do can be added as tasks and subtasks. The following is an example of a couple of tasks in Asana:
@@ -156,6 +181,7 @@ General guidelines for working with tasks and subtasks:
 - **Naming**: Tasks and subtasks should have clear, short names that makes it easy to identify them. You can write down a full breakdown of the required task in the description section of the task or subtask. 
 - **Deadlines**: When creating tasks, assign them to the main person responsible for completing the task, and assign a deadline. They are generally not hard deadlines, but can help to prioritize and identify tasks that have dragged on for longer than necessary. For tasks assigned to you, if the person creating the task did not put a deadline, set your own deadline to give the researchers a sense of when you think the task will be completed by. Subtasks can also have deadlines assigned to them. 
 - **Adding results**: When adding results (graphs or tables), attach them as screenshots or JPG / PNG files, since PDF and EPS files will not show previews. If necessary, you can also attach Excel documents. If the description does not include it, add the reason why the analysis is being conducted, what the hypothesis was being tested, whether the results confirm or reject the hypothesis, and what can be concluded from the results.
+- **Collaborators**: When you create a new task or a task is assigned to you, add all PIs as collaborators so that they are notified of your updates.
 - **Likes**: Use the like button to indicate that you've seen a task that has been assigned to you. **Don't forget to like comments to let PIs and other RAs know that you have seen their comments**.
 
 ### Tracking priorities in the admin section
@@ -193,6 +219,12 @@ Follow these steps to add tasks to the agenda:
 
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/agenda_5.png" align="center" height="25%" width="25%"> 
 
+### Email notifications
+You should modify the settings in Asana to activate email notifications for activity updates and mentions (see below). Make sure that spam filters on your emails are not sending Asana emails to spam. Additionally, it’s useful to activate email notifications for daily summaries, which will report new tasks and tasks which have upcoming deadlines. 
+
+  <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/asana_emails.png" align="center" height="50%" width="50%"> 
+
+
 ### Following up on presentation comments
 PIs receive valuable comments from conferences where they present their academic projects. Asana can help convert these comments to actionable tasks, and by grouping comments by topic, prioritize which should be worked on first.
 
@@ -203,41 +235,57 @@ PIs receive valuable comments from conferences where they present their academic
 
 3. Add comments to the **Comments** section on Asana. Group comments by topic, and make sure to assign actionable comments to the **Analysis** section.
 
-    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_2.png" align="center" height="50%" width="45%"> 
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_2_alt.png" align="center" height="50%" width="45%"> 
     <br/><br/>
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/asana/comments_3.png" align="center" height="40%" width="40%"> 
     
-4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Complete** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Archive** column.
+4. Once a comment has been dealt with (either task has been done, or PI has responded the comment), move the comment to the **Reviewing** column in the **Comments** section. Assign the task to PIs so they can review, and once processed, ensure they are marked as complete and moved to the **Complete** column.
 
 ## ii. Managing meetings
-1.	Send a meeting agenda **at least an hour before each meeting** with detailed items to discuss in the meeting and attaching all content relevant to the meeting. A useful way to remember is to set a calendar event with an email reminder for the agenda an hour or more before the meeting. Keep track of content for each meeting in Asana:
-    1. Keep track of agenda items by adding them as tasks in an Asana project titled “Agenda”. 
-    2. Make a different section for each recurring meeting, and update tasks with what was discussed in the presentation. 
-    3. When tasks are complete, mark as complete and move to a section titled “Complete”.
-2.	Send a meeting recap after each meeting with detailed notes about what was discussed in each meeting.
-    1. Each item should have a discussion and tasks section.
-        1. In the discussion section, write comments when possible as problem + potential solution.
-        2. Immediately add items from tasks section to Asana.
-    2. Upload summaries to a Google Docs document, and include this link in all recap emails.
+1. **Send meeting agendas before meetings.** 
+    - Send a meeting agenda **between one and two hours before each meeting** with detailed items to discuss in the meeting and attaching all content relevant to the meeting. This timing works well for PIs to be reminded about the call and have enough time to look at the agenda.
+    - An easy way to remember to send meeting agendas is to set a calendar event with an email reminder for the agenda a couple of hours before each regular meeting.
+    - You can keep track of content for each meeting in Asana by adding tasks that need to be discussed to a project titled “Agenda”. You can then set separate sections for each recurring meeting.
 
-## iii. Weekly timesheets, recaps, and emails
+2. **Send meeting recaps after meetings.**
 
-All research assistants fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. In addition, the weekly recaps help the PIs to keep track of your progress on each project and task. The timesheets and recaps should be sent to the PIs every Monday morning. Specifically, the weekly emails include the following content:
+    These recaps should have (1) detailed notes, with (2) actionable tasks, (3) tasks and conclusions posted in Asana and (4) be backed up in a Google Docs:
+    1. **Detailed notes**. Send a meeting recap after each meeting with detailed notes about what was discussed in each meeting. You can take notes during meetings and record more complicated or important meetings that you might want to review afterwards. Send this recap as soon as possible after the meeting.
+    2. **Organizing recaps**. Each item should have a discussion and tasks section. In the discussion section, write comments when possible as problem + potential solution. Here is an example of a recent recap:
+    
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/meetings/meeting_1.png" align="center" height="60%" width="60%">
 
-- The timesheet for the last week,
-- A recap of tasks done during the last week,
+    4. **Adding tasks and conclusions to Asana**. Immediately add items from the tasks section of each item as Asana tasks or subtasks, and post the discussion under the relevant Asana task. Here is an example of this:
+    
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/meetings/meeting_2.png" align="center" height="55%" width="55%">
+
+    5. **Back up to Google Docs**. Upload summaries to a Google Docs document, and include this link in all recap emails.
+
+    If you use Apple Mail, you can create email templates for meeting agendas and recaps that are easy to fill out. You can find a guide for this [here](https://www.ericleeclark.com/create-email-templates-in-apple-mail-mojave/) and an example below:
+
+   <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/meetings/meeting_3.png" align="center" height="40%" width="40%">
+
+## iii. Weekly emails with timesheet and recap
+
+All research assistants send a weekly email summarizing the tasks they've worked on last week and their priorities for the upcoming week. fill out a weekly timesheet. This is helpful for planning, making sure PIs are optimizing your time and setting realistic expectations about how long different tasks will take. In addition, the weekly recaps help the PIs to keep track of your progress on each project and task. The timesheets and recaps should be sent to the PIs every Monday morning. Specifically, the weekly emails include the following content:
+
+- The subject line of the email should include the date and the number of hours worked the past week. 
+- Research assistants are expected to work an average of 40 hours per week, with the exception of holidays or vacation or sick days. If the hours worked are significantly lower than 40, include a sentence at the beginning of the email stating why (e.g., "I worked 32 hours last week because Monday was a holiday" or "I worked 24 hours last week because I took 2 days of vacation off").
+- A recap of tasks done during the last week.
 - A summary list of priorities to be done in the current week.
+- Links to the timesheet for the last week and the current week.
 
-The timesheets and recaps should be saved in a separate **Google Drive folder**. Specifically,
+The timesheets and recaps should be saved in a separate **Google Drive folder**. Specifically:
 
 - Create a Google Sheet *each week* to write the timesheet. You can find a template [here](https://docs.google.com/spreadsheets/d/1A5Xbd8nhj6rzWYXcSUcnoYhlrP43Z69nJ7hB2TRF9uw/edit?usp=sharing).
 - Create a Google Doc to save *all* the weekly recaps. See examples [below](#examples-of-the-weekly-recaps).
+- Create a folder in Google Drive that contains the 
 
 > **Tips on Google Sheet shortcuts:** Click `Ctrl+;` to enter the current date, and `Ctrl+Shift+;` to enter the current time.
 
 ### An example of the weekly email
 
-> Subject: Weekly email - [Name] (X hours)
+> Subject: Weekly email - [Name] [Date] (X hours)
 > 
 > ...
 > 
@@ -254,9 +302,6 @@ The timesheets and recaps should be saved in a separate **Google Drive folder**.
 ### Examples of the weekly recaps
 
 Below are a few example emails from other RAs:
-
-
- Below are a few example emails from other RAs:
 
 #### RA working for 1 professor on 1 project
 
@@ -347,7 +392,7 @@ One important aspect of RA work is keeping track of deadlines related to present
 - Applications to dozens of conferences over the course of a single year to present their current work
 - Sending paper drafts to discussants on time
 - Preparing slides for presentations
-- Submitting grand deliverables
+- Submitting grant deliverables
 
 Managing this manually is both time consuming and often leads to unwanted errors. I wrote a series of scripts ([remindR](https://github.com/clandinq/remindr)) to help project managers, researchers, research assistants and students keep track of deadlines related to academic projects. This system can send out four types of reminders:
 1.	Future conference reminders. These are reminders to check if future conferences have announced details that would allow to track them (deadlines, submission links, and descriptions).
@@ -379,23 +424,94 @@ Many of our projects will have partners who help us implement the project. It is
 - **Paid university holidays**. You can view the university holiday calendar [here](https://www.northwestern.edu/hr/benefits/leaves-holidays/university-scheduled-holidays.html). In cases when you have to work on an official holiday, you can make up by taking an alternate workday off. For example, in your timesheet, you would register the working hours during that day and add a note in the “Time off” sheet that says you have an extra vacation day.
 - **Vacation time**. During your first year, you will have 2 weeks of vacation time. After you have completed one year, you will have 3 weeks of vacation time per year. Any week where you want to take a vacation day would have 8 fewer hours of expected work. You can view more details [here](https://www.northwestern.edu/hr/benefits/leaves-holidays/vacation-time.html).
 - **Personal floating holidays**. [Personal floating holidays](https://www.northwestern.edu/hr/benefits/leaves-holidays/personal-floating-holidays.html) are available for personal use and may be used as an extension of vacation time. The number of personal floating days available depend on the hire date. Hires from September 1 to November 30 (as it is the case with most RAs) will have 3 personal floating holidays available during the fiscal year (September 1 to August 31). Personal floating holidays unused at the end of the fiscal year are forfeited.
-- **Vacation payouts**. Staff members will be paid out their accrued and unused vacation time and personal floating holidays at the termination of their contract. You can find more information about the process [here](https://www.northwestern.edu/hr/benefits/leaves-holidays/vacation-time.html).
 - **Sick days**. 15 [sick days](https://www.northwestern.edu/hr/benefits/leaves-holidays/sick-time/incidental-sick-time.html) available per year.
 
 ### Process for taking time off
-1. Ask for permission to supervisors.
+1. Ask for permission to supervisors. Include in this email the current number of vacation days available and the number of vacation days requested.
 2. Add days off to [WFS](https://www.northwestern.edu/hr/essentials/hr-systems/timekeeping/instructions.html).
 3. Forward approval to department manager.
 4. Send supervisors a calendar invite for an all-day event titled “RA *name* day off” for the days you will be out.
 
 The process for days off if you are going to make up the hours and not take a vacation day are steps 1 and 3 above.
 
+## viii. Applying for grants
+
+### Protocol 
+When the PI shares a potential grant opportunity you should follow this steps. 
+1. Check eligibility based on both country and topic
+2. Prepare a summary of the grant details for the PIs
+    a. Budget amount and the limitations on the usage of funding
+    b. How much involved the application and budget is? 
+    c. What are the requirements to start an application? This can range from filling a form to submitting a full proposal
+    d. Any other application requirement
+    e. Project requirements: Final expected product, dissemination, etc.
+    f. What do the grant fund? Is the project a good fit?
+3. Create Asana tasks with internal deadlines 
+4. Prepare a draft with the most relevant parts that you can fill
+
+### Relevant information
+1. Internal deadlines are 1 month before the grant due date for ones submitted by a university (send a draft of the budget, proposal narrative, and budget narrative to the grants officer by then).
+2. Grants application require inputs from RAs, Fieldwork team, PIs, and administrative staff. You need to be aware of the status of every part of the application to remain on time with the internal deadlines. 
+3. Verify that the numbers in the grant application are consistent. Budget, Sample Size, Number of participants, Costs, etc. 
+
+## ix. Backup of relevant files
+
+### Files to backup
+Relevant files includes any information/documentation that is extremely valuable for the project, e.g, 
+1. Administrative/confidential data
+2. Raw Survey Data
+3. Running meetings agendas (as it includes discussions and relevant decisions)
+4. Documentation/Questionnaires
+5. Any other relevant information for the particular project
+
+### Protocol
+The best practice is to do the backups in a systematic manner. Usually every month on a fixed date is the best. 
+1. Create the backups and save them in Dropbox
+2. Save the information on an external hard drive
+3. Repeat this process every monthter
+
+### Backup of Survey Data
+Raw survey data collected by the project team should also be backup. Nevertheless, this raw survey data usually contains Personally Identifiable Information (PII). To deal with PII we use encrypted files via software such as Boxcryptor or Cryptomator. 
+To backup the data on our external hard drive, we should first create a copy of the raw survey data only removing any variable that contains PII, and then you can create a backup on the external hard drive. 
+
+## x. Presenting results to PIs
+
+### Comments in Asana
+1. Give context – what was the last decision made on how to do the task? What specific functions did you accomplish?
+2. Be concise, but offer sufficient detail to understand both the problem and the solution.
+    a. If there is detailed documentation that you want your PI to look at, link it in your comment.
+3. Always propose potential solutions (ideally, more than one). Include enough information about the solutions for someone who hasn’t done the research to understand pros/cons, trade-offs and make a decision.
+4. Avoid open-ended questions. Try to always be as specific as possible when making a question.
+5. It is OK to follow-up if this is important and you have not received an answer.
+6. When posting results you should describe the main findings. 
+
+### Reports
+1. When creating a report that include regressions, plots of the questions, descriptive statistics, etc, make sure that every variable is labeled correctly. A variable named q2_58 is not descriptive enough. You should provide the meaning of that variable, and if any clarification is necessary you should include it as a footnote. 
+2. Make the information easily available. You can include hyperlinks to the sections or to each result. 
+3. Any additional information that the PI's should know relevant to the report should be included in it. 
+
+### Tables and figures
+1. Your tables and figures should be correctly labeled. You should include descriptive names, relevant footnotes, labeled axes, etc.
+2. Before presenting your results, you should always review your results to catch any error. You should check the number of observations, the size of the coefficients, etc. In general, think about it as your research. Do not only produce what you are told to, try to understand if your results make sense. 
+3. Check for outliers and understand the sample that is being used in each regression table/figure.
+
+## Preparing figures and tables for presentation slides and paper
+
+### Presentation slides
+1. The tables and figures must be included with relative paths and not full paths.
+2. All of the results in the slides should be created by scripts. 
+3. Before every presentation the results must be updated to consider the last available data.
+
+### Paper Draft
+1. The numbers, tables, and figures must be included with relative paths and not full paths.
+2. All of the results in the paper should be created by scripts (This include all the numbers in the paper) 
+
 # 2. Keeping files organized
 ## i. General project organization
 In academic projects, it's essential to keep files synchronized between multiple computers and backed-up over time. This allows to easily share scripts and results with PIs, keep raw and processed data backed up, maintain a record of changes in different files, and permit other RAs and PIs to work on the same papers, presentations and scripts. We accomplish all of these tasks with the help of Dropbox, Github and Overleaf: Dropbox mainly for backing-up data, GitHub to track the history of file changes and update files, and Overleaf to allow PIs to easily modify papers without having to use a Latex processor. This system also integrates with the KLC server for processing large datasets.
 
 Our system works the following way:
-1. **Local folder set-up and structure**. For existing projects, you should [clone the repo in your computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer). If this is a new project, start by setting up a local project folder with the following structure:
+1. **Local folder set-up and structure**. For existing projects, you should [clone the GitHub repo in your computer](#setting-up-an-existing-repo-on-the-server-or-a-new-computer). If this is a new project, start by setting up a local project folder with the following structure:
     - **admin**: This folder should contain administrative files, for example agreements, contracts, and grant proposals.
     - **data**: Only raw data go in this folder.
     - **documentation**: Documentation about the data goes in this folder.
@@ -416,9 +532,11 @@ Our system works the following way:
     - Git is an open-source version control system that helps track file changes across time. GitHub is a company that hosts Git repositories (project folders), including the full history of each file. For example, for any given script that is constantly synchronized with GitHub, you can access the different versions of the script you had backed up over time. You can learn more about Git and GitHub [here](https://docs.github.com/en/get-started/using-git/about-git). 
     - If you set up a new project folder from scratch, follow the [instructions](#setting-up-a-new-repo-on-github-and-cloning-locally) to set up a new GitHub repo.
     - Every time you are done making important changes to a file, want to back-up your work or share it with another project member, you should [push your changes to GitHub](#updating-the-github-repo). At the same time, during this process you will import the changes made (pushed) by other users to the repository (repo).
+    - GitHub is used to track changes to all files and folders except those in the folders `data` and `proc`. Since these folders are usually too large to sync, we omit them from the repo by including them in the `.gitignore` file.
     
 3. **Back up data with Dropbox**
     - Dropbox is mainly used for backing-up raw datasets. This can help reduce disk usage when working with large datasets, as you can delete the raw dataset from your local `data` folder and still be able to access it on Dropbox. We also use Dropbox for keeping constant backups of results and scripts that can easily be shared with PIs.
+    - Additionally, Dropbox can store processed datasets in `proc` that are too large to store locally.
 
 4. **Working on papers using Overleaf**
     - Some PIs prefer to work on papers using Overleaf, and it can also be useful to access and edit papers and presentations from any computer. To sync with GitHub, the users who want to make changes on Overleaf must have a Premium Overleaf subscription, either the Standard or Professional plan. Project members that don't need to make changes on Overleaf do not need to have a Premium subscription.
@@ -429,12 +547,13 @@ Our system works the following way:
 
 The system is summarized in the following chart:
 
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
+   <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/org_map.png" align="center" height="30%" width="30%">        
 
 ## ii. Working with GitHub
 GitHub is used to help facilitate sharing results and scripts with PIs and other research assistants, ensuring reproducibility of code, and having an up-to-date backup of current work, along with version control.
 ### Setting up a new repo on GitHub and cloning locally
-1. Create new repo on GitHub, including a template .gitignore file. Modify .gitignore file on GitHub to include additional folders and files to exclude from updates: documents, data and certain file types.
+1. Create new repo on GitHub, including a template `.gitignore` file (use corresponding Python, R or Stata template). The `.gitignore` file determines which files and folders will be ignored in every update. You should include the folders `data` and `proc` in the `.gitignore`. Additionally, there might be some file types you want to ignore (for example, auxiliary LaTeX files). The set of files to ignore will change depending on the project. 
+
 2. Type the following commands in terminal:
     1. Change to directory where repo will be cloned 
         ```sh
@@ -545,47 +664,8 @@ To make changes in repos where you are not the collaborator, you need to fork (c
 - For large project folders you will need a Dropbox Plus account. The easiest way to get it is to buy it (choose the “billed yearly” option for the price discount – it costs about $100) and then send the receipt to [Adam Troutman](adam.troutman@kellogg.northwestern.edu) and you will receive reimbursement into the bank account where you are paid by Northwestern. 
 
 ## iv. Working with the Kellogg Linux Cluster (KLC) server
-Processing of large datasets (dataset size approximating RAM size) should be done on KLC. The workflow is the following:
-1. Write scripts locally and push to GitHub.
-2. Upload raw files with FileZilla to KLC, update server with scripts using GitHub.
-3. Update results produced in server with GitHub.
+Processing of large datasets (dataset size approximating RAM size) should be done on KLC. You can find a comprehensive guide for using KLC [here](https://github.com/skhiggins/KLC_Guide)
 
-### Transferring files via FileZilla
-You should only upload and download data (both raw and proceessed) via [FileZilla](https://filezilla-project.org/), and keep updated results and scripts using GitHub. To upload new files, you can input the following on FileZilla:
-- **Host**: klc.ci.northwestern.edu
-- **Username**: Your NetID
-- **Password**: Password for your NetID
-- **Port**: 22
-To upload files, drag to the selected folder on the right pane. To download files, right click download.
-
-### Accessing KLC
-1.	If you’re not connected to a network at Northwestern, use [GlobalProtect](https://kb.northwestern.edu/page.php?id=94726) to connect via VPN.
-2.	If you have a Mac, open the terminal. If you have Windows, first install Cygwin so that you can use Linux commands from the command line, then you can open the command line with Windows+R, type cmd, Enter.
-3.	In the terminal or command line, type:
-    ```sh
-    ssh <netID>@klc.ci.northwestern.edu
-    ```
-4.	Enter the password you created for your netID.
-5.	Now you should be connected to KLC. 
-
-### Running scripts
-Once you have (1) set up GitHub to work with the KLC folder, (2) uploaded necessary data files, and (3) updated scripts using GitHub, there are two ways to run scripts on the server:
-#### Running files with a 00_run script and no visible output
-This first version will generate logs and return the command line for other work.
-```sh
-cd path_of_project_folder
-module load stata/17 # or module load R/4.0.3 [or latest; check what’s available with module avail R]
-nohup R CMD BATCH --vanilla -q scripts/00_run.do logs/00_run.log & # Nohup is so that if you get logged out the script keeps running.
-```
-#### Running do files (Stata) with visible output
-The second option will display the output on the terminal.
-```sh
-cd path_of_project_folder
-module load stata/17
-stata-mp
-# Set base directory and relative file paths
-do scripts/myscript.do
-```
 ## v. Keeping Github and Dropbox updated 
 - We use Dropbox as a backup folder and to easily share files with PIs. Since copying files manually to update the Dropbox is a tedious task, and we are interested in mantaining the folder up to date, we developed a shortcut that substitutes multiple git commands and copies the data to Dropbox. This reduces the time necessary to update the git (making it easier to make multiple commits and keep the git up to date), and makes it much easier to keep Dropbox in sync with the git (instead of having to manually copy files every time you make a commit).
 - Files we only want in Dropbox and not in the git (for example, admin files) will not be modified by this system, as they are never involved in a commit.
@@ -636,6 +716,112 @@ do scripts/myscript.do
     ``` 
     
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/gh_db_2.png" align="center" height="80%" width="80%">
+
+## vi. Organizing references with Zotero
+
+### Overview of Zotero
+
+[Zotero](https://www.zotero.org/) is a tool for collecting and organizing references. The advantage of using Zotero is that it allows users to keep synced both references and PDF files, it automates the process of generating references from PDF files or standard numbers (e.g. DOI numbers), and can automatically sync bibliographies to .bib files. To set up Zotero, first [create a new Zotero account](https://www.zotero.org/user/register/) and [download the Zotero application](https://www.zotero.org/download/).
+
+Zotero **references** are items with associated metadata and can also be linked to PDF files. These PDF files are kept locally and can also be synced online -- the free version includes 300 MB of synced storage. These references are stored in "My Library" by default. You can organize your references by adding a new **collection**. You can drag and drop references to add them to a collection.
+
+The rest of this section explains how to add references to Zotero, sync collections with multiple users, and generate and keep bibliographies updated. You can find a more in-depth guide on how to use Zotero [here](https://www.zotero.org/).
+
+### Overall procedure for adding references
+
+1. All references-related work will be organized under a new subproject in Asana named "References." This subproject includes four columns: "To do," "Added to bib," "Cited in paper," and "Will not cite in paper." Papers designated for citation will be listed as tasks under the "To do" column.
+2. For each papers mentioned in the "To do" column, the RA will
+    1. Add it in Zotero. If you are unsure how to do it, see [instructions in the next section](#adding-references-to-zotero). I highly recommend installing the Zotero browser extension, which allows for easy and stable collection of paper information with a single click of the Zotero extension button when viewing the webpage of the paper.
+    2. Download the paper to the shared Dropbox folder for references.
+    3. Include (i) the citation of the paper in the format of bibliography and (ii) the abstract in the Description of the Asana task for that paper.
+    4. Once you have finished Steps i - iii for all papers under an Asana task, move the task to the column "Added to bib".
+3. After adding all papers, export the Asana library as a .bib file. Please make sure to check [instructions below](#generating-bibliographies) for this step.
+
+### Adding references to Zotero
+
+There are three ways to add references to Zotero Library:
+
+1.  Dragging a PDF article into the Zotero library.
+
+    -   The easiest way to add a reference is to drag a PDF article into the Zotero library. Zotero obtains the article's metadata automatically, copying the PDF to your library and creating a new item linked to the PDF.
+        
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_1.png" align="center" height="70%" width="70%">        
+
+2.  Entering a standard number (ISBN, DOI) in the Zotero application.
+
+    -   A few times Zotero will fail to obtain the article's metadata automatically. When this happens, you can click on the magic wand button (**Add Item(s) by Identifier**) and input an ISBN or DOI. If the item is found a new reference is created in Zotero without an associated PDF. You can drag the article PDF to the reference to link them together.
+        
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_2.png" align="center" height="50%" width="50%">   
+
+3.  Manually entering a references in the Zotero application.
+
+    -   If there are issues extracting the metadata --- which sometimes happens with working papers --- you can add a new item by clicking on File -\> New Item in the top toolbar. You can then enter the bibliographic information manually.
+        
+        <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_3.png" align="center" height="55%" width="55%">   
+
+Additionally, there are [Zotero Connectors](https://www.zotero.org/download/connectors) you can add to your browser.
+
+Keep your references organized by includiong them in **collections**. You can create a new collection by clicking on **File** -\> **New Collection**. Then, simply drag and drop existing references to the desired collection, or add new references directly into the collection. New references added directly to a collection will also show up in My Library.
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_4.png" align="center" height="35%" width="35%">   
+
+### Sharing a collection with Zotero Groups
+
+You can use [Zotero Groups](https://www.zotero.org/groups) to share a collection with other team members. Everyone must have a Zotero account and download the Zotero application. With Groups, all content will sync in the group folder. You can create and share a collection via Zotero Groups the following way:
+
+1.  **Creating a Zotero Group.** Create a new group and invite members on the [Zotero website](https://www.zotero.org/groups). You can do this by clicking on **Create a New Group**. Make sure to make the group private, since this is a requirement to share PDF files.
+
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_5.png" align="center" height="70%" width="70%">   
+
+2.  **Sharing a collection with the group.** Once you create a group, it will appear on the left pane along with your other collections. If you want to share references with your group, you can either create a new collection within the group, or drag an existing connection into the group. These two collections are two separate entities and they will not sync, so make sure to keep only the group version of your collection.
+
+    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_6.png" align="center" height="40%" width="40%">   
+
+
+### Generating bibliographies
+
+To generate a bibliography from a collection, right click a collection and select **Export Collection**. For manual exports, you can select the BibLaTeX format. The best practice is to set up automatic updating of bibliographies.
+
+#### Automatic updating of bibliographies
+
+At least one member in the project (usually one of the RAs) should activate background export of the bibliography with automatic updating using [Better BibTeX](https://retorque.re/zotero-better-bibtex/). Better BibTeX is a third-party Zotero add-on that adds auto export functionality, allowing entire collections to sync with .bib files when they change. Once this is activated, the workflow for adding references and keeping them updated works the following way:
+
+1.  Any user makes updates to the Zotero group collection.
+2.  The Zotero group collection is synced to all users.
+3.  The .bib file updates automatically with the new content for users with Better BibTeX installed.
+4.  The .bib file is synced to all users when users with automatic export push changes to GitHub.
+
+This system works best if all users making edits to the paper's references have Better BibTeX installed. An important note is that the Better BibTeX sync is only one way (from Zotero to the .bib file), so any references added manually will **not** sync.
+
+Follow these steps to install Better BibTeX:
+
+1.  Download the [latest Better BibTeX release](https://github.com/retorquere/zotero-better-bibtex/releases/latest) (the .xpi file).
+2.  Click on **Tools** -\> **Add-ons**, then click the **Settings** button (gear icon), and then choose **Install Add-on From File**. Select the .xpi file you downloaded.
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_8.png" align="center" height="25%" width="25%">   
+
+Once you have Better BibTex installed, you can right-click the group collection and select **Export Collection**, choose the **Better BibLaTeX** format, and tick **Keep updated** and **Background export**.
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_9.png" align="center" height="35%" width="35%">   
+
+Note: The default citation key must be updated to [zotero] as there is a possibility of it being different when Better BibTex is installed. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_10.png" align="center" height="35%" width="35%">
+
+and change Citation key formula to [zotero] if not previous done.
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
+
+After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_12.png" align="center" height="35%" width="35%">
+
+#### Compiling the .bib file
+
+Sometimes Better BibTeX's automatic update can cause the .bib file to compile unproperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following stpes:
+1. Make sure you have installed the `biber` package
+2. Run `$ biber <name of the main .tex document without ".tex">`, e.g. `$ biber PriceComparisonTool` through command line inside the folder that includes your main .tex document. 
+3. Compile the .tex again.
 	    
 # 3. Coding best practices
 ## i. Working with eps figures
@@ -829,9 +1015,10 @@ Some of the projects involve conducting surveys. This section aims to outline th
   - Structure the draft as follows:
     + Introductory speech: It should include the purpose of the survey and why we are interested in surveying that person.
     + Informed consent: It should include the information that IRB boards ask every study to tell to their participants. It also includes their authorization or agreement to participate in the study. Also, it may include their authorization to record them for quality check purposes.
-    + Questions: There are several types of questions, the best way to ask a question depends on the answer you want to get.
+    + Questions: There are several types of questions, the best way to ask a question depends on the answer you want to get.   
     + Concluding comments: After all the questions have been asked, there should be a concluding section acknowledging the person's participation in the study and, if applicable, about delivering the compensation for having participated.
   - All sections and questions should be numbered, this makes referencing questions easier, e.g., A.1., B.2., C.3.
+  - Mention the exact skip pattern for each question that necessitates one, e.g., answering "No" and "Don't Know" to any question A.1 leads the respondent to question A.3 instead of continuing with question A.2.
   - Note that the wording of questions may change and new questions may be added even when data is already being collected.
 - Conduct bench tests: One common practice is to conduct bench tests, which consist of surveying other RAs or people you know to check if the proposed questions in the draft 1) make sense, 2) are efficiently worded, 3) actually ask what you want to ask and 4) are sorted correctly. At this point of the process, a bench test will serve as a preliminary test.
 
@@ -1053,3 +1240,18 @@ Here is an example of the [survey report](https://github.com/skhiggins/ra_guide/
 ## iii. Post-fieldwork
 
 Work in progress.
+
+# 5. New research assistant onboarding
+Once you have read this guide, activated your work email, received your new computer, and signed up for Dropbox Plus if necessary, these are the steps you should take to set up a project on your computer.
+1. Install Dropbox and download the project’s Dropbox folder.
+    - You can make large files or folders available online only, and then download when you have to use them. To do this, right-click on a file or folder and select **Make online only**.
+3. [Set up a local copy of the GitHub repository](https://github.com/skhiggins/ra_guide/tree/main#if-there-is-no-folder-set-up-on-the-servercomputer).
+    - For this, you will need to receive access from the GitHub repo administrator (usually the PI) and [generate a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to log in.
+    - It's recommended to keep the local copy of the GitHub repository's folder closer to the root directory of your computer. This ensures that the path is shorter, making it more convenient when changing directories to pull and push to the repository. For example, you can create `C:\GitHub\` in Windows and clone each GitHub repo to that parent directory. <!-- what would the equivalent be in Mac?  and `/Users/User/Work/Project` in Mac. -->
+4. Copy the `data` and `proc` folders from Dropbox into the local copy of the GitHub repo.
+    - Once you have copied these folders, you can make the Dropbox versions online-only to save space.
+
+Now you should be ready to run any script in your own computer.
+
+# 6. Acknowledgments
+This guide has benefitted from contributions from several current and former RAs, including [César Landín](https://github.com/clandinq), [Qiuyu Li](https://github.com/Qiuyu-Li), [Anahí Reyes](https://github.com/AnahiRM), [Erick Molina](https://github.com/ErickFMolina). 
