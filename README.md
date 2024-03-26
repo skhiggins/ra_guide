@@ -59,7 +59,7 @@ Contents:
     1. [Working with Dropbox](#iii-working-with-dropbox)
     1. [Working with the Kellogg Linux Cluster (KLC) server](#iv-working-with-the-kellogg-linux-cluster-klc-server)
     1. [Keeping Github and Dropbox updated](#v-keeping-github-and-dropbox-updated)
-        - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)\
+        - [Setting up and running dual Github-Dropbox updates](#setting-up-and-running-dual-github-dropbox-updates)
     1. [Organizing references with Zotero](#vi-organizing-references-with-zotero)
 
 3. [Coding best practices](#3-coding-best-practices)
@@ -818,7 +818,7 @@ After you changed the Citation key formula, go back to the main page and Ctrl+A 
 
 #### Compiling the .bib file
 
-Sometimes Better BibTeX's automatic update can cause the .bib file to compile unproperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following stpes:
+Sometimes Better BibTeX's automatic update can cause the .bib file to compile improperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following stpes:
 1. Make sure you have installed the `biber` package
 2. Run `$ biber <name of the main .tex document without ".tex">`, e.g. `$ biber PriceComparisonTool` through command line inside the folder that includes your main .tex document. 
 3. Compile the .tex again.
