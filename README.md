@@ -719,13 +719,23 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 
 ## vi. Organizing references with Zotero
 
-### Overview
+### Overview of Zotero
 
 [Zotero](https://www.zotero.org/) is a tool for collecting and organizing references. The advantage of using Zotero is that it allows users to keep synced both references and PDF files, it automates the process of generating references from PDF files or standard numbers (e.g. DOI numbers), and can automatically sync bibliographies to .bib files. To set up Zotero, first [create a new Zotero account](https://www.zotero.org/user/register/) and [download the Zotero application](https://www.zotero.org/download/).
 
 Zotero **references** are items with associated metadata and can also be linked to PDF files. These PDF files are kept locally and can also be synced online -- the free version includes 300 MB of synced storage. These references are stored in "My Library" by default. You can organize your references by adding a new **collection**. You can drag and drop references to add them to a collection.
 
 The rest of this section explains how to add references to Zotero, sync collections with multiple users, and generate and keep bibliographies updated. You can find a more in-depth guide on how to use Zotero [here](https://www.zotero.org/).
+
+### Overall procedure for adding references
+
+1. All references-related work will be organized under a new subproject in Asana named "References." This subproject includes four columns: "To do," "Added to bib," "Cited in paper," and "Will not cite in paper." Papers designated for citation will be listed as tasks under the "To do" column.
+2. For each papers mentioned in the "To do" column, the RA will
+    1. Add it in Zotero. If you are unsure how to do it, see [instructions in the next section](#adding-references-to-zotero). I highly recommend installing the Zotero browser extension, which allows for easy and stable collection of paper information with a single click of the Zotero extension button when viewing the webpage of the paper.
+    2. Download the paper to the shared Dropbox folder for references.
+    3. Include (i) the citation of the paper in the format of bibliography and (ii) the abstract in the Description of the Asana task for that paper.
+    4. Once you have finished Steps i - iii for all papers under an Asana task, move the task to the column "Added to bib".
+3. After adding all papers, export the Asana library as a .bib file. Please make sure to check [instructions below](#generating-bibliographies) for this step.
 
 ### Adding references to Zotero
 
@@ -801,6 +811,17 @@ Note: The default citation key must be updated to [zotero] as there is a possibi
 and change Citation key formula to [zotero] if not previous done.
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
+
+After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_12.png" align="center" height="35%" width="35%">
+
+#### Compiling the .bib file
+
+Sometimes Better BibTeX's automatic update can cause the .bib file to compile improperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following stpes:
+1. Make sure you have installed the `biber` package
+2. Run `$ biber <name of the main .tex document without ".tex">`, e.g. `$ biber PriceComparisonTool` through command line inside the folder that includes your main .tex document. 
+3. Compile the .tex again.
 	    
 # 3. Coding best practices
 ## i. Working with eps figures
