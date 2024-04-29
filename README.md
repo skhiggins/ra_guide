@@ -810,7 +810,7 @@ Note: The default citation key must be updated to [zotero] as there is a possibi
 
 and change Citation key formula to [zotero] if not previously done.
 
-![test_2](https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.PNG)
+![test_2](https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/test_image.jpg)
 
 After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
 
