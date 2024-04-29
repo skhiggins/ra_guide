@@ -1,8 +1,10 @@
 # *Guidelines for Research Assistants* <!-- omit from toc --> 
 
-Welcome to the guidelines for research assistants and research managers. This document will help you understand the expectations and responsibilities of your role, as well as some tips and best practices to make your work more efficient and effective. This includes guidelines on organization and dealing with regular administrative tasks, keeping files organized, coding best practices, and conducting surveys. This is not a programming guide. If you need help with coding, programming, or data analysis, please refer to my [R Guide](https://github.com/skhiggins/R_guide), [Stata Guide](https://github.com/skhiggins/Stata_guide), and [Python Guide](https://github.com/skhiggins/Python_guide). Additionally, you can refer to [R for Economists](https://clandinq.github.io/recon/), which includes some specific tips and functions for generating figures and tables.
+Welcome to the guidelines for research assistants and research managers. This document will help you understand the expectations and responsibilities of your role, as well as some tips and best practices to make your work more efficient and effective. This includes guidelines on organization and dealing with regular administrative tasks, keeping files organized, coding best practices, and conducting surveys. 
 
-One of the most important things to keep in mind when working with professors is that they are extremely busy. They have many competing demands on their time and attention, such as teaching, traveling, meeting, applying, managing, advising, overseeing, recruiting, reading, writing, and more. These activities require a lot of time, energy, and focus. They also involve a lot of coordination, communication, and collaboration with other people. Follow this guide as closely as possible to help create a smooth workflow in the project, and always remember to be proactive with research tasks and communication.
+This is not a programming guide. If you need help with coding, programming, or data analysis, please refer to my [R Guide](https://github.com/skhiggins/R_guide), [Stata Guide](https://github.com/skhiggins/Stata_guide), and [Python Guide](https://github.com/skhiggins/Python_guide). Additionally, you can refer to [R for Economists](https://clandinq.github.io/recon/), which includes some specific tips and functions for generating figures and tables with R.
+
+One of the most important things to keep in mind when working with professors is that they are extremely busy. They have many competing demands on their time and attention, such as teaching, traveling, presenting at seminars and conferences, meeting, applying for grants, managing research and teaching assistants, advising, overseeing projects, recruiting, reviewing, serving as discussant, writing papers, and more. These activities require a lot of time, energy, and focus. They also involve a lot of coordination, communication, and collaboration with other people. Follow this guide as closely as possible to help create a smooth workflow in the project, and always remember to be proactive with research tasks and communication.
 
 Contents:
 
@@ -29,6 +31,22 @@ Contents:
     1. [Holidays and time off](#vii-holidays-and-time-off)
         - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
         - [Process for taking time off](#process-for-taking-time-off)
+    1. [Applying for Grants](#viii-applying-for-grants)
+        - [Protocol](#protocol)
+        - [Relevant information](#relevant-information)
+    1. [Backup of relevant files](#ix-backup-of-relevant-files)
+        - [Files to backup](#files-to-backup)
+        - [Protocol](#protocol)
+        - [Backup of Survey data](#backup-of-survey-data)
+    1. [Presenting results to PIs](#presenting-results-to-pis)
+        - [Comments in Asana](#comments-in-asana)
+        - [Reports](#reports)
+        - [Tables and figures](#tables-and-figures)
+    1. [Preparing figures and tables for presentation slides and paper](#preparing-figures-and-tables-for-presentation-slides-and-paper)
+        - [Presentation slides](#presentation-slides)
+        - [Paper draft](#paper-draft)
+
+
 2. [Keeping files organized](#2-keeping-files-organized)
     1. [General project organization](#i-general-project-organization)
     1. [Working with GitHub](#ii-working-with-github)
@@ -63,6 +81,7 @@ Contents:
         1. [Survey Report](#x-survey-report)
     1. [Post-fieldwork](#iii-post-fieldwork)
 5. [New research assistant onboarding](#5-new-research-assistant-onboarding)
+6. [Acknowledgments](#6-acknowledgments)
 
 # 1. Administrative tasks
 ## i. Managing project tasks with Asana
@@ -415,6 +434,78 @@ Many of our projects will have partners who help us implement the project. It is
 
 The process for days off if you are going to make up the hours and not take a vacation day are steps 1 and 3 above.
 
+## viii. Applying for grants
+
+### Protocol 
+When the PI shares a potential grant opportunity you should follow this steps. 
+1. Check eligibility based on both country and topic
+2. Prepare a summary of the grant details for the PIs
+    a. Budget amount and the limitations on the usage of funding
+    b. How much involved the application and budget is? 
+    c. What are the requirements to start an application? This can range from filling a form to submitting a full proposal
+    d. Any other application requirement
+    e. Project requirements: Final expected product, dissemination, etc.
+    f. What do the grant fund? Is the project a good fit?
+3. Create Asana tasks with internal deadlines 
+4. Prepare a draft with the most relevant parts that you can fill
+
+### Relevant information
+1. Internal deadlines are 1 month before the grant due date for ones submitted by a university (send a draft of the budget, proposal narrative, and budget narrative to the grants officer by then).
+2. Grants application require inputs from RAs, Fieldwork team, PIs, and administrative staff. You need to be aware of the status of every part of the application to remain on time with the internal deadlines. 
+3. Verify that the numbers in the grant application are consistent. Budget, Sample Size, Number of participants, Costs, etc. 
+
+## ix. Backup of relevant files
+
+### Files to backup
+Relevant files includes any information/documentation that is extremely valuable for the project, e.g, 
+1. Administrative/confidential data
+2. Raw Survey Data
+3. Running meetings agendas (as it includes discussions and relevant decisions)
+4. Documentation/Questionnaires
+5. Any other relevant information for the particular project
+
+### Protocol
+The best practice is to do the backups in a systematic manner. Usually every month on a fixed date is the best. 
+1. Create the backups and save them in Dropbox
+2. Save the information on an external hard drive
+3. Repeat this process every monthter
+
+### Backup of Survey Data
+Raw survey data collected by the project team should also be backup. Nevertheless, this raw survey data usually contains Personally Identifiable Information (PII). To deal with PII we use encrypted files via software such as Boxcryptor or Cryptomator. 
+To backup the data on our external hard drive, we should first create a copy of the raw survey data only removing any variable that contains PII, and then you can create a backup on the external hard drive. 
+
+## x. Presenting results to PIs
+
+### Comments in Asana
+1. Give context – what was the last decision made on how to do the task? What specific functions did you accomplish?
+2. Be concise, but offer sufficient detail to understand both the problem and the solution.
+    a. If there is detailed documentation that you want your PI to look at, link it in your comment.
+3. Always propose potential solutions (ideally, more than one). Include enough information about the solutions for someone who hasn’t done the research to understand pros/cons, trade-offs and make a decision.
+4. Avoid open-ended questions. Try to always be as specific as possible when making a question.
+5. It is OK to follow-up if this is important and you have not received an answer.
+6. When posting results you should describe the main findings. 
+
+### Reports
+1. When creating a report that include regressions, plots of the questions, descriptive statistics, etc, make sure that every variable is labeled correctly. A variable named q2_58 is not descriptive enough. You should provide the meaning of that variable, and if any clarification is necessary you should include it as a footnote. 
+2. Make the information easily available. You can include hyperlinks to the sections or to each result. 
+3. Any additional information that the PI's should know relevant to the report should be included in it. 
+
+### Tables and figures
+1. Your tables and figures should be correctly labeled. You should include descriptive names, relevant footnotes, labeled axes, etc.
+2. Before presenting your results, you should always review your results to catch any error. You should check the number of observations, the size of the coefficients, etc. In general, think about it as your research. Do not only produce what you are told to, try to understand if your results make sense. 
+3. Check for outliers and understand the sample that is being used in each regression table/figure.
+
+## Preparing figures and tables for presentation slides and paper
+
+### Presentation slides
+1. The tables and figures must be included with relative paths and not full paths.
+2. All of the results in the slides should be created by scripts. 
+3. Before every presentation the results must be updated to consider the last available data.
+
+### Paper Draft
+1. The numbers, tables, and figures must be included with relative paths and not full paths.
+2. All of the results in the paper should be created by scripts (This include all the numbers in the paper) 
+
 # 2. Keeping files organized
 ## i. General project organization
 In academic projects, it's essential to keep files synchronized between multiple computers and backed-up over time. This allows to easily share scripts and results with PIs, keep raw and processed data backed up, maintain a record of changes in different files, and permit other RAs and PIs to work on the same papers, presentations and scripts. We accomplish all of these tasks with the help of Dropbox, Github and Overleaf: Dropbox mainly for backing-up data, GitHub to track the history of file changes and update files, and Overleaf to allow PIs to easily modify papers without having to use a Latex processor. This system also integrates with the KLC server for processing large datasets.
@@ -628,13 +719,23 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 
 ## vi. Organizing references with Zotero
 
-### Overview
+### Overview of Zotero
 
 [Zotero](https://www.zotero.org/) is a tool for collecting and organizing references. The advantage of using Zotero is that it allows users to keep synced both references and PDF files, it automates the process of generating references from PDF files or standard numbers (e.g. DOI numbers), and can automatically sync bibliographies to .bib files. To set up Zotero, first [create a new Zotero account](https://www.zotero.org/user/register/) and [download the Zotero application](https://www.zotero.org/download/).
 
 Zotero **references** are items with associated metadata and can also be linked to PDF files. These PDF files are kept locally and can also be synced online -- the free version includes 300 MB of synced storage. These references are stored in "My Library" by default. You can organize your references by adding a new **collection** within a **library** or directly within a **library**. You can drag and drop references to add them to a collection or directly to the group library.
 
 The rest of this section explains how to add references to Zotero, sync library with multiple users, and generate and keep bibliographies updated. You can find a more in-depth guide on how to use Zotero [here](https://www.zotero.org/).
+
+### Overall procedure for adding references
+
+1. All references-related work will be organized under a new subproject in Asana named "References." This subproject includes four columns: "To do," "Added to bib," "Cited in paper," and "Will not cite in paper." Papers designated for citation will be listed as tasks under the "To do" column.
+2. For each papers mentioned in the "To do" column, the RA will
+    1. Add it in Zotero. If you are unsure how to do it, see [instructions in the next section](#adding-references-to-zotero). I highly recommend installing the Zotero browser extension, which allows for easy and stable collection of paper information with a single click of the Zotero extension button when viewing the webpage of the paper.
+    2. Download the paper to the shared Dropbox folder for references.
+    3. Include (i) the citation of the paper in the format of bibliography and (ii) the abstract in the Description of the Asana task for that paper.
+    4. Once you have finished Steps i - iii for all papers under an Asana task, move the task to the column "Added to bib".
+3. After adding all papers, export the Asana library as a .bib file. Please make sure to check [instructions below](#generating-bibliographies) for this step.
 
 ### Adding references to Zotero
 
@@ -709,7 +810,22 @@ Note: The default citation key must be updated to [zotero] as there is a possibi
 
 and change Citation key formula to [zotero] if not previously done.
 
+
 <img src="https://github.com/skhiggins/ra_guide/tree/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
+=======
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
+
+After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
+
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_12.png" align="center" height="35%" width="35%">
+
+#### Compiling the .bib file
+
+Sometimes Better BibTeX's automatic update can cause the .bib file to compile improperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following stpes:
+1. Make sure you have installed the `biber` package
+2. Run `$ biber <name of the main .tex document without ".tex">`, e.g. `$ biber PriceComparisonTool` through command line inside the folder that includes your main .tex document. 
+3. Compile the .tex again.
+
 	    
 # 3. Coding best practices
 ## i. Working with eps figures
@@ -1135,11 +1251,11 @@ Once you have read this guide, activated your work email, received your new comp
     - You can make large files or folders available online only, and then download when you have to use them. To do this, right-click on a file or folder and select **Make online only**.
 3. [Set up a local copy of the GitHub repository](https://github.com/skhiggins/ra_guide/tree/main#if-there-is-no-folder-set-up-on-the-servercomputer).
     - For this, you will need to receive access from the GitHub repo administrator (usually the PI) and [generate a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) to log in.
-    - It's recommended to keep the local copy of the GitHub repository's folder closer to the root directory of your computer. This ensures that the path is shorter, making it more convenient when changing directories to pull and push to the repository. For example, you can have `C:\Users\User\Work\Project` in Windows and `/Users/User/Work/Project` in Mac.
+    - It's recommended to keep the local copy of the GitHub repository's folder closer to the root directory of your computer. This ensures that the path is shorter, making it more convenient when changing directories to pull and push to the repository. For example, you can create `C:\GitHub\` in Windows and clone each GitHub repo to that parent directory. <!-- what would the equivalent be in Mac?  and `/Users/User/Work/Project` in Mac. -->
 4. Copy the `data` and `proc` folders from Dropbox into the local copy of the GitHub repo.
     - Once you have copied these folders, you can make the Dropbox versions online-only to save space.
 
 Now you should be ready to run any script in your own computer.
 
-# 6. Acknowledgement
+# 6. Acknowledgments
 This guide has benefitted from contributions from several current and former RAs, including [César Landín](https://github.com/clandinq), [Qiuyu Li](https://github.com/Qiuyu-Li), [Anahí Reyes](https://github.com/AnahiRM), [Erick Molina](https://github.com/ErickFMolina). 
