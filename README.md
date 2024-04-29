@@ -806,11 +806,12 @@ Once you have Better BibTex installed, you can right-click the group library and
 
 Note: The default citation key must be updated to [zotero] as there is a possibility of it being different when Better BibTex is installed. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
 
-<img src="https://github.com/skhiggins/ra_guide/tree/main/pictures/zotero/zotero_10.png" align="center" height="35%" width="35%">
+% <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_10.png" align="center" height="35%" width="35%">
 
 and change Citation key formula to [zotero] if not previously done.
 
-<img src="https://github.com/mohammadatifhaidry/ra_guide/tree/mohammad_main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
+![Test](pictures/zotero/zotero_11.png)
+% <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.png" align="center" height="35%" width="35%">
 
 After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
 
@@ -818,7 +819,7 @@ After you changed the Citation key formula, go back to the main page and Ctrl+A 
 
 #### Compiling the .bib file
 
-Sometimes Better BibTeX's automatic update can cause the .bib file to compile improperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following stpes:
+Sometimes Better BibTeX's automatic update can cause the .bib file to compile improperly. If you found the .tex displaying the cite keys instead of the proper "author(year)", please try the following steps:
 1. Make sure you have installed the `biber` package
 2. Run `$ biber <name of the main .tex document without ".tex">`, e.g. `$ biber PriceComparisonTool` through command line inside the folder that includes your main .tex document. 
 3. Compile the .tex again.
