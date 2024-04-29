@@ -806,11 +806,11 @@ Once you have Better BibTex installed, you can right-click the group library and
 
 Note: The default citation key must be updated to [zotero] as there is a possibility of it being different when Better BibTex is installed. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
 
-![test_1](https://github.com/mohammadatifhaidry/ra_guide/tree/mohammad_main/pictures/zotero/zotero_10.PNG)
+![test_1](https://github.com/mohammadatifhaidry/ra_guide/blob/mohammad_main/pictures/zotero/zotero_10.PNG)
 
 and change Citation key formula to [zotero] if not previously done.
 
-![test_2](https://github.com/mohammadatifhaidry/ra_guide/tree/mohammad_main/pictures/zotero/zotero_11.PNG)
+![test_2](https://github.com/mohammadatifhaidry/ra_guide/blob/mohammad_main/pictures/zotero/zotero_11.PNG)
 
 After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
 
