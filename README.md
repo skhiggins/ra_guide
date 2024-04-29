@@ -632,9 +632,9 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 
 [Zotero](https://www.zotero.org/) is a tool for collecting and organizing references. The advantage of using Zotero is that it allows users to keep synced both references and PDF files, it automates the process of generating references from PDF files or standard numbers (e.g. DOI numbers), and can automatically sync bibliographies to .bib files. To set up Zotero, first [create a new Zotero account](https://www.zotero.org/user/register/) and [download the Zotero application](https://www.zotero.org/download/).
 
-Zotero **references** are items with associated metadata and can also be linked to PDF files. These PDF files are kept locally and can also be synced online -- the free version includes 300 MB of synced storage. These references are stored in "My Library" by default. You can organize your references by adding a new **collection**. You can drag and drop references to add them to a collection.
+Zotero **references** are items with associated metadata and can also be linked to PDF files. These PDF files are kept locally and can also be synced online -- the free version includes 300 MB of synced storage. These references are stored in "My Library" by default. You can organize your references by adding a new **collection** within a **library** or directly within a **library**. You can drag and drop references to add them to a collection or directly to the group library.
 
-The rest of this section explains how to add references to Zotero, sync collections with multiple users, and generate and keep bibliographies updated. You can find a more in-depth guide on how to use Zotero [here](https://www.zotero.org/).
+The rest of this section explains how to add references to Zotero, sync library with multiple users, and generate and keep bibliographies updated. You can find a more in-depth guide on how to use Zotero [here](https://www.zotero.org/).
 
 ### Adding references to Zotero
 
@@ -660,33 +660,33 @@ There are three ways to add references to Zotero Library:
 
 Additionally, there are [Zotero Connectors](https://www.zotero.org/download/connectors) you can add to your browser.
 
-Keep your references organized by includiong them in **collections**. You can create a new collection by clicking on **File** -\> **New Collection**. Then, simply drag and drop existing references to the desired collection, or add new references directly into the collection. New references added directly to a collection will also show up in My Library.
+Keep your references organized by including them in **collections**. You can create a new collection by clicking on **File** -\> **New Collection**. Then, simply drag and drop existing references to the desired collection, or add new references directly into the collection. New references added directly to a collection will also show up in My Library.
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_4.png" align="center" height="35%" width="35%">   
 
-### Sharing a collection with Zotero Groups
+### Sharing a library with Zotero Groups
 
-You can use [Zotero Groups](https://www.zotero.org/groups) to share a collection with other team members. Everyone must have a Zotero account and download the Zotero application. With Groups, all content will sync in the group folder. You can create and share a collection via Zotero Groups the following way:
+You can use [Zotero Groups](https://www.zotero.org/groups) to share a library with other team members. Everyone must have a Zotero account and download the Zotero application. With Groups, all content will sync in the group folder. You can create and share a library via Zotero Groups the following way:
 
 1.  **Creating a Zotero Group.** Create a new group and invite members on the [Zotero website](https://www.zotero.org/groups). You can do this by clicking on **Create a New Group**. Make sure to make the group private, since this is a requirement to share PDF files.
 
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_5.png" align="center" height="70%" width="70%">   
 
-2.  **Sharing a collection with the group.** Once you create a group, it will appear on the left pane along with your other collections. If you want to share references with your group, you can either create a new collection within the group, or drag an existing connection into the group. These two collections are two separate entities and they will not sync, so make sure to keep only the group version of your collection.
+2.  **Sharing a library with the group.** Once you create a group, it will appear on the left pane along with your other libraries. If you want to share references with your group, you can either create a new library within the group, or drag an existing library into the group. These two libraries are two separate entities and they will not sync, so make sure to keep only the group version of your library. Within each library, multiple collections can be created to signify the different types or sub-groups of references for simplicity.
 
     <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_6.png" align="center" height="40%" width="40%">   
 
 
 ### Generating bibliographies
 
-To generate a bibliography from a collection, right click a collection and select **Export Collection**. For manual exports, you can select the BibLaTeX format. The best practice is to set up automatic updating of bibliographies.
+To generate a bibliography from a library, right click a library and select **Export Library**. For manual exports, you can select the BibLaTeX format. The best practice is to set up automatic updating of bibliographies.
 
 #### Automatic updating of bibliographies
 
-At least one member in the project (usually one of the RAs) should activate background export of the bibliography with automatic updating using [Better BibTeX](https://retorque.re/zotero-better-bibtex/). Better BibTeX is a third-party Zotero add-on that adds auto export functionality, allowing entire collections to sync with .bib files when they change. Once this is activated, the workflow for adding references and keeping them updated works the following way:
+At least one member in the project (usually one of the RAs) should activate background export of the bibliography with automatic updating using [Better BibTeX](https://retorque.re/zotero-better-bibtex/). Better BibTeX is a third-party Zotero add-on that adds auto export functionality, allowing the complete group library to sync with .bib files when they change. Once this is activated, the workflow for adding references and keeping them updated works the following way:
 
-1.  Any user makes updates to the Zotero group collection.
-2.  The Zotero group collection is synced to all users.
+1.  Any user makes updates to the Zotero group library and/or the collections within.
+2.  The Zotero group library is synced to all users.
 3.  The .bib file updates automatically with the new content for users with Better BibTeX installed.
 4.  The .bib file is synced to all users when users with automatic export push changes to GitHub.
 
@@ -699,7 +699,7 @@ Follow these steps to install Better BibTeX:
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_8.png" align="center" height="25%" width="25%">   
 
-Once you have Better BibTex installed, you can right-click the group collection and select **Export Collection**, choose the **Better BibLaTeX** format, and tick **Keep updated** and **Background export**.
+Once you have Better BibTex installed, you can right-click the group library and select **Export Library**, choose the **Better BibLaTeX** format, and tick **Keep updated** and **Background export**.
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_9.png" align="center" height="35%" width="35%">   
 
