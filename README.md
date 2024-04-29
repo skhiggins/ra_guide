@@ -761,9 +761,15 @@ There are three ways to add references to Zotero Library:
 
 Additionally, there are [Zotero Connectors](https://www.zotero.org/download/connectors) you can add to your browser.
 
-Keep your references organized by including them in **collections**. You can create a new collection by clicking on **File** -\> **New Collection**. Then, simply drag and drop existing references to the desired collection, or add new references directly into the collection. New references added directly to a collection will also show up in My Library.
+Keep your references organized by including them in **collections** within a group library. You can create a new collection by clicking on **File** -\> **New Collection**. Then, simply drag and drop existing references to the desired collection, or add new references directly into the collection. New references added directly to a collection will also show up in My Library.
 
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_4.png" align="center" height="35%" width="35%">   
+<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_4.png" align="center" height="35%" width="35%"> 
+
+**Note**: 
+
+1.  Add the latest published version of the paper (if available!).   
+
+2.  Ensure that name prefixes (like "de") are treated as part of the last name while citing a paper. To do so, within the latex file inside \usepackage[...], mention useprefix=true.
 
 ### Sharing a library with Zotero Groups
 
