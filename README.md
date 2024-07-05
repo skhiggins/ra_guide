@@ -741,13 +741,15 @@ All references-related work will be organized under a new subproject in Asana na
 For each papers mentioned in the "To do" column, the RA will:
 
 1. Search for the pdf online, and do two things with the pdf:
-   1. **Include it in Zotero** (see [instructions in the next section](#adding-references-to-zotero)). Sometimes the PIs will do this step if they are editing the paper and need the reference right away.
-   2. **Include it in the folder {project folder}/references**. You can also put it in a subfolder within that folder; use your discretion.
+   - **Include it in Zotero** (see [instructions in the next section](#adding-references-to-zotero)). Sometimes the PIs will do this step if they are editing the paper and need the reference right away.
+   - **Include it in the folder {project folder}/references**. You can also put it in a subfolder within that folder; use your discretion.
 2. Add it to the Zotero for the project following the instructions in the RA Guide.
-3. **Include the citation of the paper (in the format it would appear in a bibliography, not in format for the bib file) in the Description of the Asana task for that paper**, and also **include the abstract in the Description of the Asana task**.
-4. Once you add it to Zotero, re-export the .bib file and save it in {project folder}/paper, overwriting the one we have. If you are adding multiple references at once you can wait until you add multiple, i.e. you don't have to re-export the .bib each individual time you add a reference. Please make sure to check [instructions below](#generating-bibliographies) for this step.
-5. Once the above steps have been completed, move the task in Asana to the "Added to bib" column.
-6. Once we cite it in the paper we will move it to the "Cited in paper" column. Or if we decide not to cite it we will move it to the "Will not cite in paper" column and we will add a comment about why we decided not to cite it.
+3. **Include the citation of the paper in the Description of the Asana task for that paper**, and also **include the abstract in the Description of the Asana task**:
+   - The citation shoule be in the format it would appear in a bibliography, not in format for the bib file.
+   - List all authors when you put the citation in Asana, rather than just "First et al".
+5. Once you add it to Zotero, re-export the .bib file and save it in {project folder}/paper, overwriting the one we have. If you are adding multiple references at once you can wait until you add multiple, i.e. you don't have to re-export the .bib each individual time you add a reference. Please make sure to check [instructions below](#generating-bibliographies) for this step.
+6. Once the above steps have been completed, move the task in Asana to the "Added to bib" column.
+7. Once we cite it in the paper we will move it to the "Cited in paper" column. Or if we decide not to cite it we will move it to the "Will not cite in paper" column and we will add a comment about why we decided not to cite it.
 
 ### Adding references to Zotero
 
