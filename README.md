@@ -814,7 +814,7 @@ This system works best if all users making edits to the paper's references have 
 Follow these steps to install Better BibTeX:
 
 1.  Download the [latest Better BibTeX release](https://github.com/retorquere/zotero-better-bibtex/releases/latest) (the .xpi file).
-2.  Click on **Tools** -\> **Add-ons**, then click the **Settings** button (gear icon), and then choose **Install Add-on From File**. Select the .xpi file you downloaded.
+2.  Click on **Tools** -\> **Add-ons** or **Plugins**, then click the **Settings** button (gear icon), and then choose **Install Add-on From File**. Select the .xpi file you downloaded.
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_8.png" align="center" height="25%" width="25%">   
 
