@@ -822,13 +822,11 @@ Once you have Better BibTex installed, you can right-click the group library and
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_9.png" align="center" height="35%" width="35%">   
 
-Note: The default citation key must be updated to [zotero] as there is a possibility of it being different when Better BibTex is installed. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
+Next, update the default citation key to `auth.lower + "_" + shorttitle(1, 1).lower + "_" + year`. To do so navigate to Edit -> Preferences and go to Better BibTex and click on "Open Better BibTex preferences..."
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_10.PNG" align="center" height="40%" width="55%">   
 
-and change Citation key formula to [zotero] if not previously done.
-
-<img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/zotero/zotero_11.PNG" align="center" height="45%" width="65%">   
+and change Citation key formula to `auth.lower + "_" + shorttitle(1, 1).lower + "_" + year` .
 
 After you changed the Citation key formula, go back to the main page and Ctrl+A all papers in the library, right-click -> "Better BibTeX" -> "Unpin BibTeX key" -> wait for a few minutes for the unpin to finish -> "Refresh BibTeX key".
 
