@@ -668,7 +668,7 @@ To make changes in repos where you are not the collaborator, you need to fork (c
 - Keep all raw data backed up in the Dropbox. You should **never** save scripts directly or reference raw data that in the Dropbox project folder.
 - The Dropbox folder can also contain administrative files and presentations that are not required in the GitHub.
 - All files from the local project folder (the one synced with GitHub) except `data` should be routinely copied from the local folder over to Dropbox to keep a back-up of all files. We accomplish this using a [shortcut](#v-keeping-github-and-dropbox-updated) that substitutes multiple git commands and copies the data to Dropbox.
-- For large project folders you will need a Dropbox Plus account. The easiest way to get it is to buy it (choose the “billed yearly” option for the price discount – it costs about $100) and then send the receipt to [Adam Troutman](adam.troutman@kellogg.northwestern.edu) and you will receive reimbursement into the bank account where you are paid by Northwestern. 
+- For large project folders you will need a Dropbox Plus account. The easiest way to get it is to buy it (choose the “billed yearly” option for the price discount – it costs about $100) and then send the receipt, the email your PI authorizing the expense, and the chartstring to charge it to the [Finance Department](fin-expenses@kellogg.northwestern.edu). You will receive reimbursement into the bank account where you are paid by Northwestern.
 
 ## iv. Working with the Kellogg Linux Cluster (KLC) server
 Processing of large datasets (dataset size approximating RAM size) should be done on KLC. You can find a comprehensive guide for using KLC [here](https://github.com/skhiggins/KLC_Guide)
