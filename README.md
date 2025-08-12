@@ -30,6 +30,7 @@ Contents:
   - [v. Keeping track of conference and presentation deadlines](#v-keeping-track-of-conference-and-presentation-deadlines)
     - [Reminder system](#reminder-system)
     - [Calendar with conference dates](#calendar-with-conference-dates)
+    - [Managing conference, seminar, and grant deadlines](#managing-conference-seminar-and-grant-deadlines)
   - [vi. Partner data requests](#vi-partner-data-requests)
   - [vii. Holidays and time off](#vii-holidays-and-time-off)
     - [University policies on holidays and time off](#university-policies-on-holidays-and-time-off)
@@ -415,6 +416,40 @@ Along with this reminder system, you should create a new calendar where you make
 Event titles should begin with **APP:** if applied or are applying to the conference, and **PRES:** if we are presenting at a conference. Include more details in the event description, including the conference website. Below is an example of a situation where having calendar events proved helpful: we found a conflict between two conferences and decided PIs could present in both.
 
 <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/calendar.png" align="center" height="60%" width="60%">        
+
+### Managing conference, seminar, and grant deadlines
+
+This section outlines the steps to follow once participation in a conference, seminar, or grant deliverable is confirmed, whether by acceptance, invitation, or internal scheduling. The goal is to ensure that all related tasks and deadlines are documented on Asana and integrated into the reminder system.
+
+**1. Organize the event on Asana**  
+Record and structure the event on Asana so that all relevant information, deadlines, and responsibilities are clear for everyone involved. This ensures that presenters, and RAs can easily track progress and requirements.  
+- Move the task for the event to the appropriate column (`To submit`, `Accepted/Invited`, etc.).  
+- Add key details at the top of the task description:
+  - Presentation date.
+  - Location and room.
+  - Discussant name (if applicable).  
+  - Presentation length.  
+  - Website link  
+- Create subtasks for each deadline, assign them to the responsible presenter or team member.
+- If deadlines are missing, apply the following defaults:
+  - **Send draft to discussant/organizers:** 2 weeks before the event or 1 week before if it is a seminar
+  - **Send slides:** First day of the event.  
+  - **Registration:** 1 week after receiving the registration link (if no deadline provided).  
+  - **Flight:** 1 week before the event.   
+
+**3. Reminder intervals**  
+All subtasks created on Asana should also be added to the reminder system using the following intervals:  
+- **Conference deadlines:** 2w, 1w, 2d, 1d, 0d.  
+- **Discussant/slides deadlines:** 1w, 1d, 0d.  
+- **Other deadlines:** 0d only.  
+- **Europe/Asia timezone adjustment:** Set both Asana deadlines and reminders 1 day earlier to account for time differences.  
+
+**3. Program, schedule, and calls for papers**  
+In addition to managing deadlines, it is important to keep track of event details and future opportunities:  
+- If the event program or schedule is available, add all relevant information (time, room, session title, etc.) to the task description.  
+- If the program is not yet available, create a weekly subtask to check until it is posted. If still unavailable when checking, push the check deadline one week forward.  
+- For invitations, add them to the `Accepted/Invited` column with deadlines.  
+- For calls for papers without a deadline, start checking monthly from 1 month after the current year’s conference until a call for papers is released.    
 
 ## vi. Partner data requests
 Many of our projects will have partners who help us implement the project. It is important to confirm meetings with partners, which might not happen in regular intervals and could be forgotten, and follow up on data requests to keep track of their progress. 
