@@ -681,11 +681,14 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 ### Setting up and running dual Github-Dropbox updates
 1. Download and edit Github to Dropbox backup script.
     1. Download the file [github_to_dropbox.R](/scripts/github_to_dropbox.R) and put it in your local project folder inside /scripts/programs/.
-    2. Update the path of the Dropbox folder where files should be routinely backed up to.
+    2. Update the path of the Dropbox folder where files should be routinely backed up to. (Always remember to have "/" at the end of the path, because we will be performing operations inside this folder.)
             
 	    <img src="https://github.com/skhiggins/ra_guide/blob/main/pictures/gh_db_1.png" align="center" height="60%" width="60%">
 
 2. Add shortcuts to bash profile.
+
+   (For Windows users, the following process should be conducted in Git Bash.
+   Please also make sure you have added Rscript to PATH on Windows using Environment Variables.)
     1. Open a new terminal window and edit the bash profile:
         ```sh
         vi ~/.zprofile
@@ -716,7 +719,7 @@ Processing of large datasets (dataset size approximating RAM size) should be don
 
     3. Save the bash profile (press Escape, type :wq, and hit Enter)
 
-3. Make changes and run Github - Dropbox dual backup shortcut. Remember to change directory to the desired project folder.
+4. Make changes and run Github - Dropbox dual backup shortcut. Remember to change directory to the desired project folder.
     ```sh
     cd project_folder
     gitcommit "My first commit with the shortcut"
